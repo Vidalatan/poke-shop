@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Pokeshop</title>
   </head>
 
   <body>
+    
       <header class="container-fluid bg-primary">
           <h1 class="bg-secondary">Pokeshop</h1>
             
@@ -21,11 +23,13 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="#">Show Money</a>
                 </li>
               </ul>
           </div>
       </header>
+
+      
 
 
       <!-- search bar and filter-->
@@ -45,9 +49,9 @@
                   Dropdown button
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">Type</a>
+                  <a class="dropdown-item" href="#">Gender</a>
+                  <a class="dropdown-item" href="#">Rarity</a>
                 </div>
               </div>
         </nav>
@@ -55,11 +59,24 @@
 
       </div>
 
+
+      <!--New Here? -->
+
+      <!-- Button for newbie -->
+      <div class="text-center m-4">
+        <button type="button" class="btn btn-primary " data-toggle="" data-target="" data-whatever="">Create Your Gym!</button>
+      </div>
+      <!-- modal pop up form -->
+      
+
+
       <!-- Inventory -->
       <main class="container-fluid bg-danger d-center">
+
+        <h2 class="pt-3 pl-2 bg-warning">Inventory (Gym Name)</h2>
         
         <div class="card m-3 d-inline-block" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>
@@ -73,7 +90,7 @@
         </div>
         
         <div class="card m-3 d-inline-block" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>
@@ -86,12 +103,12 @@
         </div>
 
         <div class="card m-3 d-inline-block" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>
               
-                <div class="">
+                <div class="text-center">
                     <a href="#" class="btn btn-primary">Sell</a>
                     <a href="#" class="btn btn-primary">Feed</a>
                 </div>
