@@ -11,9 +11,9 @@
   </head>
 
   <body>
-    
+
       <header class="container-fluid bg-primary">
-          <h1 class="bg-secondary">Pokeshop</h1>
+          <h1 class="bg-secondary p-3">Pokeshop</h1>
             
           <!-- nav links -->
           <div class="bg-warning">
@@ -24,6 +24,8 @@
 
                 <li class="nav-item">
                   <a class="nav-link" href="#">Show Money</a>
+                  <!--* Pokecoin image ⬇️⬇️ -->
+                  <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
                 </li>
               </ul>
           </div>
@@ -73,9 +75,9 @@
     </div>
 
       <!-- search bar and filter-->
-      <div class="container-fluid bg-info">
+      <div class="container-fluid bg-info bg-light">
         <!--text  input  -->
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light">
             <form class="form-inline">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <!-- search button -->
@@ -83,12 +85,11 @@
             </form>
 
             <!-- filter dropdown -->
-            <!-- TODO: fix dropdown as of now it shows but doesnt actually drop down -->
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+                  Filter by
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#">Type</a>
                   <a class="dropdown-item" href="#">Gender</a>
                   <a class="dropdown-item" href="#">Rarity</a>
@@ -103,9 +104,9 @@
       <!--New Here? -->
 
       <!-- Button for newbie -->
-      <!-- button will no longer displaya after form is complete -->
-      <div class="text-center m-4">
-        <button type="button" class="btn btn-primary " data-toggle="" data-target="" data-whatever="">Create Your Gym!</button>
+      <!-- button will no longer display after form is complete -->
+      <div class="text-center m-4 bg-dark">
+        <button type="button" class="btn btn-primary btn-danger p-2" data-toggle="" data-target="" data-whatever="">Create Your Gym!</button>
       </div>
       <!-- modal pop up form -->
       
@@ -165,6 +166,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
