@@ -32,47 +32,68 @@
       </header>
 
       
-
+      <!-- modal pop up form -->
       <!-- adding the pop up form here -->
-      <div class="popup modal-body">
-        <button id="first-time-popup-close">&times;</button>
-        <h2>Welcome New Trainer</h2>
-        <form>
-          <div class="form-row">
-            <div class="form-group col-lg">
-                <label for="inputName">Trainer Name</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Trainer Name">
-            </div>
-            
-            </div>
-            <div class="form-group">
-            <label for="Gym Name">Gym Name</label>
-            <input type="text" class="form-control" id="inputGym" placeholder="Gym Name">
-            </div>
-          
+      <div class="overlay">
+        <div class="popup modal-body">
+          <button id="first-time-popup-close">&times;</button>
+          <h2>Welcome New Trainer</h2>
+          <form>
             <div class="form-row">
-             
-            <div class="form-group col-md-4">
-                <label for="inputState">Gym Type</label>
-                <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
+              <div class="form-group col-lg">
+                  <label for="inputName">Trainer Name</label>
+                  <input type="text" class="form-control" id="inputName" placeholder="Trainer Name">
+              </div>
+              
+              </div>
+              <div class="form-group">
+              <label for="Gym Name">Gym Name</label>
+              <input type="text" class="form-control" id="inputGym" placeholder="Gym Name">
+              </div>
+            
+              <div class="form-row">
+              
+              <div class="form-group col-md-4">
+                  <label for="inputState">Gym Type</label>
+                  <select id="inputState" class="form-control">
+                    <!-- would be cool to change color on choice or at least on dropdown -->
+                  <option selected>Choose</option>
+                  <option class>Normal</option>
+                  <option>Fire</option>
+                  <option>Water</option>
+                  <option>Grass</option>
+                  <option>Electric</option>
+                  <option>Ice</option>
+                  <option>Fighting</option>
+                  <option>Poison</option>
+                  <option>Ground</option>
+                  <option>Flying</option>
+                  <option>Psychic</option>
+                  <option>Bug</option>
+                  <option>Rock</option>
+                  <option>Ghost</option>
+                  <option>Dark</option>
+                  <option>Dragon</option>
+                  <option>Steel</option>
+                  <option>Fairy</option>
                 </select>
-            </div>
-           
-            </div>
-            <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                sign me up !
-              </label>
-            </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-        <a href="#">Let's Go</a>
-    </div>
+              </div>
+            
+              </div>
+              <div class="form-group">
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                  sign me up !
+                </label>
+              </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+          <a href="#">Let's Go</a>
+       </div>
+      </div>
+
 
       <!-- search bar and filter-->
       <div class="container-fluid bg-info bg-light">
@@ -90,8 +111,8 @@
                   Filter by
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Name</a>
                   <a class="dropdown-item" href="#">Type</a>
-                  <a class="dropdown-item" href="#">Gender</a>
                   <a class="dropdown-item" href="#">Rarity</a>
                 </div>
               </div>
@@ -100,59 +121,59 @@
 
       </div>
 
-
-      <!--New Here? -->
-
-      <!-- Button for newbie -->
-      <!-- button will no longer display after form is complete -->
-      <div class="text-center m-4 bg-dark">
-        <button type="button" class="btn btn-primary btn-danger p-2" data-toggle="" data-target="" data-whatever="">Create Your Gym!</button>
-      </div>
-      <!-- modal pop up form -->
-      
-
-
       <!-- Inventory -->
       <main class="container-fluid bg-danger d-center">
 
         <h2 class="pt-3 pl-2 bg-warning">Inventory (Gym Name)</h2>
-        
-        <div class="card m-3 d-inline-block" style="width: 18rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
+      
+        <!-- Cards -->
+        <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>
               
                 <div class="text-center">
                     <a href="#" class="btn btn-primary">Sell</a>
-                    <a href="#" class="btn btn-primary">Feed</a>
+                    <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+                    <br>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img  src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png"/></a>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png"/></a>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png"/></a>
+                    <!-- Change feed to 3 diff sized candies png with tooltip-->
                 </div>
             
             </div>
         </div>
         
-        <div class="card m-3 d-inline-block" style="width: 18rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
+        <div id="poke-info-card" class="card m-1 d-inline-block" style="width: 10rem; height: 20rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>
               
                 <div class="text-center">
                     <a href="#" class="btn btn-primary">Sell</a>
-                    <a href="#" class="btn btn-primary">Feed</a>
+                    <br>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img  src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png"/></a>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png"/></a>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png"/></a>
                 </div>
             </div>
         </div>
 
-        <div class="card m-3 d-inline-block" style="width: 18rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
+        <div id="poke-info-card" class="card m-1 d-inline-block" style="width: 10rem; height: 20rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>
               
                 <div class="text-center">
                     <a href="#" class="btn btn-primary">Sell</a>
-                    <a href="#" class="btn btn-primary">Feed</a>
+                    <br>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img  src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png"/></a>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png"/></a>
+                    <a href="#" class="" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png"/></a>
                 </div>
             
             </div>
