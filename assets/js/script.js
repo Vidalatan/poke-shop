@@ -1,11 +1,10 @@
-window.addEventListener("load", function(){
-    setTimeout(
-        function open(event){
-            document.querySelector(".popup").style.display = "block";
-        },
-        1000 
-    )
-});
+// window.addEventListener("load", function(){
+//     setTimeout(
+//         function open(event){
+//             document.querySelector(".popup").style.display = "block";
+//         },
+//     )
+// });
 
 
 document.querySelector("#first-time-popup-close").addEventListener("click", function(){
@@ -162,3 +161,69 @@ function getAllPokemon() {
     return null
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function turnObjToArray(object) {
+    let newArray = []
+    for (let index = 0; index < Object.keys(object).length-2; index++) {
+        console.log(newArray);
+        newArray.push(object[index])
+    }
+    return newArray
+}
+
+
+$(".sell-pkm-btn").on("click", event => {
+    event.preventDefault()
+    console.log(event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect());
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+    var cardTop = event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().top
+    anime({
+        targets: event.currentTarget.parentNode.parentNode.parentNode,
+        keyframes: [
+            {
+                zIndex: 100,
+                duration: 0
+            },
+            {   
+                translateX: (window.innerWidth/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-160,
+                translateY: (window.innerHeight/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().y-250,
+                scale: 1.5,
+                duration: 2000
+            },
+            {
+                translateX: window.innerWidth-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-160,
+                translateY: -(window.innerHeight-400),
+                opacity: 0,
+                easing: 'cubicBezier(1, 0, 1, 1)',
+                duration: 1000
+            }
+        ],
+        complete: function(anim) {
+            $("#anime-pokecoin-sell").remove()
+            event.currentTarget.parentNode.parentNode.parentNode.remove()
+            let totalPokecoins = 8;    // Set how many coins to create.
+            $("body").append($("<div>").attr("id", "anime-pokecoin-sell").attr("style", "display: flex; justify-content: end; position: fixed; z-index: 100; top: 0px; right: 0px; width: 5%; height: 5%; opacity: 1;")
+            .append( () => {
+                let pokeCoinImageArray = []
+                for (let index = 0; index < totalPokecoins; index++) {
+                    pokeCoinImageArray.push($("<img>").attr("src", "./assets/images/pokecoin.png").attr("style", "position: absolute; width: 32px; height: 32px;"))
+                }
+                return pokeCoinImageArray
+            }))
+            anime({
+                targets: turnObjToArray($("#anime-pokecoin-sell").children()),
+                translateX: anime.stagger(-35, {grid: [Math.sqrt(totalPokecoins),Math.sqrt(totalPokecoins)], axis: "x"}),
+                translateY: anime.stagger(35, {grid: [Math.sqrt(totalPokecoins),Math.sqrt(totalPokecoins)], axis: "y"}),
+                opacity: 0,
+                duration: 1000,
+                easing: "easeInOutQuad",
+                complete: function(anim) {
+                    $("#anime-pokecoin-sell").remove()
+                }
+            })
+        }
+    })
+})
+
+// $("<img>").attr("src", "./assets/images/pokecoin.png")
