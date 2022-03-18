@@ -70,16 +70,50 @@ body{
     padding: 8px 0;
 }
 
+
+/* dropdown menu stuff */
+
+
+
+
+
+
+
+
+.card-container  {
+    display: flex;
+    justify-content: center;
+}
+
 #poke-info-card h5 {
 font-size: 1.2rem;
+text-align: center;
 }
 
 #poke-info-card {
+    text-align: center;
     font-size: .75rem;
 }
 
 .text-center .btn {
     font-size: .75rem; 
     padding: .01rem 2rem;
+}
+
+#pokeball-card {
+    text-align: center;
+}
+
+#pokeball-card h5 {
+font-size: 1.3rem;
+}
+
+#pokeball-card {
+    font-size: .82rem;
+}
+
+#pokeball-card .text-center .btn {
+    font-size: 1.2rem; 
+    padding: .2rem 2rem;
 }
 

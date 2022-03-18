@@ -11,23 +11,23 @@
   </head>
 
   <body>
-
       <header class="container-fluid bg-primary">
           <h1 class="bg-secondary p-3">Pokeshop</h1>
             
           <!-- nav links -->
           <div class="bg-warning">
             <ul class="nav justify-content-end">
-                <li class="nav-item">
-                  <a class="nav-link active" href="./shop.html">Shop</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" > Show Money</a>
+                <!--* Pokecoin image ⬇️⬇️ -->
+                <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link active" href="./shop.html">Shop</a>
+              </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Show Money</a>
-                  <!--* Pokecoin image ⬇️⬇️ -->
-                  <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
-                </li>
-              </ul>
+            </ul>
           </div>
       </header>
 
@@ -56,7 +56,7 @@
               <div class="form-group col-md-4">
                   <label for="inputState">Gym Type</label>
                   <select id="inputState" class="form-control">
-                    <!-- would be cool to change color on choice or at least on dropdown -->
+                    <!-- **would be cool to change color on choice or at least on dropdown -->
                   <option selected>Choose</option>
                   <option class>Normal</option>
                   <option>Fire</option>
@@ -96,29 +96,62 @@
 
 
       <!-- search bar and filter-->
-      <div class="container-fluid bg-info bg-light">
+      <div class="container-fluid bg-light">
         <!--text  input  -->
-        <nav class="navbar navbar-light">
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <!-- search button -->
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+        <nav class="navbar navbar-light justify-content-end">
+          <!-- filter buttons and dropdown -->
+          <div class="dropdown">
+            <!-- Filter Dropdown -->
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Filter</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#pokemon-name">Name</a>
+              <a class="dropdown-item" href="#pokemon-rarity">Rarity</a>
+              <a class="dropdown-item" href="#pokemon-type">Type</a>
+            </div>
 
-            <!-- filter dropdown -->
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filter by
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Name</a>
-                  <a class="dropdown-item" href="#">Type</a>
-                  <a class="dropdown-item" href="#">Rarity</a>
+            <!-- Name Search -->
+            <div class="btn-group">
+              <button id="pokemon-name" class="btn btn-primary" type="button">Name</button>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              
+              <!-- Pokemon Rarity Dropdown -->
+              <div class="btn-group">
+                <button id="pokemon-rarity" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">Rarity</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Standard</a>
+                  <a class="dropdown-item" href="#">Legendary</a>
+                  <a class="dropdown-item" href="#">Mythic</a>
                 </div>
               </div>
+              
+              <!-- Pokemon Type Dropdown -->
+              <div class="btn-group">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" id="pokemon-type">Type</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Fire</a>
+                  <a class="dropdown-item" href="#">Water</a>
+                  <a class="dropdown-item" href="#">Grass</a>
+                  <a class="dropdown-item" href="#">Ice</a>
+                  <a class="dropdown-item" href="#">Fighting</a>
+                  <a class="dropdown-item" href="#">Poison</a>
+                  <a class="dropdown-item" href="#">Ground</a>
+                  <a class="dropdown-item" href="#">Flying</a>
+                  <a class="dropdown-item" href="#">Psychic</a>
+                  <a class="dropdown-item" href="#">Bug</a>
+                  <a class="dropdown-item" href="#">Rock</a>
+                  <a class="dropdown-item" href="#">Ghost</a>
+                  <a class="dropdown-item" href="#">Dark</a>
+                  <a class="dropdown-item" href="#">Dragon</a>
+                  <a class="dropdown-item" href="#">Steel</a>
+                  <a class="dropdown-item" href="#">Fairy</a>
+                </div>        
+              </div>
+            </div>
+          </div>
+          
         </nav>
-
-
+          
+          
       </div>
 
       <!-- Inventory -->
