@@ -19,6 +19,7 @@ document.querySelector("#first-time-popup-close").addEventListener("click", func
 
 function sendRef(results) {
     results.forEach(pokemon => {
+        console.log(pokemon);
         console.log("https://img.pokemondb.net/sprites/sword-shield/icon/"+ pokemon.name.toLowerCase() +".png");
     });  // This is where we handle the results retrieved from our fetches
 }
@@ -174,10 +175,6 @@ function turnObjToArray(object) {
 
 $(".sell-pkm-btn").on("click", event => {
     event.preventDefault()
-    console.log(event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect());
-    console.log(window.innerWidth);
-    console.log(window.innerHeight);
-    var cardTop = event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().top
     anime({
         targets: event.currentTarget.parentNode.parentNode.parentNode,
         keyframes: [
@@ -219,7 +216,37 @@ $(".sell-pkm-btn").on("click", event => {
                 duration: 1000,
                 easing: "easeInOutQuad",
                 complete: function(anim) {
-                    $("#anime-pokecoin-sell").remove()
+                    if ($("#anime-pokecoin-sell")) {
+                        return
+                    } else {
+                        $("#anime-pokecoin-sell").remove()
+                    }
+                }
+            })
+        }
+    })
+})
+
+$(".feed-pkm-btn").on("click", event => {
+    event.preventDefault()
+    console.log(event.currentTarget);
+    anime({
+        targets: [event.currentTarget.children[0]],
+        translateY: -200,
+        opacity: 0,
+        easing: "cubicBezier(1, 0, .75, 1)",
+        duration: 1000,
+        begin: function(anim) {
+            $(event.currentTarget).attr("style", "pointer-events: none;")
+        },
+        complete: function(anim) {
+            anime({
+                targets: event.currentTarget.children[0],
+                translateY: 0,
+                opacity: 1,
+                duration: 0,
+                complete: function(anim) {
+                    $(event.currentTarget).attr("style", "pointer-events: initial;")
                 }
             })
         }
