@@ -7,6 +7,19 @@
 body{
     background-color: #0855ae;
 }
+
+
+/*!Still need to code to disappear with modal */
+/* .overlay {
+    position: fixed; /**Positioning and size
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128,128,128,0.5); /**color
+    z-index: 9;
+} */
+
 .popup{
     background-color: #ffffff;
     width: 420px;
@@ -45,6 +58,7 @@ body{
     margin: 20px 0;
     line-height: 25px;
 }
+
 .a{
     display: block;
     width: 150px;
@@ -57,3 +71,51 @@ body{
     text-decoration: none;
     padding: 8px 0;
 }
+
+
+/* dropdown menu stuff */
+
+
+
+
+
+
+
+
+.card-container  {
+    display: flex;
+    justify-content: center;
+}
+
+#poke-info-card h5 {
+font-size: 1.2rem;
+text-align: center;
+}
+
+#poke-info-card {
+    text-align: center;
+    font-size: .75rem;
+}
+
+.text-center .btn {
+    font-size: .75rem; 
+    padding: .01rem 2rem;
+}
+
+#pokeball-card {
+    text-align: center;
+}
+
+#pokeball-card h5 {
+font-size: 1.3rem;
+}
+
+#pokeball-card {
+    font-size: .82rem;
+}
+
+#pokeball-card .text-center .btn {
+    font-size: 1.2rem; 
+    padding: .2rem 2rem;
+}
+

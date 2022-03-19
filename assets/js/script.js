@@ -55,16 +55,6 @@ letsGoBtn.addEventListener("click", function(event){
  
  });
 
-
-
-
-
-
-
-
-
-
-
 // ------------------------------------------------------------------------------------------
 
 // API handling
@@ -73,6 +63,7 @@ letsGoBtn.addEventListener("click", function(event){
 
 function sendRef(results) {
     results.forEach(pokemon => {
+        console.log(pokemon);
         console.log("https://img.pokemondb.net/sprites/sword-shield/icon/"+ pokemon.name.toLowerCase() +".png");
     });  // This is where we handle the results retrieved from our fetches
 }
@@ -213,5 +204,97 @@ function getPokemonByRarity(searchedRarity=null, id=null, rarityData, typesData)
 
 function getAllPokemon() {
     return null
-};
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function turnObjToArray(object) {
+    let newArray = []
+    for (let index = 0; index < Object.keys(object).length-2; index++) {
+        console.log(newArray);
+        newArray.push(object[index])
+    }
+    return newArray
+}
+
+
+$(".sell-pkm-btn").on("click", event => {
+    event.preventDefault()
+    anime({
+        targets: event.currentTarget.parentNode.parentNode.parentNode,
+        keyframes: [
+            {
+                zIndex: 100,
+                duration: 0
+            },
+            {   
+                translateX: (window.innerWidth/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-160,
+                translateY: (window.innerHeight/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().y-250,
+                scale: 1.5,
+                duration: 2000
+            },
+            {
+                translateX: window.innerWidth-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-160,
+                translateY: -(window.innerHeight-400),
+                opacity: 0,
+                easing: 'cubicBezier(1, 0, 1, 1)',
+                duration: 1000
+            }
+        ],
+        complete: function(anim) {
+            $("#anime-pokecoin-sell").remove()
+            event.currentTarget.parentNode.parentNode.parentNode.remove()
+            let totalPokecoins = 8;    // Set how many coins to create.
+            $("body").append($("<div>").attr("id", "anime-pokecoin-sell").attr("style", "display: flex; justify-content: end; position: fixed; z-index: 100; top: 0px; right: 0px; width: 5%; height: 5%; opacity: 1;")
+            .append( () => {
+                let pokeCoinImageArray = []
+                for (let index = 0; index < totalPokecoins; index++) {
+                    pokeCoinImageArray.push($("<img>").attr("src", "./assets/images/pokecoin.png").attr("style", "position: absolute; width: 32px; height: 32px;"))
+                }
+                return pokeCoinImageArray
+            }))
+            anime({
+                targets: turnObjToArray($("#anime-pokecoin-sell").children()),
+                translateX: anime.stagger(-35, {grid: [Math.sqrt(totalPokecoins),Math.sqrt(totalPokecoins)], axis: "x"}),
+                translateY: anime.stagger(35, {grid: [Math.sqrt(totalPokecoins),Math.sqrt(totalPokecoins)], axis: "y"}),
+                opacity: 0,
+                duration: 1000,
+                easing: "easeInOutQuad",
+                complete: function(anim) {
+                    if ($("#anime-pokecoin-sell")) {
+                        return
+                    } else {
+                        $("#anime-pokecoin-sell").remove()
+                    }
+                }
+            })
+        }
+    })
+})
+
+$(".feed-pkm-btn").on("click", event => {
+    event.preventDefault()
+    console.log(event.currentTarget);
+    anime({
+        targets: [event.currentTarget.children[0]],
+        translateY: -200,
+        opacity: 0,
+        easing: "cubicBezier(1, 0, .75, 1)",
+        duration: 1000,
+        begin: function(anim) {
+            $(event.currentTarget).attr("style", "pointer-events: none;")
+        },
+        complete: function(anim) {
+            anime({
+                targets: event.currentTarget.children[0],
+                translateY: 0,
+                opacity: 1,
+                duration: 0,
+                complete: function(anim) {
+                    $(event.currentTarget).attr("style", "pointer-events: initial;")
+                }
+            })
+        }
+    })
+})
+
+// $("<img>").attr("src", "./assets/images/pokecoin.png")

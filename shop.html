@@ -5,104 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-did this for bnoth    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>PokeShop</title>
   </head>
 
   
   <body>
-    <header class="container-fluid bg-primary">
+      <header class="container-fluid bg-primary">
         <h1 class="bg-secondary p-3">Pokeshop</h1>
           
         <!-- nav links -->
         <div class="bg-warning">
           <ul class="nav justify-content-end">
-              <li class="nav-item">
-                <a class="nav-link active" href="./index.html">Home</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#">Show Money</a>
-                <!--* Pokecoin image ⬇️⬇️ -->
-                <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
-              </li>
-            </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" > Show Money</a>
+              <!--* Pokecoin image ⬇️⬇️ -->
+              <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link active" href="./index.html">Home</a>
+            </li>
+          </ul>
         </div>
-    </header>
-
-
-   
-      <!-- search bar and filter-->
-      <div class="container-fluid bg-info bg-light">
-        <!--text  input  -->
-        <nav class="navbar navbar-light">
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <!-- search button -->
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-
-            <!-- filter dropdown -->
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filter by
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Type</a>
-                  <a class="dropdown-item" href="#">Gender</a>
-                  <a class="dropdown-item" href="#">Rarity</a>
-                </div>
-              </div>
-        </nav>
-
-
-      </div>
+      </header>
 
 
 
-    </div>
-
-    <!-- Inventory -->
+    <!-- Shop -->
     <main class="container-fluid bg-danger d-center">
       
-      <div class="card m-3 d-inline-block" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
+      <h2 class="pt-3 pl-2 bg-primary">Shop</h2>
+        
+      <div class="card-container">
+        <!-- Cards -->
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem;">
+          <img class="card-img-top" src="./assets/images/pokeball.png" alt="pokeball sprite"/>
           <div class="card-body">
-            <h5 class="card-title">Pokemon name</h5>
-            <p class="card-text">Pokemon informatin provided by API maybe lol</p>
-            
+            <h5 class="card-title">Poké Ball</h5>
+            <p class="card-text">The most basic form of a Poké Ball. It is an item used to catch Pokémon and has a low chance of catching rare pokemon.</p>
             <div class="text-center">
-                <a href="#" class="btn btn-primary">Buy</a>
+              <a href="#" class="btn btn-primary">Buy</a>
             </div>
           
           </div>
+        </div>
+        
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem;">
+          <img class="card-img-top" src="./assets/images/greatball.png" alt="greatball sprite"/>
+          <div class="card-body">
+            <h5 class="card-title">Great Ball</h5>
+            <p class="card-text">It is an improved variant of the regular Poké Ball that has an increased chance of catching rarer Pokémon.</p>  
+            <div class="text-center">
+              <a href="#" class="btn btn-primary">Buy</a>
+            </div>
+          
+          </div>
+        </div>
+        
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem;">
+          <img class="card-img-top" src="./assets/images/ultraball.png" alt="ultraball sprite"/>
+          <div class="card-body">
+            <h5 class="card-title">Master Ball</h5>
+            <p class="card-text">It is an improved variant of the Great Ball that has an increased chance of catching rarer Pokémon.</p>
+            <div class="text-center">
+              <a href="#" class="btn btn-primary">Buy</a>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <div class="card m-3 d-inline-block" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Pokemon name</h5>
-            <p class="card-text">Pokemon informatin provided by API maybe lol</p>
-            
-              <div class="text-center">
-                <a href="#" class="btn btn-primary">Buy</a>
-            </div>
-          </div>
-      </div>
-
-      <div class="card m-3 d-inline-block" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Pokemon name</h5>
-            <p class="card-text">Pokemon informatin provided by API maybe lol</p>
-            
-              <div class="text-center">
-                  <a href="#" class="btn btn-primary">Buy</a>
-              </div>
-          
-          </div>
-      </div>
       
     </main>
 
