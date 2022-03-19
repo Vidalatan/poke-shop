@@ -34,7 +34,7 @@ body{
     text-align: center;
     z-index: 9;
 }
-.popup button{
+/* .popup {
     display: block;
     margin:  0 0 20px auto;
     background-color: transparent;
@@ -46,8 +46,9 @@ body{
     height: 40px;
     border: none;
     outline: none;
-    cursor: pointer;
-}
+    cursor: pointer; */
+/* } */
+
 .popup h2{
   margin-top: -20px;
 }
@@ -57,7 +58,8 @@ body{
     margin: 20px 0;
     line-height: 25px;
 }
-.popup a{
+
+.a{
     display: block;
     width: 150px;
     position: relative;

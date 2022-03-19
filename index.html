@@ -12,7 +12,7 @@
 
   <body>
       <header class="container-fluid bg-primary">
-          <h1 class="bg-secondary p-3">Pokeshop</h1>
+          <h1 class="bg-secondary p-3">Poke-Shop Trainer: <span id="saved-name"></span></h1>
             
           <!-- nav links -->
           <div class="bg-warning">
@@ -27,74 +27,65 @@
                 <a class="nav-link active" href="./shop.html">Shop</a>
               </li>
 
+
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html">Show Money</a>
+                  <!-- * Pokecoin image ⬇️⬇️ -->
+                <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> 
+              </li>
+
+
             </ul>
+
           </div>
       </header>
 
       
       <!-- modal pop up form -->
-      <!-- adding the pop up form here -->
-      <div class="overlay">
-        <div class="popup modal-body">
-          <button id="first-time-popup-close">&times;</button>
+        <form id="trainer-form" class="popup modal-body">
           <h2>Welcome New Trainer</h2>
-          <form>
-            <div class="form-row">
-              <div class="form-group col-lg">
-                  <label for="inputName">Trainer Name</label>
-                  <input type="text" class="form-control" id="inputName" placeholder="Trainer Name">
-              </div>
-              
-              </div>
-              <div class="form-group">
-              <label for="Gym Name">Gym Name</label>
-              <input type="text" class="form-control" id="inputGym" placeholder="Gym Name">
-              </div>
+          <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="input-name">Trainer Name</label>
+                <input type="text" class="form-control" id="input-name" placeholder="Trainer name" value="">
+            </div>
             
-              <div class="form-row">
-              
-              <div class="form-group col-md-4">
-                  <label for="inputState">Gym Type</label>
-                  <select id="inputState" class="form-control">
-                    <!-- **would be cool to change color on choice or at least on dropdown -->
-                  <option selected>Choose</option>
-                  <option class>Normal</option>
-                  <option>Fire</option>
-                  <option>Water</option>
-                  <option>Grass</option>
-                  <option>Electric</option>
-                  <option>Ice</option>
-                  <option>Fighting</option>
-                  <option>Poison</option>
-                  <option>Ground</option>
-                  <option>Flying</option>
-                  <option>Psychic</option>
-                  <option>Bug</option>
-                  <option>Rock</option>
-                  <option>Ghost</option>
-                  <option>Dark</option>
-                  <option>Dragon</option>
-                  <option>Steel</option>
-                  <option>Fairy</option>
+            </div>
+            <div class="form-group">
+            <label for="gym-name">Gym Name</label>
+            <input  type="text" class="form-control" id="input-gym" value = "" placeholder="Gym Name" >
+            </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="input-type">Gym Type</label>
+                <select id="input-type"  class="form-control">
+                  <option  selected>Type</option>
+                  <option value="Fire">Fire</option>
+                  <option value="Grass">Grass</option>
+                  <option value="Water">Water</option>
+                  <option value="Electric">Electric</option>
+                  <option value="Ice">Ice</option>
+                  <option value="Fighting">Fighting</option>
+                  <option value="Poison">Poison</option>
+                  <option value="Ground">Ground</option>
+                  <option value="Flying">Flying</option>
+                  <option value="Psychic">Psychic</option>
+                  <option value="Bug">Bug</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Ghost">Ghost</option>
+                  <option value="Dark">Dark</option>
+                  <option value="Dragon">Dragon</option>
+                  <option value="Steel">Steel</option>
+                  <option value="Fairy">Fairy</option>
                 </select>
-              </div>
-            
-              </div>
-              <div class="form-group">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck">
-                  <label class="form-check-label" for="gridCheck">
-                  sign me up !
-                </label>
-              </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
-          <a href="#">Let's Go</a>
-       </div>
-      </div>
+            </div>
+          </div> 
+          <button type="submit" id="first-time-popup-submit" class="a">Let's Go!</button>
+       </form>
 
-
+    
+    
       <!-- search bar and filter-->
       <div class="container-fluid bg-light">
         <!--text  input  -->
@@ -157,11 +148,11 @@
       <!-- Inventory -->
       <main class="container-fluid bg-danger d-center">
 
-        <h2 class="pt-3 pl-2 bg-warning">Inventory (Gym Name)</h2>
-      
-        <!-- Cards -->
-        <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-            <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
+        <h2 class="pt-3 pl-2 bg-warning">Inventory: <span id="saved-gym"></span> Gym</h2>
+        
+        <div class="card m-3 d-inline-block" style="width: 18rem;">
+            <img class="card-img-top" src="https://via.placeholder.com/250" alt="Card image cap">
+
             <div class="card-body">
               <h5 class="card-title">Pokemon name</h5>
               <p class="card-text">Pokemon informatin provided by API maybe lol</p>

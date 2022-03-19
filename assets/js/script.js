@@ -1,15 +1,59 @@
-// window.addEventListener("load", function(){
-//     setTimeout(
-//         function open(event){
-//             document.querySelector(".popup").style.display = "block";
-//         },
-//     )
-// });
+var trainerName = document.getElementById("input-name");
+var gymName = document.getElementById("input-gym");
+var type = document.getElementById("input-type");
+var savedGym = document.getElementById("saved-gym");
+var letsGoBtn = document.querySelector("#first-time-popup-submit");
+var input = document.querySelector(".form-control")
+// save last trainer information 
+function saveTrainerInfo(){
+
+	var trainerInfo = {
+		trainerName: trainerName.value,
+		gymName: gymName.value,
+		type: type.value,
+	};
+	localStorage.setItem("trainerInfo", JSON.stringify(trainerInfo));
+}
 
 
-document.querySelector("#first-time-popup-close").addEventListener("click", function(){
-    document.querySelector(".popup").style.display = "none";
-});
+function renderLastTrainer(){
+	var lastTrainer = JSON.parse(localStorage.getItem("trainerInfo"));
+
+	if (lastTrainer !== null){
+      document.getElementById("saved-gym").innerHTML = lastTrainer.gymName +" "+lastTrainer.type;
+	  document.getElementById("saved-name").innerHTML = lastTrainer.trainerName;
+	} else{
+		return;
+	}
+}
+
+
+
+
+window.addEventListener("load", function(){
+	if (localStorage.getItem("pokeHome:visited")==="true"){
+		document.getElementById("trainer-form").style.display = "none";
+
+} else {
+		setTimeout(function open(event){
+				document.querySelector(".popup").style.display = "block";
+			},
+			0000 
+		)
+	};
+})
+
+letsGoBtn.addEventListener("click", function(event){
+	event.preventDefault();
+    
+	localStorage.setItem("pokeHome:visited", "true");
+	
+	saveTrainerInfo();
+	renderLastTrainer();
+	// document.getElementById("trainer-form").reset();
+	document.getElementById("trainer-form").style.display = "none";
+ 
+ });
 
 // ------------------------------------------------------------------------------------------
 
