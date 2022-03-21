@@ -61,7 +61,8 @@ function getPokemonByRarity(searchedRarity, rarityData, typesData){
                             type: null,
                             rarity: null,
                             id: null,
-                            storageId: null
+                            storageId: null,
+                            pointsTillEvolved: null
                         }
                         pokemon.name = rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_name"]
                         names_filter.push(rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_name"])
@@ -133,11 +134,10 @@ $(".poke-buy-btn").on("click", event => {
                 // direction: "alternate",
                 loop: 6,
                 complete: function() {
-                    var randomPoke = results[Math.floor(Math.random()*results.length)]
-                    console.log(randomPoke);
+                    var randomPoke = results[Math.floor(Math.random()*results.length)];
                     $("#poke-cards-container").append($("<img>")
                                 .attr("id", "random-pokemon")
-                                .attr("src", "https://img.pokemondb.net/sprites/sword-shield/icon/"+randomPoke.name.toLowerCase()+".png")  // Currently only using pikachu to test
+                                .attr("src", "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+randomPoke.id+".png")
                                 .attr("style", "position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; z-index: 20; opacity: 0"))
 
                     anime({
@@ -161,6 +161,20 @@ $(".poke-buy-btn").on("click", event => {
                         duration: 1000,
                         endDelay: 1500,
                         complete: function() {
+                            randomPoke.givenName = prompt("Congratulations! You got a "+randomPoke.name+"!\nPlease enter a name:");
+                            if (randomPoke.givenName === "" || randomPoke.givenName === null) {
+                                randomPoke.givenName = randomPoke.name;
+                            }
+                            let storageNextId = 0
+                            for (item in localStorage) {
+                                let parsedPoke = JSON.parse(localStorage.getItem(item))
+                                if (item.includes("poke-shop:!")) {
+                                    if (parsedPoke.storageId <= storageNextId) {
+                                        storageNextId = parsedPoke.storageId+1
+                                    }
+                                }
+                            }
+                            randomPoke.storageId = storageNextId
                             anime({
                                 targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
                                 translateX: 0,
@@ -174,6 +188,10 @@ $(".poke-buy-btn").on("click", event => {
                                 opacity: 0,
                                 
                                 complete: function() {
+                                    // Add pokemon to local storage
+                                    localStorage.setItem("poke-shop:!"+randomPoke.givenName, JSON.stringify(randomPoke))
+
+
                                     $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
                                     $("#masking-div").remove()
                                     $("#random-pokemon").remove()
@@ -187,5 +205,3 @@ $(".poke-buy-btn").on("click", event => {
         }
     })
 })
-
-// $(".poke-buy-btn").attr("style", "pointer-events: initial;")
