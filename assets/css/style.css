@@ -6,7 +6,7 @@
 }
 
 * {
-    font-family: Press Start 2P, serif;
+    font-family: "Press Start 2P", serif;
 }
 
 body{
@@ -16,23 +16,14 @@ body{
 
 /*!Still need to code to disappear with modal */
 .overlay {
-<<<<<<< HEAD
-    position: fixed;
-=======
     position: fixed; 
->>>>>>> f6b2c6faeb7270dcf607bf548c0a5d71cb6c035e
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-<<<<<<< HEAD
     background-color: rgba(128,128,128,0.5);
     z-index: 9;
-=======
-    background-color: rgba(128,128,128,0.5); 
-    z-index: 9;
     display: none;
->>>>>>> f6b2c6faeb7270dcf607bf548c0a5d71cb6c035e
 }
 
 .popup{
@@ -103,13 +94,14 @@ body{
 }
 
 #poke-info-card h5 {
-font-size: 1.2rem;
+font-size: 1rem;
 text-align: center;
 }
 
 #poke-info-card {
     text-align: center;
     font-size: .75rem;
+    line-height: .5rem;
 }
 
 .text-center .btn {
@@ -122,11 +114,12 @@ text-align: center;
 }
 
 #pokeball-card h5 {
-font-size: 1.3rem;
+font-size: 1.1rem;
 }
 
 #pokeball-card {
-    font-size: .82rem;
+    font-size: .61rem;
+    line-height: .75rem;
 }
 
 #pokeball-card .text-center .btn {
