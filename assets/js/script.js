@@ -210,7 +210,7 @@ function increaseXlargeCandy5() {
 function decreaseXlargeCandy6() {
     if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
         document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 3;
-        console.log("decrese normal");
+     
     }
 }
 
@@ -222,10 +222,12 @@ function increaseMoney7() {
 
 
 
+document.getElementById("poke-money").onclick = function() {decreaseMoney8()};
 
 function decreaseMoney8() {
-    if (document.getElementById("poke-money").innerHTML > 0) {
-        document.getElementById("poke-money").innerHTML = count4 -= 5;
+    if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
+        document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - 3;
+        
     }
 }
 
