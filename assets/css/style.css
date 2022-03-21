@@ -16,13 +16,23 @@ body{
 
 /*!Still need to code to disappear with modal */
 .overlay {
+<<<<<<< HEAD
     position: fixed;
+=======
+    position: fixed; 
+>>>>>>> f6b2c6faeb7270dcf607bf548c0a5d71cb6c035e
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+<<<<<<< HEAD
     background-color: rgba(128,128,128,0.5);
     z-index: 9;
+=======
+    background-color: rgba(128,128,128,0.5); 
+    z-index: 9;
+    display: none;
+>>>>>>> f6b2c6faeb7270dcf607bf548c0a5d71cb6c035e
 }
 
 .popup{

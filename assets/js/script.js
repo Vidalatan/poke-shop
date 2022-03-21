@@ -33,10 +33,13 @@ function renderLastTrainer(){
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
 		document.getElementById("trainer-form").style.display = "none";
+        this.document.getElementById("backgroundReset").style.display = "none";
+        renderLastTrainer();
 
 } else {
 		setTimeout(function open(event){
 				document.querySelector(".popup").style.display = "block";
+                this.document.getElementById("backgroundReset").style.display = "block";
 			},
 			0000 
 		)
@@ -52,6 +55,9 @@ letsGoBtn.addEventListener("click", function(event){
 	renderLastTrainer();
 	// document.getElementById("trainer-form").reset();
 	document.getElementById("trainer-form").style.display = "none";
+    document.getElementById("backgroundReset").style.display = "none";
+    
+	
  
  });
 
@@ -298,3 +304,64 @@ $(".feed-pkm-btn").on("click", event => {
 })
 
 // $("<img>").attr("src", "./assets/images/pokecoin.png")
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//functional candies and money button counter
+var count = 0;
+var count2 = 0;
+var count3 = 0;
+var count4= 0;
+function increaseNormalCandy1() { 
+    document.getElementById("normal").innerHTML = count+=1;
+}
+
+
+
+
+function decreaseNormalCandy2(){ 
+
+    if (document.getElementById("normal").innerHTML > 0) { document.getElementById("normal").innerHTML = count-=1;
+    }
+}
+
+
+
+function increaseLargeCandy3(){ 
+    document.getElementById("large").innerHTML = count2-=-2;
+}
+
+
+
+function decreaseLargCandy4(){ 
+   if (document.getElementById("large").innerHTML > 0) { document.getElementById("large").innerHTML = count2-=2;
+    }
+}
+
+
+
+
+function increaseXlargeCandy5(){ document.getElementById("xlcandy").innerHTML = count3+=3;
+}
+
+
+
+function decreaseXlargeCandy6(){ 
+   if (document.getElementById("xlcandy").innerHTML > 0) { document.getElementById("xlcandy").innerHTML = count3-=3;
+    }
+}
+
+
+
+function increaseMoney7(){ document.getElementById("poke-money").innerHTML = count4+=5;
+}
+
+
+
+
+function decreaseMoney8(){ 
+   if (document.getElementById("poke-money").innerHTML > 0) { document.getElementById("poke-money").innerHTML = count4-=5;
+    }
+}
+
+
+
