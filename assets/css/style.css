@@ -10,15 +10,16 @@ body{
 
 
 /*!Still need to code to disappear with modal */
-/* .overlay {
-    position: fixed; /**Positioning and size
+.overlay {
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(128,128,128,0.5); /**color
+    background-color: rgba(128,128,128,0.5); 
     z-index: 9;
-} */
+    display: none;
+}
 
 .popup{
     background-color: #ffffff;

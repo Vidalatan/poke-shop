@@ -33,10 +33,13 @@ function renderLastTrainer(){
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
 		document.getElementById("trainer-form").style.display = "none";
+        this.document.getElementById("backgroundReset").style.display = "none";
+        renderLastTrainer();
 
 } else {
 		setTimeout(function open(event){
 				document.querySelector(".popup").style.display = "block";
+                this.document.getElementById("backgroundReset").style.display = "block";
 			},
 			0000 
 		)
@@ -52,6 +55,9 @@ letsGoBtn.addEventListener("click", function(event){
 	renderLastTrainer();
 	// document.getElementById("trainer-form").reset();
 	document.getElementById("trainer-form").style.display = "none";
+    document.getElementById("backgroundReset").style.display = "none";
+    
+	
  
  });
 
