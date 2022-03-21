@@ -1,230 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Pokeshop</title>
+    <link rel="icon" type="image/icon" href="./assets/images/Shopping_Bag_icon-icons.com_67506.ico" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Pokeshop</title>
-</head>
+  <body>
+    <header class="container-fluid bg-dange">
+      <h1 class="bg-warning p-3"><img src="./assets/images/Poke-bag.png" alt="pokeshop logo" style="height: 55px;width: 55px;"> Trainer: <span id="saved-name"></span></h1>
+      <!-- nav links -->
+      <div class="bg-warning">
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <!-- Money Counter display here -->
+            <a class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >Show Money</a>
+          </li>
 
-<body>
-  <header class="container-fluid bg-primary">
-    <h1 class="bg-secondary p-3">Poke-Shop Trainer: <span id="saved-name"></span></h1>
-
-    <!-- nav links -->
-    <div class="bg-warning">
-      <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class=""> Show
-            Money</a>
-          <!--* Pokecoin image ⬇️⬇️ -->
-          <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" href="./shop.html">Shop</a>
-        </li>
-
-      </ul>
-
-    </div>
-  </header>
-
-
-  <!-- modal pop up form -->
-  <div class="overlay" id="backgroundReset">
-    <form id="trainer-form" class="popup modal-body">
-      <h2>Welcome New Trainer</h2>
-      <div class="form-row">
-        <div class="form-group col-lg">
-          <label for="input-name">Trainer Name</label>
-          <input type="text" class="form-control" id="input-name" placeholder="Trainer name" value="">
-        </div>
-
+          <li class="nav-item">
+            <a class="nav-link" href="#candies"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" alt="candy">Candies</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link active" href="./shop.html">Shop</a>
+          </li>
+        </ul>
       </div>
-      <div class="form-group">
-        <label for="gym-name">Gym Name</label>
-        <input type="text" class="form-control" id="input-gym" value="" placeholder="Gym Name">
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="input-type">Gym Type</label>
-          <select id="input-type" class="form-control">
-            <option selected>Type</option>
-            <option value="Fire">Fire</option>
-            <option value="Grass">Grass</option>
-            <option value="Water">Water</option>
-            <option value="Electric">Electric</option>
-            <option value="Ice">Ice</option>
-            <option value="Fighting">Fighting</option>
-            <option value="Poison">Poison</option>
-            <option value="Ground">Ground</option>
-            <option value="Flying">Flying</option>
-            <option value="Psychic">Psychic</option>
-            <option value="Bug">Bug</option>
-            <option value="Rock">Rock</option>
-            <option value="Ghost">Ghost</option>
-            <option value="Dark">Dark</option>
-            <option value="Dragon">Dragon</option>
-            <option value="Steel">Steel</option>
-            <option value="Fairy">Fairy</option>
-          </select>
-        </div>
-      </div>
-      <button type="submit" id="first-time-popup-submit" class="a">Let's Go!</button>
-    </form>
-  </div>
+    </header>
 
 
-
-  <!-- search bar and filter-->
-  <div class="container-fluid bg-light">
-    <!--text  input  -->
-    <nav class="navbar navbar-light justify-content-end">
-      <!-- filter buttons and dropdown -->
-      <div class="dropdown">
-        <!-- Filter Dropdown -->
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Filter</button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#pokemon-name">Name</a>
-          <a class="dropdown-item" href="#pokemon-rarity">Rarity</a>
-          <a class="dropdown-item" href="#pokemon-type">Type</a>
-        </div>
-
-        <!-- Name Search -->
-        <div class="btn-group">
-          <button id="pokemon-name" class="btn btn-primary" type="button">Name</button>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-
-          <!-- Pokemon Rarity Dropdown -->
-          <div class="btn-group">
-            <button id="pokemon-rarity" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-              type="button">Rarity</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Standard</a>
-              <a class="dropdown-item" href="#">Legendary</a>
-              <a class="dropdown-item" href="#">Mythic</a>
-            </div>
+    <!-- modal pop up form -->
+    <div class="overlay" id="backgroundReset">
+      <form id="trainer-form" class="popup modal-body">
+        <h2>Welcome New Trainer</h2>
+        <div class="form-row">
+          <div class="form-group col-lg">
+            <label for="input-name">Trainer Name</label>
+            <input type="text" class="form-control" id="input-name" placeholder="Trainer name" value="">
           </div>
 
-          <!-- Pokemon Type Dropdown -->
+        </div>
+        <div class="form-group">
+          <label for="gym-name">Gym Name</label>
+          <input type="text" class="form-control" id="input-gym" value="" placeholder="Gym Name">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="input-type">Gym Type</label>
+            <select id="input-type" class="form-control">
+              <option selected>Type</option>
+              <option value="Fire">Fire</option>
+              <option value="Grass">Grass</option>
+              <option value="Water">Water</option>
+              <option value="Electric">Electric</option>
+              <option value="Ice">Ice</option>
+              <option value="Fighting">Fighting</option>
+              <option value="Poison">Poison</option>
+              <option value="Ground">Ground</option>
+              <option value="Flying">Flying</option>
+              <option value="Psychic">Psychic</option>
+              <option value="Bug">Bug</option>
+              <option value="Rock">Rock</option>
+              <option value="Ghost">Ghost</option>
+              <option value="Dark">Dark</option>
+              <option value="Dragon">Dragon</option>
+              <option value="Steel">Steel</option>
+              <option value="Fairy">Fairy</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" id="first-time-popup-submit" class="a">Let's Go!</button>
+      </form>
+    </div>
+
+
+
+    <!-- search bar and filter-->
+    <div class="container-fluid">
+      <!--text  input  -->
+      <nav class="navbar navbar-light justify-content-end">
+        <!-- filter buttons and dropdown -->
+        <div class="dropdown">
+          <!-- Filter Dropdown -->
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Filter</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#pokemon-name">Name</a>
+            <a class="dropdown-item" href="#pokemon-rarity">Rarity</a>
+            <a class="dropdown-item" href="#pokemon-type">Type</a>
+          </div>
+
+          <!-- Name Search -->
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button"
-              id="pokemon-type">Type</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Fire</a>
-              <a class="dropdown-item" href="#">Water</a>
-              <a class="dropdown-item" href="#">Grass</a>
-              <a class="dropdown-item" href="#">Ice</a>
-              <a class="dropdown-item" href="#">Fighting</a>
-              <a class="dropdown-item" href="#">Poison</a>
-              <a class="dropdown-item" href="#">Ground</a>
-              <a class="dropdown-item" href="#">Flying</a>
-              <a class="dropdown-item" href="#">Psychic</a>
-              <a class="dropdown-item" href="#">Bug</a>
-              <a class="dropdown-item" href="#">Rock</a>
-              <a class="dropdown-item" href="#">Ghost</a>
-              <a class="dropdown-item" href="#">Dark</a>
-              <a class="dropdown-item" href="#">Dragon</a>
-              <a class="dropdown-item" href="#">Steel</a>
-              <a class="dropdown-item" href="#">Fairy</a>
+            <button id="pokemon-name" class="btn btn-primary" type="button">Name</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+
+            <!-- Pokemon Rarity Dropdown -->
+            <div class="btn-group">
+              <button id="pokemon-rarity" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">Rarity</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Standard</a>
+                <a class="dropdown-item" href="#">Legendary</a>
+                <a class="dropdown-item" href="#">Mythic</a>
+              </div>
             </div>
+
+            <!-- Pokemon Type Dropdown -->
+            <div class="btn-group">
+              <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" id="pokemon-type">Type</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item " href="#">Fire</a>
+                <a class="dropdown-item" href="#">Water</a>
+                <a class="dropdown-item" href="#">Grass</a>
+                <a class="dropdown-item" href="#">Ice</a>
+                <a class="dropdown-item" href="#">Fighting</a>
+                <a class="dropdown-item" href="#">Poison</a>
+                <a class="dropdown-item" href="#">Ground</a>
+                <a class="dropdown-item" href="#">Flying</a>
+                <a class="dropdown-item" href="#">Psychic</a>
+                <a class="dropdown-item" href="#">Bug</a>
+                <a class="dropdown-item" href="#">Rock</a>
+                <a class="dropdown-item" href="#">Ghost</a>
+                <a class="dropdown-item" href="#">Dark</a>
+                <a class="dropdown-item" href="#">Dragon</a>
+                <a class="dropdown-item" href="#">Steel</a>
+                <a class="dropdown-item" href="#">Fairy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Inventory -->
+    <main class="container-fluid bg-danger d-center">
+
+      <h2 class="pt-3 pl-2 bg-warning">Inventory: <span id="saved-gym"></span> Gym</h2>
+
+      <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
+        <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Pokemon name</h5>
+          <p class="card-text">type</p>
+          <p class="card-text">Rarity</p>
+
+          <div class="text-center">
+            <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+            <br>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+            <!-- Change feed to 3 diff sized candies png with tooltip-->
+          </div>
+
+        </div>
+      </div>
+
+      <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
+        <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Pokemon name</h5>
+          <p class="card-text">type</p>
+          <p class="card-text">Rarity</p>
+          
+          <div class="text-center">
+            <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+            <br>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+            <!-- Change feed to 3 diff sized candies png with tooltip-->
           </div>
         </div>
       </div>
 
-    </nav>
 
+      <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
+        <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Pokemon name</h5>
+          <p class="card-text">type</p>
+          <p class="card-text">Rarity</p>
 
-  </div>
-
-  <!-- Inventory -->
-  <main class="container-fluid bg-danger d-center">
-
-    <h2 class="pt-3 pl-2 bg-warning">Inventory: <span id="saved-gym"></span> Gym</h2>
-
-    <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Pokemon name</h5>
-        <p class="card-text">Pokemon informatin provided by API maybe lol</p>
-
-        <div class="text-center">
-          <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-          <!-- <a href="#" class="btn btn-primary">Feed</a> -->
-          <br>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-          <!-- Change feed to 3 diff sized candies png with tooltip-->
+          <div class="text-center">
+            <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+            <br>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+            <!-- Change feed to 3 diff sized candies png with tooltip-->
+          </div>
         </div>
-
       </div>
-    </div>
-    <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Pokemon name</h5>
-        <p class="card-text">Pokemon informatin provided by API maybe lol</p>
 
-        <div class="text-center">
-          <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-          <!-- <a href="#" class="btn btn-primary">Feed</a> -->
-          <br>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-          <!-- Change feed to 3 diff sized candies png with tooltip-->
-        </div>
+    </main>
 
-      </div>
-    </div>
-    <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Pokemon name</h5>
-        <p class="card-text">Pokemon informatin provided by API maybe lol</p>
 
-        <div class="text-center">
-          <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-          <!-- <a href="#" class="btn btn-primary">Feed</a> -->
-          <br>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-          <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img
-              src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-          <!-- Change feed to 3 diff sized candies png with tooltip-->
-        </div>
 
-      </div>
+    <!-- Candy Inventory -->
+    <div class="container-fluid bg-warning"  id="candies">
+      <h3 class="bg-warning pt-3 pl-2">Candies:</h3>
+
+      <p>Small Candies:</p>
+      <img src="https://www.resizepixel.com/Image/7btw0fkp4s/Preview/small_Candy_Sprite.png?v=b6dde950-66b2-4e98-a5e8-d424919dada4">
+      
+      <p>Medium Candies:</p>
+      <img src="https://www.resizepixel.com/Image/fb7f2dfsu5/Preview/large_Candy_Sprite.png?v=f2142a32-ca95-45bb-8232-50c032a449c2">
+      
+      <p>Large Candies:</p>
+      <img src="https://www.resizepixel.com/Image/aq6w555zgg/Preview/XL_Candy_Sprite.png?v=ea0dcc3a-6152-4af4-b50a-92b868e95457">
+
     </div>
 
-  </main>
 
-  <footer>
-    <!-- additional info maybe -->
-  </footer>
+    <footer>
+      <!-- additional info maybe -->
+    </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
-    integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>

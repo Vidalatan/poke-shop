@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P"/>
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>PokeShop</title>
   </head>
@@ -13,7 +14,7 @@
   
   <body>
       <header class="container-fluid bg-primary">
-        <h1 class="bg-secondary p-3">Pokeshop</h1>
+        <h1 class="bg-warning p-3"><img src="./assets/images/Poke-bag.png" alt="pokeshop logo" style="height: 55px;width: 55px;">Pokeshop</h1>
           
         <!-- nav links -->
         <div class="bg-warning">
@@ -44,7 +45,7 @@
           <img class="card-img-top" src="./assets/images/pokeball.png" alt="pokeball sprite"/>
           <div class="card-body">
             <h5 class="card-title">Poké Ball</h5>
-            <p class="card-text">The most basic form of a Poké Ball. It is an item used to catch Pokémon and has a low chance of catching rare pokemon.</p>
+            <p class="card-text">The most basic Poké Ball, often catches standard Pokémon and has a low chance of catching rare Pokémon.</p>
             <div class="text-center">
               <a id="poke-standard" href="#" class="btn btn-primary poke-buy-btn">Buy</a>
             </div>
@@ -63,12 +64,15 @@
         </div>
         
         <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
-          <img class="card-img-top" src="./assets/images/ultraball.png" alt="ultraball sprite"/>
+
+          <img class="card-img-top" src="./assets/images/masterball.png" alt="masterball sprite"/>
+
           <div class="card-body">
             <h5 class="card-title">Master Ball</h5>
-            <p class="card-text">It is an improved variant of the Great Ball that has an increased chance of catching rarer Pokémon.</p>
+            <p class="card-text">It is an improved variant of the Great Ball that has a guaranteed chance of catching the most rare Pokémon.</p>
             <div class="text-center">
               <a id="poke-mythic" href="#" class="btn btn-primary poke-buy-btn">Buy</a>
+
             </div>
           </div>
         </div>
