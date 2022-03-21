@@ -38,39 +38,37 @@
       
       <h2 class="pt-3 pl-2 bg-primary">Shop</h2>
         
-      <div class="card-container">
+      <div id="poke-cards-container" class="card-container" style="position: relative;">
         <!-- Cards -->
-        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem;">
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
           <img class="card-img-top" src="./assets/images/pokeball.png" alt="pokeball sprite"/>
           <div class="card-body">
             <h5 class="card-title">Poké Ball</h5>
             <p class="card-text">The most basic form of a Poké Ball. It is an item used to catch Pokémon and has a low chance of catching rare pokemon.</p>
             <div class="text-center">
-              <a href="#" class="btn btn-primary">Buy</a>
+              <a id="" href="#" class="btn btn-primary poke-buy-btn">Buy</a>
             </div>
-          
           </div>
         </div>
         
-        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem;">
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
           <img class="card-img-top" src="./assets/images/greatball.png" alt="greatball sprite"/>
           <div class="card-body">
             <h5 class="card-title">Great Ball</h5>
             <p class="card-text">It is an improved variant of the regular Poké Ball that has an increased chance of catching rarer Pokémon.</p>  
             <div class="text-center">
-              <a href="#" class="btn btn-primary">Buy</a>
+              <a id="" href="#" class="btn btn-primary poke-buy-btn">Buy</a>
             </div>
-          
           </div>
         </div>
         
-        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem;">
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
           <img class="card-img-top" src="./assets/images/ultraball.png" alt="ultraball sprite"/>
           <div class="card-body">
             <h5 class="card-title">Master Ball</h5>
             <p class="card-text">It is an improved variant of the Great Ball that has an increased chance of catching rarer Pokémon.</p>
             <div class="text-center">
-              <a href="#" class="btn btn-primary">Buy</a>
+              <a id="" href="#" class="btn btn-primary poke-buy-btn">Buy</a>
             </div>
           </div>
         </div>
@@ -85,6 +83,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/shopscript.js"></script>
   </body>
 </html>
