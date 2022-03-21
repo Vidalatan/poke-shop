@@ -4,21 +4,26 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+* {
+    font-family: Press Start 2P, serif;
+}
+
 body{
-    background-color: #0855ae;
+    background-color: #0d6efd;
 }
 
 
 /*!Still need to code to disappear with modal */
-/* .overlay {
-    position: fixed; /**Positioning and size
+.overlay {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(128,128,128,0.5); /**color
+    background-color: rgba(128,128,128,0.5);
     z-index: 9;
-} */
+}
 
 .popup{
     background-color: #ffffff;

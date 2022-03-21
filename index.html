@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P"/>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Pokeshop</title>
+    <link rel="icon" type="image/icon" href="./assets/images/Shopping_Bag_icon-icons.com_67506.ico" />
   </head>
 
   <body>
-      <header class="container-fluid bg-primary">
-          <h1 class="bg-secondary p-3">Poke-Shop Trainer: <span id="saved-name"></span></h1>
+      <header class="container-fluid bg-da">
+          <h1 class="bg-warning p-3"><img src="./assets/images/Poke-bag.png" alt="pokeshop logo" style="height: 55px;width: 55px;"> Trainer: <span id="saved-name"></span></h1>
             
           <!-- nav links -->
           <div class="bg-warning">
@@ -34,52 +36,54 @@
 
       
       <!-- modal pop up form -->
+      <div class="overlay" id="backgroundReset"> 
         <form id="trainer-form" class="popup modal-body">
-          <h2>Welcome New Trainer</h2>
-          <div class="form-row">
-            <div class="form-group col-lg">
-                <label for="input-name">Trainer Name</label>
-                <input type="text" class="form-control" id="input-name" placeholder="Trainer name" value="">
-            </div>
+            <h2>Welcome New Trainer</h2>
+            <div class="form-row">
+              <div class="form-group col-lg">
+                  <label for="input-name">Trainer Name</label>
+                  <input type="text" class="form-control" id="input-name" placeholder="Trainer name" value="">
+              </div>
+              
+              </div>
+              <div class="form-group">
+              <label for="gym-name">Gym Name</label>
+              <input  type="text" class="form-control" id="input-gym" value = "" placeholder="Gym Name" >
+              </div>
             
-            </div>
-            <div class="form-group">
-            <label for="gym-name">Gym Name</label>
-            <input  type="text" class="form-control" id="input-gym" value = "" placeholder="Gym Name" >
-            </div>
-          
-          <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="input-type">Gym Type</label>
-                <select id="input-type"  class="form-control">
-                  <option  selected>Type</option>
-                  <option value="Fire">Fire</option>
-                  <option value="Grass">Grass</option>
-                  <option value="Water">Water</option>
-                  <option value="Electric">Electric</option>
-                  <option value="Ice">Ice</option>
-                  <option value="Fighting">Fighting</option>
-                  <option value="Poison">Poison</option>
-                  <option value="Ground">Ground</option>
-                  <option value="Flying">Flying</option>
-                  <option value="Psychic">Psychic</option>
-                  <option value="Bug">Bug</option>
-                  <option value="Rock">Rock</option>
-                  <option value="Ghost">Ghost</option>
-                  <option value="Dark">Dark</option>
-                  <option value="Dragon">Dragon</option>
-                  <option value="Steel">Steel</option>
-                  <option value="Fairy">Fairy</option>
-                </select>
-            </div>
-          </div> 
-          <button type="submit" id="first-time-popup-submit" class="a">Let's Go!</button>
-       </form>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                  <label for="input-type">Gym Type</label>
+                  <select id="input-type"  class="form-control">
+                    <option  selected>Type</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Grass">Grass</option>
+                    <option value="Water">Water</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Ice">Ice</option>
+                    <option value="Fighting">Fighting</option>
+                    <option value="Poison">Poison</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Flying">Flying</option>
+                    <option value="Psychic">Psychic</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Ghost">Ghost</option>
+                    <option value="Dark">Dark</option>
+                    <option value="Dragon">Dragon</option>
+                    <option value="Steel">Steel</option>
+                    <option value="Fairy">Fairy</option>
+                  </select>
+              </div>
+            </div> 
+            <button type="submit" id="first-time-popup-submit" class="a">Let's Go!</button>
+        </form>
+      </div>
 
     
     
       <!-- search bar and filter-->
-      <div class="container-fluid bg-light">
+      <div class="container-fluid bg-danger">
         <!--text  input  -->
         <nav class="navbar navbar-light justify-content-end">
           <!-- filter buttons and dropdown -->
