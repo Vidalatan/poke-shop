@@ -52,7 +52,7 @@
             <div class="form-group col-md-4">
                 <label for="input-type">Gym Type</label>
                 <select id="input-type"  class="form-control">
-                  <option  selected>Type</option>
+                  <option value="Normal">Normal</option>
                   <option value="Fire">Fire</option>
                   <option value="Grass">Grass</option>
                   <option value="Water">Water</option>
@@ -141,7 +141,13 @@
       <main class="container-fluid bg-danger d-center">
 
         <h2 class="pt-3 pl-2 bg-warning">Inventory: <span id="saved-gym"></span> Gym</h2>
-        
+
+        <div class="started">
+          <ul class="first flex-row"></ul>
+        </div>
+
+
+
         <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
           <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
           <div class="card-body">

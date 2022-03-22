@@ -4,6 +4,7 @@ var type = document.getElementById("input-type");
 var savedGym = document.getElementById("saved-gym");
 var letsGoBtn = document.querySelector("#first-time-popup-submit");
 var input = document.querySelector(".form-control")
+var firstStarted =document.querySelector(".started .first");
 // save last trainer information 
 function saveTrainerInfo(){
 
@@ -22,6 +23,7 @@ function renderLastTrainer(){
 	if (lastTrainer !== null){
       document.getElementById("saved-gym").innerHTML = lastTrainer.gymName +" "+lastTrainer.type;
 	  document.getElementById("saved-name").innerHTML = lastTrainer.trainerName;
+      saveStarterPokemon(type);
 	} else{
 		return;
 	}
@@ -33,6 +35,9 @@ function renderLastTrainer(){
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
 		document.getElementById("trainer-form").style.display = "none";
+        renderLastTrainer();
+        // renderStartedPokemon(type);
+       
 
 } else {
 		setTimeout(function open(event){
@@ -52,14 +57,158 @@ letsGoBtn.addEventListener("click", function(event){
 	renderLastTrainer();
 	// document.getElementById("trainer-form").reset();
 	document.getElementById("trainer-form").style.display = "none";
+
+});
+    // type selected will auto populate the first pokemon.
+
+ function saveStarterPokemon(type){
+      
+    // var firstPokemon = JSON.parse(localStorage.getItem("trainerInfo").type);
+        //    let selectedType = ["Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Pidgey", "Clefaiy",
+        //     "Meowth","Machop","Grimer","Dratini","Mareep","Abra","Aron","Geodude","Gastly",];
+
+            let firstPokemon = {
+                "Grass": {
+                    name: "Bulbasaur",
+                    givenName: null,
+                    type: ["Grass"],
+                    rarity: "Standard",
+                    id: 1,
+                    storageId: 0,
+                    pointsTillEvolved: null,    // Add when evolves are in
+                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
+                },
+                "Fire":{
+                    name: "Charmander",
+                    givenName: null,
+                    type: ["Fire"],
+                    rarity: "Standard",
+                    id: 4,
+                    storageId: 0,
+                    pointsTillEvolved: null,    // Add when evolves are in
+                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png"
+
+                },
+                "Water":{
+                    name: "Squirtle",
+                    givenName: null,
+                    type: ["Water"],
+                    rarity: "Standard",
+                    id: 7,
+                    storageId: 0,
+                    pointsTillEvolved: null,    // Add when evolves are in
+                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
+
+                },
+                "Bug":{
+                    name: "Caterpie",
+                    givenName: null,
+                    type: ["Bug"],
+                    rarity: "Standard",
+                    id: 10,
+                    storageId: 0,
+                    pointsTillEvolved: null,    // Add when evolves are in
+                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png"
+                },
+                "Flying":{
+                    name: "Pidgey",
+                    givenName: null,
+                    type: ["Flying"],
+                    rarity: "Standard",
+                    id: 10,
+                    storageId: 0,
+                    pointsTillEvolved: null,    // Add when evolves are in
+                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png"
+                },
+
+                "Electric":{
+                    name: "Pikachu",
+                    givenName: null,
+                    type: ["Electric"],
+                    rarity: "Standard",
+                    id: 25,
+                    storageId: 0,
+                    pointsTillEvolved: null,    // Add when evolves are in
+                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png"
+                },
+
+            "Poison":{
+                name: "Grimer",
+                givenName: null,
+                type: ["Poison"],
+                rarity: "Standard",
+                id: 88,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png"
+            },
+            "Rock":{
+                name: "Geodude",
+                givenName: null,
+                type: ["Rock"],
+                rarity: "Standard",
+                id: 74,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png"
+            },
+
+
+            
+        }
+        localStorage.setItem("firstPokemon", JSON.stringify(firstPokemon));
+        }
+
+           
+
+
+          function  renderStarterPokemon(){
+              localStorage.JSON.parse(localStorage.getItem("firstPokemon"));
+
+            let imgURL = firstPokemon.imgURL;
+            let name = firstPokemon.name;
+            let type = firstPokemon.type;
+            let rarity= firstPokemon.id;
+
+              var li = document.createElement("li");
+
+            var markup = `  
+        <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
+             <img class="card-img-top" src= ${imgURL} alt="Card image cap">
+        <div class="card-body">
+              <h5 class="card-title">${name}</h5>
+              
+              <p class="card-text">${type}</p>
+              <p class="card-text">${rarity}</p>
+              <p class="card-text">${id}</p
+
+             <div class="text-center">
+                  <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+                  
+                  <br>
+                  <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img  src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png"/></a>
+                  <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png"/></a>
+                 <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png"/></a>
+              </div>
+         </div>
+        </div>`
+         li.innerHTML = markup;
+         firstStarted.appendChild(li);
+
+              
+            
+          }
+
+           
+           
+            // console.log(firstPokemon)
  
- });
 
 // ------------------------------------------------------------------------------------------
 
 // API handling
 
-// Image URL Refrence: https://img.pokemondb.net/sprites/sword-shield/icon/{pokemon_name}.png
+
 
 function sendRef(results) {
     results.forEach(pokemon => {
