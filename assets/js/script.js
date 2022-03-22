@@ -61,14 +61,14 @@ letsGoBtn.addEventListener("click", function(event){
 });
     // type selected will auto populate the first pokemon.
 
- function saveStarterPokemon(type){
+ function saveStarterPokemon(){
       
     // var firstPokemon = JSON.parse(localStorage.getItem("trainerInfo").type);
         //    let selectedType = ["Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Pidgey", "Clefaiy",
         //     "Meowth","Machop","Grimer","Dratini","Mareep","Abra","Aron","Geodude","Gastly",];
 
-            let firstPokemon = {
-                "Grass": {
+            let firstPokemon = [
+                {
                     name: "Bulbasaur",
                     givenName: null,
                     type: ["Grass"],
@@ -78,7 +78,7 @@ letsGoBtn.addEventListener("click", function(event){
                     pointsTillEvolved: null,    // Add when evolves are in
                     imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
                 },
-                "Fire":{
+                {
                     name: "Charmander",
                     givenName: null,
                     type: ["Fire"],
@@ -89,7 +89,7 @@ letsGoBtn.addEventListener("click", function(event){
                     imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png"
 
                 },
-                "Water":{
+                {
                     name: "Squirtle",
                     givenName: null,
                     type: ["Water"],
@@ -100,7 +100,7 @@ letsGoBtn.addEventListener("click", function(event){
                     imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
 
                 },
-                "Bug":{
+                {
                     name: "Caterpie",
                     givenName: null,
                     type: ["Bug"],
@@ -110,7 +110,7 @@ letsGoBtn.addEventListener("click", function(event){
                     pointsTillEvolved: null,    // Add when evolves are in
                     imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png"
                 },
-                "Flying":{
+               {
                     name: "Pidgey",
                     givenName: null,
                     type: ["Flying"],
@@ -121,7 +121,7 @@ letsGoBtn.addEventListener("click", function(event){
                     imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png"
                 },
 
-                "Electric":{
+               {
                     name: "Pikachu",
                     givenName: null,
                     type: ["Electric"],
@@ -132,7 +132,7 @@ letsGoBtn.addEventListener("click", function(event){
                     imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png"
                 },
 
-            "Poison":{
+                {
                 name: "Grimer",
                 givenName: null,
                 type: ["Poison"],
@@ -141,8 +141,8 @@ letsGoBtn.addEventListener("click", function(event){
                 storageId: 0,
                 pointsTillEvolved: null,    // Add when evolves are in
                 imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png"
-            },
-            "Rock":{
+              },
+              {
                 name: "Geodude",
                 givenName: null,
                 type: ["Rock"],
@@ -151,12 +151,113 @@ letsGoBtn.addEventListener("click", function(event){
                 storageId: 0,
                 pointsTillEvolved: null,    // Add when evolves are in
                 imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png"
-            },
-
-
-            
-        }
+             },
+             {
+                name: "Abra",
+                givenName: null,
+                type: ["Psychic"],
+                rarity: "Standard",
+                id: 63,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png"  
+             },  
+        
+             {
+                name: "Nidoran",
+                givenName: null,
+                type: ["Poison"],
+                rarity: "Standard",
+                id: 32,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png"  
+             },  
+        
+             {
+                name: "Aron",
+                givenName: null,
+                type: ["Steel"],
+                rarity: "Standard",
+                id: 304,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/304.png"  
+             },  
+        
+             {
+                name: "Clefairy",
+                givenName: null,
+                type: ["Fairy"],
+                rarity: "Standard",
+                id: 35,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png"  
+             },  
+             {
+                name: "Diglett",
+                givenName: null,
+                type: ["Ground"],
+                rarity: "Standard",
+                id: 50,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png"  
+             },  
+             {
+                name: "Machop",
+                givenName: null,
+                type: ["Fighting"],
+                rarity: "Standard",
+                id: 66,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/066.png"  
+             },  
+             {
+                name: "Seel",
+                givenName: null,
+                type: ["Ice"],
+                rarity: "Standard",
+                id: 86,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png"  
+             },  
+             {
+                name: "Gastly",
+                givenName: null,
+                type: ["Ghost"],
+                rarity: "Standard",
+                id: 92,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/092.png"  
+             },  
+             {
+                name: "Houndour",
+                givenName: null,
+                type: ["Dark"],
+                rarity: "Standard",
+                id: 228,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/228.png"  
+             },  
+             {
+                name: "Slakoth",
+                givenName: null,
+                type: ["Normal"],
+                rarity: "Standard",
+                id: 287,
+                storageId: 0,
+                pointsTillEvolved: null,    // Add when evolves are in
+                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/287.png"  
+             },  
+        ]
         localStorage.setItem("firstPokemon", JSON.stringify(firstPokemon));
+        console.log(firstPokemon)
         }
 
            
@@ -170,7 +271,7 @@ letsGoBtn.addEventListener("click", function(event){
             let type = firstPokemon.type;
             let rarity= firstPokemon.id;
 
-              var li = document.createElement("li");
+            var li = document.createElement("li");
 
             var markup = `  
         <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
@@ -197,11 +298,11 @@ letsGoBtn.addEventListener("click", function(event){
 
               
             
+         
           }
 
            
            
-            // console.log(firstPokemon)
  
 
 // ------------------------------------------------------------------------------------------
