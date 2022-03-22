@@ -5,10 +5,15 @@ var savedGym = document.getElementById("saved-gym");
 var letsGoBtn = document.querySelector("#first-time-popup-submit");
 var input = document.querySelector(".form-control")
 
-if (localStorage["poke-shop:coins"]) {
-    localStorage.setItem("poke-shop:coins", location.search.substring(2,location.search.indexOf("&purchases=")))
+if (location.search === "" || parseInt(location.search.substring(2, location.search.indexOf("&purchases"))) === "") {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
+} else if (parseInt(localStorage["poke-shop:coins"]) > parseInt(location.search.substring(2, location.search.indexOf("&purchases")))) {
+    localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2, location.search.indexOf("&purchases"))))
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2, location.search.indexOf("&purchases")))
+} else {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
 }
-document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+
 loadPokemon();
 
 // save last trainer information 
@@ -62,6 +67,7 @@ letsGoBtn.addEventListener("click", function (event) {
     document.getElementById("trainer-form").style.display = "none";
     document.getElementById("backgroundReset").style.display = "none";
     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >'+500
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 });
 
 function turnObjToArray(object) {
@@ -130,7 +136,6 @@ $(".sell-pkm-btn").on("click", event => {
     event.preventDefault()
     localStorage.removeItem("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText)
     localStorage.setItem("poke-shop-sold:"+event.currentTarget.parentNode.parentNode.children[0].innerText, event.currentTarget.parentNode.parentNode.children[0].innerText)
-    
     anime({
         targets: event.currentTarget.parentNode.parentNode.parentNode,
         keyframes: [
@@ -154,6 +159,20 @@ $(".sell-pkm-btn").on("click", event => {
         ],
         complete: function (anim) {
             $("#anime-pokecoin-sell").remove()
+            switch (event.currentTarget.parentNode.parentNode.children[4].innerText) {
+                case "Standard":
+                    increaseMoney(2)
+                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                    break;
+                case "Legendary":
+                    increaseMoney(125)
+                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                    break;
+                case "Mythic":
+                    increaseMoney(250)
+                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                    break;
+            }
             event.currentTarget.parentNode.parentNode.parentNode.remove()
             let totalPokecoins = 8;    // Set how many coins to create.
             $("body").append($("<div>").attr("id", "anime-pokecoin-sell").attr("style", "display: flex; justify-content: end; position: fixed; z-index: 100; top: 0px; right: 0px; width: 5%; height: 5%; opacity: 1;")
@@ -171,19 +190,6 @@ $(".sell-pkm-btn").on("click", event => {
                 opacity: 0,
                 duration: 1000,
                 easing: "easeInOutQuad",
-                complete: function() {
-                    switch (event.currentTarget.parentNode.parentNode.children[4].innerText) {
-                        case "Standard":
-                            increaseMoney(2)
-                            break;
-                        case "Legendary":
-                            increaseMoney(125)
-                            break;
-                        case "Mythic":
-                            increaseMoney(250)
-                            break;
-                    }
-                }
             })
         }
     })
@@ -228,6 +234,7 @@ $(".feed-pkm-btn").on("click", event => {
 
 $("#poke-coin-inv").on("click", event => {
     increaseMoney()
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 })
 
 console.log(document.getElementById("poke-coin-inv").innerText);
