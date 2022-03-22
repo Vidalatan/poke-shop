@@ -125,110 +125,87 @@ $(".sell-pkm-btn").on("click", event => {
 
 $(".feed-pkm-btn").on("click", event => {
     event.preventDefault()
-    console.log(event.currentTarget);
-    anime({
-        targets: [event.currentTarget.children[0]],
-        translateY: -200,
-        opacity: 0,
-        easing: "cubicBezier(1, 0, .75, 1)",
-        duration: 1000,
-        begin: function (anim) {
-            $(event.currentTarget).attr("style", "pointer-events: none;")
-        },
-        complete: function (anim) {
-            console.log(event.currentTarget.id)
-            if (event.currentTarget.id === "poke-feed-normal") {
-                decreaseNormalCandy2()
-            } else if (event.currentTarget.id === "poke-feed-large") {
-                decreaseLargeCandy4()
-            } else if (event.currentTarget.id === "poke-feed-xlarge") {
-                decreaseXlargeCandy6()
-            }
-            anime({
-                targets: event.currentTarget.children[0],
-                translateY: 0,
-                opacity: 1,
-                duration: 0,
-                complete: function (anim) {
-                    $(event.currentTarget).attr("style", "pointer-events: initial;")
-                }
-            })
-        },
+    let hasCandy;
+    if (event.currentTarget.id === "poke-feed-normal") {
+        hasCandy = decreaseNormalCandy() || alert("You are out of normal candies!")
+    } else if (event.currentTarget.id === "poke-feed-large") {
+        hasCandy = decreaseLargeCandy() || alert("You are out of large candies!")
+    } else if (event.currentTarget.id === "poke-feed-xlarge") {
+        hasCandy = decreaseXlargeCandy() || alert("You are out of large candies!")
+    }
 
-    })
+    if (hasCandy) {
+        anime({
+            targets: [event.currentTarget.children[0]],
+            translateY: -200,
+            opacity: 0,
+            easing: "cubicBezier(1, 0, .75, 1)",
+            duration: 1000,
+            begin: function () {
+                $(event.currentTarget).attr("style", "pointer-events: none;")
+            },
+            complete: function () {
+                anime({
+                    targets: event.currentTarget.children[0],
+                    translateY: 0,
+                    opacity: 1,
+                    duration: 0,
+                    complete: function () {
+                        $(event.currentTarget).attr("style", "pointer-events: initial;")
+                    }
+                })
+            },
+        })
+    }
 })
+
+$("#poke-coin-inv").on("click", increaseMoney)
 
 // $("<img>").attr("src", "./assets/images/pokecoin.png")
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //functional candies and money button counter
-var count = 0;
-var count2 = 0;
-var count3 = 0;
-var count4 = 0;
 
-function increaseNormalCandy1() {
-    document.querySelector("#poke-candy-normal").innerHTML = count += 1;
-}
-
-
-
-
-function decreaseNormalCandy2() {
+function decreaseNormalCandy() {
 
     if (parseInt(document.getElementById("poke-candy-normal").innerHTML) > 0) {
         document.getElementById("poke-candy-normal").innerHTML = parseInt(document.getElementById("poke-candy-normal").innerHTML) - 1;
-        console.log("decrese normal");
+        localStorage.setItem("poke-shop:candy-normal", document.getElementById("poke-candy-normal").innerHTML)
+        return true
+    } else {
+        return false
     }
 }
 
 
-
-function increaseLargeCandy3() {
-    document.getElementById("poke-candy-large").innerHTML = count2 -= -2;
-}
-
-
-
-function decreaseLargeCandy4() {
+function decreaseLargeCandy() {
     if (parseInt(document.getElementById("poke-candy-large").innerHTML) > 0) {
-        document.getElementById("poke-candy-large").innerHTML = parseInt(document.getElementById("poke-candy-large").innerHTML) - 2;
-        console.log("decrese normal");
+        document.getElementById("poke-candy-large").innerHTML = parseInt(document.getElementById("poke-candy-large").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-large", document.getElementById("poke-candy-large").innerHTML)
+        return true
+    } else {
+        return false
     }
   
 }
 
-
-
-
-function increaseXlargeCandy5() {
-    document.getElementById("poke-candy-xlcandy").innerHTML = count3 += 3;
-}
-
-
-
-function decreaseXlargeCandy6() {
+function decreaseXlargeCandy() {
     if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
-        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 3;
-     
+        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-xlarge", document.getElementById("poke-candy-xlarge").innerHTML)
+        return true
+    } else {
+        return false
     }
 }
 
 
 
-function increaseMoney7() {
-    document.getElementById("poke-money").innerHTML = count4 += 5;
-}
-
-
-
-document.getElementById("poke-money").onclick = function() {decreaseMoney8()};
-
-function decreaseMoney8() {
-    if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
-        document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - 3;
-        
-    }
+function increaseMoney() {
+    console.log(document.getElementById("poke-coin-inv").innerText);
+    let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + 5
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+newCount;
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 }
 
 

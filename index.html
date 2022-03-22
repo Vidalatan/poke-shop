@@ -20,7 +20,7 @@
         <ul class="nav justify-content-end">
           <li class="nav-item">
             <!-- Money Counter display here -->
-            <a class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >Show Money</a>
+            <a id="poke-coin-inv" class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >0</a>
           </li>
 
           <li class="nav-item">
@@ -152,12 +152,12 @@
 
           <div class="text-center">
             <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+
             <br>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-            <!-- Change feed to 3 diff sized candies png with tooltip-->
+            <a id="poke-feed-normal" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+            <a id="poke-feed-large" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+            <a id="poke-feed-xlarge" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+
           </div>
 
         </div>
@@ -172,12 +172,12 @@
           
           <div class="text-center">
             <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+
             <br>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-            <!-- Change feed to 3 diff sized candies png with tooltip-->
+            <a id="poke-feed-normal" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+            <a id="poke-feed-large" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+            <a id="poke-feed-xlarge" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+
           </div>
         </div>
       </div>
@@ -192,12 +192,12 @@
 
           <div class="text-center">
             <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
+
             <br>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-            <!-- Change feed to 3 diff sized candies png with tooltip-->
+            <a id="poke-feed-normal" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+            <a id="poke-feed-large" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+            <a id="poke-feed-xlarge" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+
           </div>
         </div>
       </div>
@@ -211,13 +211,13 @@
       <h3 class="bg-warning pt-3 pl-2">Candies:</h3>
 
       <p>Small Candies:</p>
-      <img src="https://www.resizepixel.com/Image/7btw0fkp4s/Preview/small_Candy_Sprite.png?v=b6dde950-66b2-4e98-a5e8-d424919dada4">
+      <img src="https://www.resizepixel.com/Image/7btw0fkp4s/Preview/small_Candy_Sprite.png?v=b6dde950-66b2-4e98-a5e8-d424919dada4"><p id="poke-candy-normal">25</p>
       
       <p>Medium Candies:</p>
-      <img src="https://www.resizepixel.com/Image/fb7f2dfsu5/Preview/large_Candy_Sprite.png?v=f2142a32-ca95-45bb-8232-50c032a449c2">
+      <img src="https://www.resizepixel.com/Image/fb7f2dfsu5/Preview/large_Candy_Sprite.png?v=f2142a32-ca95-45bb-8232-50c032a449c2"><p id="poke-candy-large">25</p>
       
       <p>Large Candies:</p>
-      <img src="https://www.resizepixel.com/Image/aq6w555zgg/Preview/XL_Candy_Sprite.png?v=ea0dcc3a-6152-4af4-b50a-92b868e95457">
+      <img src="https://www.resizepixel.com/Image/aq6w555zgg/Preview/XL_Candy_Sprite.png?v=ea0dcc3a-6152-4af4-b50a-92b868e95457"><p id="poke-candy-xlarge">25</p>
 
     </div>
 

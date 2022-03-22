@@ -189,7 +189,7 @@ $(".poke-buy-btn").on("click", event => {
                                 
                                 complete: function() {
                                     // Add pokemon to local storage
-                                    localStorage.setItem("poke-shop:!"+randomPoke.givenName, JSON.stringify(randomPoke))
+                                    window.localStorage.setItem("poke-shop:!"+randomPoke.givenName, JSON.stringify(randomPoke))
 
 
                                     $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
@@ -205,3 +205,27 @@ $(".poke-buy-btn").on("click", event => {
         }
     })
 })
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// Counter functions
+
+// function increaseNormalCandy() {
+//     // document.getElementById("poke-candy-large").innerHTML = count + 1;
+
+// }
+
+// function increaseLargeCandy() {
+//     // document.getElementById("poke-candy-large").innerHTML = count + 1;
+
+// }
+
+// function increaseXlargeCandy() {
+//     document.getElementById("poke-candy-xlcandy").innerHTML = count + 1;
+// }
+
+// function decreaseMoney(amount) {
+//     if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
+//         // document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - amount;
+        
+//     }
+// }
