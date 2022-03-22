@@ -208,8 +208,10 @@ $(".poke-buy-btn").on("click", event => {
 })
 
 $("#link-home").on("click", event => {
+    event.preventDefault()
     let purchases = []
     for (item in localStorage) {
+        console.log(item);
         if (item.includes("poke-shop:$!")) {
             purchases.push(JSON.parse(localStorage.getItem(item)))
         }
