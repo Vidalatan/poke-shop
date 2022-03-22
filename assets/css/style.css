@@ -4,21 +4,28 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+* {
+    font-family: "Press Start 2P", serif;
+}
+
 body{
-    background-color: #0855ae;
+    background-color: #0d6efd;
 }
 
 
 /*!Still need to code to disappear with modal */
-/* .overlay {
-    position: fixed; /**Positioning and size
+.overlay {
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(128,128,128,0.5); /**color
+
+    background-color: rgba(128,128,128,0.5);
     z-index: 9;
-} */
+    display: none;
+}
 
 .popup{
     background-color: #ffffff;
@@ -88,13 +95,14 @@ body{
 }
 
 #poke-info-card h5 {
-font-size: 1.2rem;
+font-size: .80rem;
 text-align: center;
 }
 
 #poke-info-card {
     text-align: center;
-    font-size: .75rem;
+    font-size: .50rem;
+    line-height: .30rem;
 }
 
 .text-center .btn {
@@ -107,11 +115,12 @@ text-align: center;
 }
 
 #pokeball-card h5 {
-font-size: 1.3rem;
+font-size: 1.1rem;
 }
 
 #pokeball-card {
-    font-size: .82rem;
+    font-size: .61rem;
+    line-height: .75rem;
 }
 
 #pokeball-card .text-center .btn {
