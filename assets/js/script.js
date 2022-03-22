@@ -1,3 +1,194 @@
+
+const firstPokemon = {
+    "Grass":{
+        name: "Bulbasaur",
+        givenName: null,
+        type: ["Grass"],
+        rarity: "Standard",
+        id: 1,
+        storageId: 0,
+        pointsTillEvolved: null,    // Add when evolves are in
+        imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
+    },
+    "Fire":{
+        name: "Charmander",
+        givenName: null,
+        type: ["Fire"],
+        rarity: "Standard",
+        id: 4,
+        storageId: 0,
+        pointsTillEvolved: null,    // Add when evolves are in
+        imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png"
+
+    },
+    "Water":{
+        name: "Squirtle",
+        givenName: null,
+        type: ["Water"],
+        rarity: "Standard",
+        id: 7,
+        storageId: 0,
+        pointsTillEvolved: null,    // Add when evolves are in
+        imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
+
+    },
+    "Bug":{
+        name: "Caterpie",
+        givenName: null,
+        type: ["Bug"],
+        rarity: "Standard",
+        id: 10,
+        storageId: 0,
+        pointsTillEvolved: null,    // Add when evolves are in
+        imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png"
+    },
+    "Flying":{
+        name: "Pidgey",
+        givenName: null,
+        type: ["Flying"],
+        rarity: "Standard",
+        id: 10,
+        storageId: 0,
+        pointsTillEvolved: null,    // Add when evolves are in
+        imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png"
+    },
+
+    "Electric":{
+        name: "Pikachu",
+        givenName: null,
+        type: ["Electric"],
+        rarity: "Standard",
+        id: 25,
+        storageId: 0,
+        pointsTillEvolved: null,    // Add when evolves are in
+        imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png"
+    },
+
+    "Poison":{
+    name: "Grimer",
+    givenName: null,
+    type: ["Poison"],
+    rarity: "Standard",
+    id: 88,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png"
+    },
+    "Rock":{
+    name: "Geodude",
+    givenName: null,
+    type: ["Rock"],
+    rarity: "Standard",
+    id: 74,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png"
+    },
+    "Psychic":{
+    name: "Abra",
+    givenName: null,
+    type: ["Psychic"],
+    rarity: "Standard",
+    id: 63,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png"  
+    },  
+
+    "Poison":{
+    name: "Nidoran",
+    givenName: null,
+    type: ["Poison"],
+    rarity: "Standard",
+    id: 32,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png"  
+    },  
+
+    "Steel":{
+    name: "Aron",
+    givenName: null,
+    type: ["Steel"],
+    rarity: "Standard",
+    id: 304,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/304.png"  
+    },  
+
+    "Fairy":{
+    name: "Clefairy",
+    givenName: null,
+    type: ["Fairy"],
+    rarity: "Standard",
+    id: 35,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png"  
+    },  
+    "Ground":{
+    name: "Diglett",
+    givenName: null,
+    type: ["Ground"],
+    rarity: "Standard",
+    id: 50,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png"  
+    },  
+    "Fighting": {
+    name: "Machop",
+    givenName: null,
+    type: ["Fighting"],
+    rarity: "Standard",
+    id: 66,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/066.png"  
+    },  
+    "Ice":{
+    name: "Seel",
+    givenName: null,
+    type: ["Ice"],
+    rarity: "Standard",
+    id: 86,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png"  
+    },  
+    "Ghost":{
+    name: "Gastly",
+    givenName: null,
+    type: ["Ghost"],
+    rarity: "Standard",
+    id: 92,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/092.png"  
+    },  
+    "Dark": {
+    name: "Houndour",
+    givenName: null,
+    type: ["Dark"],
+    rarity: "Standard",
+    id: 228,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/228.png"  
+    },  
+    "Normal":{
+    name: "Slakoth",
+    givenName: null,
+    type: ["Normal"],
+    rarity: "Standard",
+    id: 287,
+    storageId: 0,
+    pointsTillEvolved: null,    // Add when evolves are in
+    imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/287.png"  
+    }  
+}
+
 var trainerName = document.getElementById("input-name");
 var gymName = document.getElementById("input-gym");
 var type = document.getElementById("input-type");
@@ -16,21 +207,17 @@ function saveTrainerInfo(){
 	localStorage.setItem("trainerInfo", JSON.stringify(trainerInfo));
 }
 
-
 function renderLastTrainer(){
 	var lastTrainer = JSON.parse(localStorage.getItem("trainerInfo"));
 
 	if (lastTrainer !== null){
       document.getElementById("saved-gym").innerHTML = lastTrainer.gymName +" "+lastTrainer.type;
 	  document.getElementById("saved-name").innerHTML = lastTrainer.trainerName;
-      saveStarterPokemon(type);
+    //   saveStarterPokemon(type);
 	} else{
 		return;
 	}
 }
-
-
-
 
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
@@ -53,263 +240,25 @@ letsGoBtn.addEventListener("click", function(event){
     
 	localStorage.setItem("pokeHome:visited", "true");
 	
+    saveStarterPokemon(document.getElementById("input-type").value);
 	saveTrainerInfo();
 	renderLastTrainer();
 	// document.getElementById("trainer-form").reset();
 	document.getElementById("trainer-form").style.display = "none";
-
+    location.assign("./index.html")
 });
     // type selected will auto populate the first pokemon.
 
- function saveStarterPokemon(){
+ function saveStarterPokemon(type){
       
-    // var firstPokemon = JSON.parse(localStorage.getItem("trainerInfo").type);
-        //    let selectedType = ["Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Pidgey", "Clefaiy",
-        //     "Meowth","Machop","Grimer","Dratini","Mareep","Abra","Aron","Geodude","Gastly",];
-
-            let firstPokemon = [
-                {
-                    name: "Bulbasaur",
-                    givenName: null,
-                    type: ["Grass"],
-                    rarity: "Standard",
-                    id: 1,
-                    storageId: 0,
-                    pointsTillEvolved: null,    // Add when evolves are in
-                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
-                },
-                {
-                    name: "Charmander",
-                    givenName: null,
-                    type: ["Fire"],
-                    rarity: "Standard",
-                    id: 4,
-                    storageId: 0,
-                    pointsTillEvolved: null,    // Add when evolves are in
-                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png"
-
-                },
-                {
-                    name: "Squirtle",
-                    givenName: null,
-                    type: ["Water"],
-                    rarity: "Standard",
-                    id: 7,
-                    storageId: 0,
-                    pointsTillEvolved: null,    // Add when evolves are in
-                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
-
-                },
-                {
-                    name: "Caterpie",
-                    givenName: null,
-                    type: ["Bug"],
-                    rarity: "Standard",
-                    id: 10,
-                    storageId: 0,
-                    pointsTillEvolved: null,    // Add when evolves are in
-                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png"
-                },
-               {
-                    name: "Pidgey",
-                    givenName: null,
-                    type: ["Flying"],
-                    rarity: "Standard",
-                    id: 10,
-                    storageId: 0,
-                    pointsTillEvolved: null,    // Add when evolves are in
-                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png"
-                },
-
-               {
-                    name: "Pikachu",
-                    givenName: null,
-                    type: ["Electric"],
-                    rarity: "Standard",
-                    id: 25,
-                    storageId: 0,
-                    pointsTillEvolved: null,    // Add when evolves are in
-                    imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png"
-                },
-
-                {
-                name: "Grimer",
-                givenName: null,
-                type: ["Poison"],
-                rarity: "Standard",
-                id: 88,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png"
-              },
-              {
-                name: "Geodude",
-                givenName: null,
-                type: ["Rock"],
-                rarity: "Standard",
-                id: 74,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png"
-             },
-             {
-                name: "Abra",
-                givenName: null,
-                type: ["Psychic"],
-                rarity: "Standard",
-                id: 63,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png"  
-             },  
-        
-             {
-                name: "Nidoran",
-                givenName: null,
-                type: ["Poison"],
-                rarity: "Standard",
-                id: 32,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png"  
-             },  
-        
-             {
-                name: "Aron",
-                givenName: null,
-                type: ["Steel"],
-                rarity: "Standard",
-                id: 304,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/304.png"  
-             },  
-        
-             {
-                name: "Clefairy",
-                givenName: null,
-                type: ["Fairy"],
-                rarity: "Standard",
-                id: 35,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png"  
-             },  
-             {
-                name: "Diglett",
-                givenName: null,
-                type: ["Ground"],
-                rarity: "Standard",
-                id: 50,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png"  
-             },  
-             {
-                name: "Machop",
-                givenName: null,
-                type: ["Fighting"],
-                rarity: "Standard",
-                id: 66,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/066.png"  
-             },  
-             {
-                name: "Seel",
-                givenName: null,
-                type: ["Ice"],
-                rarity: "Standard",
-                id: 86,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png"  
-             },  
-             {
-                name: "Gastly",
-                givenName: null,
-                type: ["Ghost"],
-                rarity: "Standard",
-                id: 92,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/092.png"  
-             },  
-             {
-                name: "Houndour",
-                givenName: null,
-                type: ["Dark"],
-                rarity: "Standard",
-                id: 228,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/228.png"  
-             },  
-             {
-                name: "Slakoth",
-                givenName: null,
-                type: ["Normal"],
-                rarity: "Standard",
-                id: 287,
-                storageId: 0,
-                pointsTillEvolved: null,    // Add when evolves are in
-                imgURL:"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/287.png"  
-             },  
-        ]
-        localStorage.setItem("firstPokemon", JSON.stringify(firstPokemon));
-        console.log(firstPokemon)
-        }
-
-           
-
-
-          function  renderStarterPokemon(){
-              localStorage.JSON.parse(localStorage.getItem("firstPokemon"));
-
-            let imgURL = firstPokemon.imgURL;
-            let name = firstPokemon.name;
-            let type = firstPokemon.type;
-            let rarity= firstPokemon.id;
-
-            var li = document.createElement("li");
-
-            var markup = `  
-        <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-             <img class="card-img-top" src= ${imgURL} alt="Card image cap">
-        <div class="card-body">
-              <h5 class="card-title">${name}</h5>
-              
-              <p class="card-text">${type}</p>
-              <p class="card-text">${rarity}</p>
-              <p class="card-text">${id}</p
-
-             <div class="text-center">
-                  <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-                  
-                  <br>
-                  <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img  src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png"/></a>
-                  <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png"/></a>
-                 <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png"/></a>
-              </div>
-         </div>
-        </div>`
-         li.innerHTML = markup;
-         firstStarted.appendChild(li);
-
-              
-            
-         
-          }
-
-           
-           
- 
+    console.log(firstPokemon[type])
+    localStorage.setItem("poke-shop:!"+firstPokemon[type].name, JSON.stringify(firstPokemon[type]));
+    console.log(firstPokemon)
+}
 
 // ------------------------------------------------------------------------------------------
 
 // API handling
-
-
 
 function sendRef(results) {
     results.forEach(pokemon => {
@@ -548,3 +497,4 @@ $(".feed-pkm-btn").on("click", event => {
 })
 
 // $("<img>").attr("src", "./assets/images/pokecoin.png")
+          
