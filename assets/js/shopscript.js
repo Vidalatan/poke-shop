@@ -135,9 +135,10 @@ $(".poke-buy-btn").on("click", event => {
                 loop: 6,
                 complete: function() {
                     var randomPoke = results[Math.floor(Math.random()*results.length)];
+                    randomPoke.imgURL = "assets.pokemon.com/assets/cms2/img/pokedex/detail/"+randomPoke.id+".png"
                     $("#poke-cards-container").append($("<img>")
                                 .attr("id", "random-pokemon")
-                                .attr("src", "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+randomPoke.id+".png")
+                                .attr("src", "https://"+randomPoke.imgURL)
                                 .attr("style", "position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; z-index: 20; opacity: 0"))
 
                     anime({
@@ -189,7 +190,7 @@ $(".poke-buy-btn").on("click", event => {
                                 
                                 complete: function() {
                                     // Add pokemon to local storage
-                                    window.localStorage.setItem("poke-shop:!"+randomPoke.givenName, JSON.stringify(randomPoke))
+                                    localStorage.setItem("poke-shop:$!"+randomPoke.givenName, JSON.stringify(randomPoke))  // Purchased pokemon will get the '$' prefixed to them to represent they were bought
 
 
                                     $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
@@ -205,6 +206,19 @@ $(".poke-buy-btn").on("click", event => {
         }
     })
 })
+
+$("#link-home").on("click", event => {
+    let purchases = []
+    for (item in localStorage) {
+        if (item.includes("poke-shop:$!")) {
+            purchases.push(JSON.parse(localStorage.getItem(item)))
+        }
+    }
+    localStorage.clear()
+    location.assign("./index.html?="+JSON.stringify(purchases))
+})
+
+
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Counter functions
