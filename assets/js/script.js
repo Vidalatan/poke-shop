@@ -80,16 +80,6 @@ letsGoBtn.addEventListener("click", function(event){
  
  });
 
-    } else {
-        setTimeout(function open(event) {
-            document.querySelector(".popup").style.display = "block";
-            this.document.getElementById("backgroundReset").style.display = "block";
-        },
-            0000
-        )
-    };
-})
-
 loadPokemon()
 
 letsGoBtn.addEventListener("click", function(event){
