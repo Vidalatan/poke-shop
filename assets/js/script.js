@@ -31,8 +31,42 @@ function renderLastTrainer() {
 window.addEventListener("load", function () {
     if (localStorage.getItem("pokeHome:visited") === "true") {
         document.getElementById("trainer-form").style.display = "none";
+
         this.document.getElementById("backgroundReset").style.display = "none";
         renderLastTrainer();
+
+
+window.addEventListener("load", function(){
+	if (localStorage.getItem("pokeHome:visited")==="true"){
+		document.getElementById("trainer-form").style.display = "none";
+
+        this.document.getElementById("backgroundReset").style.display = "none";
+        renderLastTrainer();
+
+    } else {
+        setTimeout(function open(event) {
+            document.querySelector(".popup").style.display = "block";
+            this.document.getElementById("backgroundReset").style.display = "block";
+        },
+            0000
+        )
+    };
+})
+
+letsGoBtn.addEventListener("click", function(event){
+	event.preventDefault();
+    
+	localStorage.setItem("pokeHome:visited", "true");
+	
+	saveTrainerInfo();
+	renderLastTrainer();
+	// document.getElementById("trainer-form").reset();
+	document.getElementById("trainer-form").style.display = "none";
+    document.getElementById("backgroundReset").style.display = "none";
+    
+	
+ 
+ });
 
     } else {
         setTimeout(function open(event) {
@@ -55,6 +89,8 @@ letsGoBtn.addEventListener("click", function (event) {
     document.getElementById("trainer-form").style.display = "none";
     document.getElementById("backgroundReset").style.display = "none";
 
+
+    localStorage.setItem("pokeHome:visited", "true");
 
 
 });
@@ -165,11 +201,18 @@ $(".feed-pkm-btn").on("click", event => {
 var count = 0;
 var count2 = 0;
 var count3 = 0;
+
+var count4= 0;
+function increaseNormalCandy1() { 
+    document.getElementById("normal").innerHTML = count+=1;
+
 var count4 = 0;
 
 function increaseNormalCandy1() {
     document.querySelector("#poke-candy-normal").innerHTML = count += 1;
+
 }
+
 
 
 
@@ -179,6 +222,17 @@ function decreaseNormalCandy2() {
     if (parseInt(document.getElementById("poke-candy-normal").innerHTML) > 0) {
         document.getElementById("poke-candy-normal").innerHTML = parseInt(document.getElementById("poke-candy-normal").innerHTML) - 1;
         console.log("decrese normal");
+
+function decreaseNormalCandy2(){ 
+
+    if (document.getElementById("normal").innerHTML > 0) { document.getElementById("normal").innerHTML = count-=1;
+
+function decreaseNormalCandy2() {
+
+    if (parseInt(document.getElementById("poke-candy-normal").innerHTML) > 0) {
+        document.getElementById("poke-candy-normal").innerHTML = parseInt(document.getElementById("poke-candy-normal").innerHTML) - 1;
+        console.log("decrese normal");
+
     }
 }
 
@@ -186,14 +240,26 @@ function decreaseNormalCandy2() {
 
 function increaseLargeCandy3() {
     document.getElementById("poke-candy-large").innerHTML = count2 -= -2;
+
+function increaseLargeCandy3(){ 
+    document.getElementById("large").innerHTML = count2-=-2;
+
+function increaseLargeCandy3() {
+    document.getElementById("poke-candy-large").innerHTML = count2 -= -2;
+s
 }
 
 
+
+
+function decreaseLargCandy4(){ 
+   if (document.getElementById("large").innerHTML > 0) { document.getElementById("large").innerHTML = count2-=2;
 
 function decreaseLargeCandy4() {
     if (parseInt(document.getElementById("poke-candy-large").innerHTML) > 0) {
         document.getElementById("poke-candy-large").innerHTML = parseInt(document.getElementById("poke-candy-large").innerHTML) - 2;
         console.log("decrese normal");
+
     }
   
 }
@@ -210,7 +276,34 @@ function increaseXlargeCandy5() {
 function decreaseXlargeCandy6() {
     if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
         document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 3;
+     
+    }
+  
+}
+
+
+
+
+function increaseXlargeCandy5() {
+    document.getElementById("poke-candy-xlcandy").innerHTML = count3 += 3;
+
+function increaseXlargeCandy5(){ document.getElementById("xlcandy").innerHTML = count3+=3;
+
+function increaseMoney7() {
+    document.getElementById("poke-money").innerHTML = count4 += 5;
+
+}
+
+
+
+function decreaseXlargeCandy6() {
+    if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
+        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 3;
         console.log("decrese normal");
+
+function decreaseXlargeCandy6(){ 
+   if (document.getElementById("xlcandy").innerHTML > 0) { document.getElementById("xlcandy").innerHTML = count3-=3;
+
     }
 }
 
@@ -226,8 +319,16 @@ function increaseMoney7() {
 function decreaseMoney8() {
     if (document.getElementById("poke-money").innerHTML > 0) {
         document.getElementById("poke-money").innerHTML = count4 -= 5;
-    }
+
+        
+function decreaseMoney8(){ 
+   if (document.getElementById("poke-money").innerHTML > 0) { document.getElementById("poke-money").innerHTML = count4-=5;
+
+
+document.getElementById("poke-money").onclick = function() {decreaseMoney8()};
+
+function decreaseMoney8() {
+    if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
+        document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - 3;}
+        
 }
-
-
-
