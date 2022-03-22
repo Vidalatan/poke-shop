@@ -35,12 +35,13 @@
 
 
     <!-- Shop -->
-    <main class="container-fluid bg-danger d-center">
+    <main class="container-fluid bg-danger text-center">
       
       <h2 class="pt-3 pl-2 bg-primary">Shop</h2>
         
       <div id="poke-cards-container" class="card-container" style="position: relative;">
-        <!-- Cards -->
+        
+        <!-- Pokeballs -->
         <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
           <img class="card-img-top" src="./assets/images/pokeball.png" alt="pokeball sprite"/>
           <div class="card-body">
@@ -56,6 +57,7 @@
           <img class="card-img-top" src="./assets/images/greatball.png" alt="greatball sprite"/>
           <div class="card-body">
             <h5 class="card-title">Great Ball</h5>
+
             <p class="card-text">An improved variant of the regular Poké Ball. Gives random Legendary Pokémon.</p>  
             <div class="row d-flex justify-content-center">
               <a id="poke-legendary" href="#" class="btn btn-primary poke-buy-btn">Buy(250)</a>
@@ -73,6 +75,7 @@
             <div class="row d-flex justify-content-center">
               <a id="poke-mythic" href="#" class="btn btn-primary poke-buy-btn">Buy(500)</a>
 
+
             </div>
           </div>
         </div>
@@ -80,6 +83,52 @@
       
       
     </main>
+
+    <!-- Candy Shop -->
+    <div class="container-fluid bg-warning text-center"  id="candies">
+      <h3 class="bg-warning pt-3 pl-2;">Candies:</h3>
+
+    <div class="card-container bg-primary" style="position: relative;">
+  
+      <!-- Small candy -->
+      <div id="candy-card" class="card m-5 d-inline-block" style="width: 15rem; height: 17rem; position: relative;">
+        <img class="card-img-top" src="./assets/images/Candy-sprite.png" alt="small candy" style="width: 50px; height: 50px;"/>
+        <div class="card-body">
+          <h5 class="card-title">Small Candy</h5>
+          <p class="card-text">A candy that is packed with energy. When given to a Pokémon, it will increase that Pokémon's strength.</p>
+          <div class="text-center">
+            <a id="" href="#" class="btn btn-primary">Buy</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Large Candy -->
+      <div id="candy-card" class="card m-5 d-inline-block" style="width: 15rem; height: 17rem; position: relative;">
+        <img class="card-img-top" src="./assets/images/Candy_L_Sprite.png" style="width: 50px; height: 50px;" alt="large candy"/>
+        <div class="card-body">
+          <h5 class="card-title">Large Candy</h5>
+          <p class="card-text">A candy that is packed with energy. When given to a Pokémon, it will increase that Pokémon's strength.</p>
+          <div class="text-center">
+            <a id="" href="#" class="btn btn-primary">Buy</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Extra Large -->
+      <div id="candy-card" class="card m-5 d-inline-block" style="width: 15rem; height: 17rem; position: relative;">
+        <img class="card-img-top" src="./assets/images/Candy_XL_Sprite.png" alt="Extra Large candy" style="width: 50px; height: 50px;"/>
+        <div class="card-body">
+          <h5 class="card-title">Extra Large Candy</h5>
+          <p class="card-text">A candy that is packed with energy. When given to a Pokémon, it will increase that Pokémon's strength.</p>
+          <div class="text-center">
+            <a id="" href="#" class="btn btn-primary">Buy</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+
 
     <footer>
         <!-- additional info maybe -->

@@ -51,7 +51,34 @@ function renderLastTrainer(){
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
 		document.getElementById("trainer-form").style.display = "none";
+
+        this.document.getElementById("backgroundReset").style.display = "none";
         renderLastTrainer();
+
+    } else {
+        setTimeout(function open(event) {
+            document.querySelector(".popup").style.display = "block";
+            this.document.getElementById("backgroundReset").style.display = "block";
+        },
+            0000
+        )
+    };
+})
+
+letsGoBtn.addEventListener("click", function(event){
+	event.preventDefault();
+    
+	localStorage.setItem("pokeHome:visited", "true");
+	
+	saveTrainerInfo();
+	renderLastTrainer();
+	// document.getElementById("trainer-form").reset();
+	document.getElementById("trainer-form").style.display = "none";
+    document.getElementById("backgroundReset").style.display = "none";
+    
+	
+ 
+ });
 
     } else {
         setTimeout(function open(event) {
@@ -445,8 +472,6 @@ $("#poke-coin-inv").on("click", event => {
     localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 })
 
-console.log(document.getElementById("poke-coin-inv").innerText);
-
 $("#link-shop").on("click", event => {
     event.preventDefault()
     for (item in localStorage) {
@@ -471,7 +496,6 @@ function decreaseNormalCandy() {
         return false
     }
 }
-
 
 function decreaseLargeCandy() {
     if (parseInt(document.getElementById("poke-candy-large").innerHTML) > 0) {
