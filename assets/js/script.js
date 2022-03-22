@@ -288,6 +288,28 @@ function turnObjToArray(object) {
 }
 
 function loadPokemon() {
+    $("#poke-cards-container").children().remove()
+
+    let getFilters = () => {
+        switch ($("#poke-search-filter-btn").text()) {
+            case "Filter":
+                return ["none"]
+            case "Filter: Name":
+                if ($("#poke-search-name-bar").val() === "") {
+                    return["none"]
+                } else {
+                    return ["Name",$("#poke-search-name-bar").val()]
+                }
+            case "Filter: Rarity":
+                return ["Rarity",$("#poke-search-rarity-btn").text()]
+            case "Filter: Type":
+                return ["Type",$("#poke-search-type-btn").text()]     
+        }
+    }
+
+    let filter = getFilters()
+    console.log(filter);
+    let filtered = []
     let sessionSoldList = []
     let objectList;
     if (location.search.substring(location.search.indexOf("&purchases=")+11).replace(/(%22)/g, '"') !== "") {
@@ -306,37 +328,57 @@ function loadPokemon() {
         }
     }
 
+    console.log(filter[0]);
     for (item in localStorage) {
         if (item.includes("poke-shop:!")) {
-            checkDouble = () => {
-                if(JSON.parse(localStorage[item]).type.length === 2) {
-                    console.log(JSON.parse(localStorage[item]).type.length);
-                    return JSON.parse(localStorage[item]).type[1]
-                } else {
-                    return JSON.parse(localStorage[item]).type[0]
-                }
+            switch (filter[0]) {
+                case "none":
+                    filtered.push(JSON.parse(localStorage[item]))
+                case "Name":
+                    if (JSON.parse(localStorage[item]).name === filter[1] || JSON.parse(localStorage[item]).givenName === filter[1]) {
+                        filtered.push(JSON.parse(localStorage[item]))
+                    }
+                case "Rarity":
+                    if (JSON.parse(localStorage[item]).rarity === filter[1]) {
+                        filtered.push(JSON.parse(localStorage[item]))
+                    }
+                case "Type":
+                    if (JSON.parse(localStorage[item]).type.includes(filter[1])) {
+                        filtered.push(JSON.parse(localStorage[item]))
+                    }
             }
-            console.log(JSON.parse(localStorage[item]).imgURL);
-            $("#poke-cards-container").append($("<div>").addClass("card m-1 mb-3 d-inline-block").attr("id", "poke-info-card").attr("style", "width: 12rem; height: 24rem;")
-                .append($("<img>").addClass("card-img-top").attr("src", "https://"+JSON.parse(localStorage[item]).imgURL).attr("alt", JSON.parse(localStorage[item]).givenName+"-Pokemon Inventory Card Image"))
-                .append($("<div>").addClass("card-body")
-                    .append($("<h5>").addClass("card-title").text(JSON.parse(localStorage[item]).givenName))
-                    .append($("<p>").addClass("card-text").text(JSON.parse(localStorage[item]).name))
-                    .append($("<p>").addClass("card-text").text(JSON.parse(localStorage[item]).type[0]+","))
-                    .append($("<p>").addClass("card-text").text(checkDouble()))
-                    .append($("<p>").addClass("card-text").text(JSON.parse(localStorage[item]).rarity))
-                    .append($("<div>").addClass("text-center")
-                        .append($("<a>").addClass("sell-pkm-btn btn btn-primary").attr("href", "#").text("Sell"))
-                        .append($("<br>"))
-                        .append($("<div>").addClass("row-cols-3 mt-2 d-flex justify-content-around")
-                            .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-normal").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png")))
-                            .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-large").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png")))
-                            .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-xlarge").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png")))
-                            )
+        }
+    }
+
+    console.log(filtered);
+    for (item in filtered) {
+        checkDouble = () => {
+            if(filtered[item].type.length === 2) {
+                console.log(filtered[item].type.length);
+                return filtered[item].type[1]
+            } else {
+                return filtered[item].type[0]
+            }
+        }
+        $("#poke-cards-container").append($("<div>").addClass("card m-1 mb-3 d-inline-block").attr("id", "poke-info-card").attr("style", "width: 12rem; height: 24rem;")
+            .append($("<img>").addClass("card-img-top").attr("src", "https://"+filtered[item].imgURL).attr("alt", filtered[item].givenName+"-Pokemon Inventory Card Image"))
+            .append($("<div>").addClass("card-body")
+                .append($("<h5>").addClass("card-title").text(filtered[item].givenName))
+                .append($("<p>").addClass("card-text").text(filtered[item].name))
+                .append($("<p>").addClass("card-text").text(filtered[item].type[0]+","))
+                .append($("<p>").addClass("card-text").text(checkDouble()))
+                .append($("<p>").addClass("card-text").text(filtered[item].rarity))
+                .append($("<div>").addClass("text-center")
+                    .append($("<a>").addClass("sell-pkm-btn btn btn-primary").attr("href", "#").text("Sell"))
+                    .append($("<br>"))
+                    .append($("<div>").addClass("row-cols-3 mt-2 d-flex justify-content-around")
+                        .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-normal").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png")))
+                        .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-large").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png")))
+                        .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-xlarge").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png")))
                         )
                     )
                 )
-        }
+            )
     }
 }
 
@@ -348,26 +390,46 @@ $("#poke-search-filter").children().on("click", event => {
             $("#poke-search-name").prop("style", "display: visible;")
             $("#poke-search-rarity").prop("style", "display: none;")
             $("#poke-search-type").prop("style", "display: none;")
+            $("#poke-search-rarity-btn").text("Rarity")
+            $("#poke-search-type-btn").text("Type")
             break;
         case "Rarity":
             event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter: "+event.currentTarget.innerText
             $("#poke-search-name").prop("style", "display: none;")
             $("#poke-search-rarity").prop("style", "display: visible;")
             $("#poke-search-type").prop("style", "display: none;")
+            $("#poke-search-rarity-btn").text("Rarity")
             break;
         case "Type":
             event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter: "+event.currentTarget.innerText
             $("#poke-search-name").prop("style", "display: none;")
             $("#poke-search-rarity").prop("style", "display: none;")
             $("#poke-search-type").prop("style", "display: visible;")
+            $("#poke-search-type-btn").text("Type")
             break;
         case "None":
             event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter"
             $("#poke-search-name").prop("style", "display: none;")
             $("#poke-search-rarity").prop("style", "display: none;")
+            $("#poke-search-rarity-btn").text("Rarity")
             $("#poke-search-type").prop("style", "display: none;")
+            $("#poke-search-type-btn").text("Type")
             loadPokemon()
             break;
+    }
+})
+
+$("#poke-search-name-btn").on("click", event => {
+    event.preventDefault()
+    loadPokemon()
+})
+
+$("body").on("keyup", event => {
+    console.log(event.originalEvent.key);
+    if ($("#poke-search-name").css("display") === "inline-flex") {
+        if (event.originalEvent.key === "Enter") {
+            loadPokemon()
+        }
     }
 })
 
@@ -377,7 +439,11 @@ $("#poke-search-rarity-items").children().on("click", event => {
     loadPokemon()
 })
 
-$()
+$("#poke-search-type-items").children().on("click", event => {
+    event.preventDefault()
+    event.currentTarget.parentNode.parentNode.children[0].innerText = event.currentTarget.innerText
+    loadPokemon()
+})
 
 
 $(".sell-pkm-btn").on("click", event => {
