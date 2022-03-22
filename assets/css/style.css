@@ -95,13 +95,13 @@ body{
 }
 
 #poke-info-card h5 {
-font-size: 1rem;
+font-size: .80rem;
 text-align: center;
 }
 
 #poke-info-card {
     text-align: center;
-    font-size: .60rem;
+    font-size: .50rem;
     line-height: .30rem;
 }
 

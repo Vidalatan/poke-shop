@@ -5,7 +5,11 @@ var savedGym = document.getElementById("saved-gym");
 var letsGoBtn = document.querySelector("#first-time-popup-submit");
 var input = document.querySelector(".form-control")
 
-loadPurchases();
+if (localStorage["poke-shop:coins"]) {
+    localStorage.setItem("poke-shop:coins", location.search.substring(2,location.search.indexOf("&purchases=")))
+}
+document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+loadPokemon();
 
 // save last trainer information 
 function saveTrainerInfo() {
@@ -57,9 +61,7 @@ letsGoBtn.addEventListener("click", function (event) {
     // document.getElementById("trainer-form").reset();
     document.getElementById("trainer-form").style.display = "none";
     document.getElementById("backgroundReset").style.display = "none";
-
-
-
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >'+500
 });
 
 function turnObjToArray(object) {
@@ -70,9 +72,12 @@ function turnObjToArray(object) {
     return newArray
 }
 
-function loadPurchases() {
+function loadPokemon() {
     let sessionSoldList = []
-    let objectList = JSON.parse(location.search.substring(2).replace(/(%22)/g, '"'))
+    let objectList;
+    if (location.search.substring(location.search.indexOf("&purchases=")+11).replace(/(%22)/g, '"') !== "") {
+        objectList = JSON.parse(location.search.substring(location.search.indexOf("&purchases=")+11).replace(/(%22)/g, '"'))
+    }
 
     for (item in localStorage) {
         if (item.includes("poke-shop-sold")) {
@@ -125,7 +130,7 @@ $(".sell-pkm-btn").on("click", event => {
     event.preventDefault()
     localStorage.removeItem("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText)
     localStorage.setItem("poke-shop-sold:"+event.currentTarget.parentNode.parentNode.children[0].innerText, event.currentTarget.parentNode.parentNode.children[0].innerText)
-    console.log("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText);
+    
     anime({
         targets: event.currentTarget.parentNode.parentNode.parentNode,
         keyframes: [
@@ -166,6 +171,19 @@ $(".sell-pkm-btn").on("click", event => {
                 opacity: 0,
                 duration: 1000,
                 easing: "easeInOutQuad",
+                complete: function() {
+                    switch (event.currentTarget.parentNode.parentNode.children[4].innerText) {
+                        case "Standard":
+                            increaseMoney(2)
+                            break;
+                        case "Legendary":
+                            increaseMoney(125)
+                            break;
+                        case "Mythic":
+                            increaseMoney(250)
+                            break;
+                    }
+                }
             })
         }
     })
@@ -208,6 +226,23 @@ $(".feed-pkm-btn").on("click", event => {
     }
 })
 
+$("#poke-coin-inv").on("click", event => {
+    increaseMoney()
+})
+
+console.log(document.getElementById("poke-coin-inv").innerText);
+
+$("#link-shop").on("click", event => {
+    event.preventDefault()
+    for (item in localStorage) {
+        if (item.includes("poke-shop-sold")) {
+            localStorage.removeItem(item)
+        }
+    }
+
+    location.assign("./shop.html?="+document.getElementById("poke-coin-inv").innerText)
+})
+
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //functional candies and money button counter
 
@@ -245,9 +280,8 @@ function decreaseXlargeCandy() {
 }
 
 
-function increaseMoney() {
-    console.log(document.getElementById("poke-coin-inv").innerText);
-    let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + 5
+function increaseMoney(incAmount=5) {
+    let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + incAmount
     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+newCount;
     localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 }
