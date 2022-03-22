@@ -65,21 +65,6 @@ window.addEventListener("load", function(){
     };
 })
 
-letsGoBtn.addEventListener("click", function(event){
-	event.preventDefault();
-    
-	localStorage.setItem("pokeHome:visited", "true");
-	
-	saveTrainerInfo();
-	renderLastTrainer();
-	// document.getElementById("trainer-form").reset();
-	document.getElementById("trainer-form").style.display = "none";
-    document.getElementById("backgroundReset").style.display = "none";
-    
-	
- 
- });
-
 loadPokemon()
 
 letsGoBtn.addEventListener("click", function(event){
@@ -354,6 +339,45 @@ function loadPokemon() {
         }
     }
 }
+
+$("#poke-search-filter").children().on("click", event => {
+    event.preventDefault()
+    switch (event.currentTarget.innerText) {
+        case "Name":
+            event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter: "+event.currentTarget.innerText
+            $("#poke-search-name").prop("style", "display: visible;")
+            $("#poke-search-rarity").prop("style", "display: none;")
+            $("#poke-search-type").prop("style", "display: none;")
+            break;
+        case "Rarity":
+            event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter: "+event.currentTarget.innerText
+            $("#poke-search-name").prop("style", "display: none;")
+            $("#poke-search-rarity").prop("style", "display: visible;")
+            $("#poke-search-type").prop("style", "display: none;")
+            break;
+        case "Type":
+            event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter: "+event.currentTarget.innerText
+            $("#poke-search-name").prop("style", "display: none;")
+            $("#poke-search-rarity").prop("style", "display: none;")
+            $("#poke-search-type").prop("style", "display: visible;")
+            break;
+        case "None":
+            event.currentTarget.parentNode.parentNode.children[0].innerText = "Filter"
+            $("#poke-search-name").prop("style", "display: none;")
+            $("#poke-search-rarity").prop("style", "display: none;")
+            $("#poke-search-type").prop("style", "display: none;")
+            loadPokemon()
+            break;
+    }
+})
+
+$("#poke-search-rarity-items").children().on("click", event => {
+    event.preventDefault()
+    event.currentTarget.parentNode.parentNode.children[0].innerText = event.currentTarget.innerText
+    loadPokemon()
+})
+
+$()
 
 
 $(".sell-pkm-btn").on("click", event => {
