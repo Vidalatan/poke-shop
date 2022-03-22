@@ -552,6 +552,13 @@ $("#poke-coin-inv").on("click", event => {
     localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 })
 
+$("#poke-shop-reset-btn").on("click", event => {
+    if (confirm("Are you sure you wish to reset your profile?")) {
+        localStorage.clear()
+        location.assign("./index.html")
+    }
+})
+
 $("#link-shop").on("click", event => {
     event.preventDefault()
     for (item in localStorage) {
