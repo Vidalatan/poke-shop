@@ -2,15 +2,13 @@
 // Image URL Refrence: https://img.pokemondb.net/sprites/sword-shield/icon/{pokemon_name}.png
 
 var results;
+console.log(document.getElementById("poke-coin-inv").innerText);
+if (localStorage.getItem("poke-shop:coins") ===null) {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + location.search.substring(2)
+} else {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+}
 
-// function sendRef(results) {
-//     results.forEach(pokemon => {
-//         console.log(pokemon);
-//         console.log("https://img.pokemondb.net/sprites/sword-shield/icon/"+ pokemon.name.toLowerCase() +".png");
-//     });  // This is where we handle the results retrieved from our fetches
-// }
-
-// Filter will include: "searchedName", "searchedType", or "searchedRarity" or "searchedAll"
 async function pokemonRequestBy( input){
     const fetchTypes = fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
 		"method": "GET",
@@ -93,115 +91,206 @@ function getPokemonByRarity(searchedRarity, rarityData, typesData){
 
 // Animation area
 
+function parsePokeId(pokeId) {
+    num = pokeId.toString();
+    while (num.length < 3) {
+        num = "0" + num
+    }
+    return num
+}
+
 $(".poke-buy-btn").on("click", event => {
     event.preventDefault()
+    var contAnime = true
 
     anime({
         targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
         begin: function() {
-            // Reset all of this upon animation's full completion
-            $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
-            $(".poke-buy-btn").attr("style", "pointer-events: none;")
-            $("body").prepend($("<div>").attr("id", "masking-div").attr("style", "position: fixed; background-color: black; width: 100%; height: 100%; z-index: 10; opacity: 50%;"))
-            // Get the data we will be pulling from at random
-            switch (event.currentTarget.id) {
-                case "poke-standard":
-                    pokemonRequestBy("Standard")
-                    break;
-            
-                case "poke-legendary":
-                    pokemonRequestBy("Legendary")
-                    break;
-            
-                case "poke-mythic":
-                    pokemonRequestBy("Mythic")
-                    break;
-
+            try {
+                // Get the data we will be pulling from at random
+                switch (event.currentTarget.id) {
+                    case "poke-standard":
+                        if (parseInt(document.getElementById("poke-coin-inv").innerText)>=5) {
+                            localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText)-5)
+                            document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+                            pokemonRequestBy("Standard")
+                            // Reset all of this upon animation's full completion
+                            $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
+                            $(".poke-buy-btn").attr("style", "pointer-events: none;")
+                            $("body").prepend($("<div>").attr("id", "masking-div").attr("style", "position: fixed; background-color: black; width: 100%; height: 100%; z-index: 10; opacity: 50%;"))
+                        } else {
+                            throw new Error("stopped animation")
+                        }
+                        break;
+                
+                    case "poke-legendary":
+                        if (parseInt(document.getElementById("poke-coin-inv").innerText)>=250) {
+                            localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText)-250)
+                            document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+                            pokemonRequestBy("Legendary")
+                            $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
+                            $(".poke-buy-btn").attr("style", "pointer-events: none;")
+                            $("body").prepend($("<div>").attr("id", "masking-div").attr("style", "position: fixed; background-color: black; width: 100%; height: 100%; z-index: 10; opacity: 50%;"))
+                        } else {
+                            throw new Error("stopped animation")
+                        }    
+                        break;
+                
+                    case "poke-mythic":
+                        if (parseInt(document.getElementById("poke-coin-inv").innerText)>=500) {
+                            localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText)-500)
+                            document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+                            pokemonRequestBy("Mythic")
+                            $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
+                            $(".poke-buy-btn").attr("style", "pointer-events: none;")
+                            $("body").prepend($("<div>").attr("id", "masking-div").attr("style", "position: fixed; background-color: black; width: 100%; height: 100%; z-index: 10; opacity: 50%;"))
+                        } else {
+                            throw new Error("stopped animation")
+                        }
+                        break;
+                }
+            } catch (error) {
+                anime.remove(event.currentTarget.parentNode.parentNode.previousElementSibling)
+                alert("You don't have enough money!\nTo make more money, simply click on your Poke-Coins")
             }
+
         },
         translateX: (window.innerWidth/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-125,
         scale: 1.5,
         easing: 'cubicBezier(.5, 0, .5, 1)',
         duration: 1500,
         complete: function() {
-            anime({
-                targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-                rotate: [
-                    {value: 25},
-                    {value: -25}
-                ],
-                duration: 250,
-                // direction: "alternate",
-                loop: 6,
-                complete: function() {
-                    var randomPoke = results[Math.floor(Math.random()*results.length)];
-                    $("#poke-cards-container").append($("<img>")
-                                .attr("id", "random-pokemon")
-                                .attr("src", "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"+randomPoke.id+".png")
-                                .attr("style", "position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; z-index: 20; opacity: 0"))
-
-                    anime({
-                        targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-                        keyframes: [
-                            {
-                                rotate: 0
-                            },
-                            {
-                                translateY: 250,
-                                scale: .75
-                            }
-
-                        ],
-                        easing: "linear",
-                        duration: 1000
-                    })
-                    anime({
-                        targets: event.currentTarget.parentNode.parentNode.parentNode.parentNode.lastElementChild,
-                        opacity: 1,
-                        duration: 1000,
-                        endDelay: 1500,
-                        complete: function() {
-                            randomPoke.givenName = prompt("Congratulations! You got a "+randomPoke.name+"!\nPlease enter a name:");
-                            if (randomPoke.givenName === "" || randomPoke.givenName === null) {
-                                randomPoke.givenName = randomPoke.name;
-                            }
-                            let storageNextId = 0
-                            for (item in localStorage) {
-                                let parsedPoke = JSON.parse(localStorage.getItem(item))
-                                if (item.includes("poke-shop:!")) {
-                                    if (parsedPoke.storageId <= storageNextId) {
-                                        storageNextId = parsedPoke.storageId+1
+            if (contAnime) {
+                anime({
+                    targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
+                    rotate: [
+                        {value: 25},
+                        {value: -25}
+                    ],
+                    duration: 250,
+                    loop: 6,
+                    complete: function() {
+                        var randomPoke = results[Math.floor(Math.random()*results.length)];
+                        let urlId = parsePokeId(randomPoke.id)
+                        console.log(urlId);
+                        randomPoke.imgURL = "assets.pokemon.com/assets/cms2/img/pokedex/detail/"+urlId+".png"
+                        $("#poke-cards-container").append($("<img>")
+                                    .attr("id", "random-pokemon")
+                                    .attr("src", "https://"+randomPoke.imgURL)
+                                    .attr("style", "position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; z-index: 20; opacity: 0"))
+    
+                        anime({
+                            targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
+                            keyframes: [
+                                {
+                                    rotate: 0
+                                },
+                                {
+                                    translateY: 250,
+                                    scale: .75
+                                }
+    
+                            ],
+                            easing: "linear",
+                            duration: 1000
+                        })
+                        anime({
+                            targets: event.currentTarget.parentNode.parentNode.parentNode.parentNode.lastElementChild,
+                            opacity: 1,
+                            duration: 1000,
+                            endDelay: 1500,
+                            complete: function() {
+                                randomPoke.givenName = prompt("Congratulations! You got a "+randomPoke.name+"!\nPlease enter a name:");
+                                if (randomPoke.givenName === "" || randomPoke.givenName === null) {
+                                    randomPoke.givenName = randomPoke.name;
+                                }
+                                let storageNextId = 0
+                                for (item in localStorage) {
+                                    let parsedPoke = JSON.parse(localStorage.getItem(item))
+                                    if (item.includes("poke-shop:!")) {
+                                        if (parsedPoke.storageId <= storageNextId) {
+                                            storageNextId = parsedPoke.storageId+1
+                                        }
                                     }
                                 }
+                                randomPoke.storageId = storageNextId
+                                anime({
+                                    targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
+                                    translateX: 0,
+                                    translateY: 0,
+                                    scale: 1,
+                                    easing: "linear"
+                                })
+                                anime({
+                                    targets: event.currentTarget.parentNode.parentNode.parentNode.parentNode.lastElementChild,
+                                    translateX: -250,
+                                    opacity: 0,
+                                    
+                                    complete: function() {
+                                        // Add pokemon to local storage
+                                        localStorage.setItem("poke-shop:$!"+randomPoke.givenName, JSON.stringify(randomPoke))  // Purchased pokemon will get the '$' prefixed to them to represent they were bought
+    
+    
+                                        $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
+                                        $("#masking-div").remove()
+                                        $("#random-pokemon").remove()
+                                        $(".poke-buy-btn").attr("style", "pointer-events: initial;")
+                                    }
+                                })
                             }
-                            randomPoke.storageId = storageNextId
-                            anime({
-                                targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-                                translateX: 0,
-                                translateY: 0,
-                                scale: 1,
-                                easing: "linear"
-                            })
-                            anime({
-                                targets: event.currentTarget.parentNode.parentNode.parentNode.parentNode.lastElementChild,
-                                translateX: -250,
-                                opacity: 0,
-                                
-                                complete: function() {
-                                    // Add pokemon to local storage
-                                    localStorage.setItem("poke-shop:!"+randomPoke.givenName, JSON.stringify(randomPoke))
-
-
-                                    $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
-                                    $("#masking-div").remove()
-                                    $("#random-pokemon").remove()
-                                    $(".poke-buy-btn").attr("style", "pointer-events: initial;")
-                                }
-                            })
-                        }
-                    })
-                }
-            })
+                        })
+                    }
+                })
+            }
         }
     })
 })
+
+$("#poke-coin-inv").on("click", event => {
+    increaseMoney()
+})
+
+$("#link-home").on("click", event => {
+    event.preventDefault()
+    let purchases = []
+    for (item in localStorage) {
+        console.log(item);
+        if (item.includes("poke-shop:$!")) {
+            purchases.push(JSON.parse(localStorage.getItem(item)))
+        }
+    }
+    localStorage.clear()
+    location.assign("./index.html?="+document.getElementById("poke-coin-inv").innerText+"&purchases="+JSON.stringify(purchases))
+})
+
+
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// Counter functions
+
+// function increaseNormalCandy() {
+//     // document.getElementById("poke-candy-large").innerHTML = count + 1;
+
+// }
+
+// function increaseLargeCandy() {
+//     // document.getElementById("poke-candy-large").innerHTML = count + 1;
+
+// }
+
+// function increaseXlargeCandy() {
+//     document.getElementById("poke-candy-xlcandy").innerHTML = count + 1;
+// }
+
+// function decreaseMoney(amount) {
+//     if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
+//         // document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - amount;
+        
+//     }
+// }
+
+function increaseMoney(incAmount=5) {
+    let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + incAmount
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+newCount;
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+}

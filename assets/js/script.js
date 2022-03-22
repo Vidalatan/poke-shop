@@ -4,37 +4,49 @@ var type = document.getElementById("input-type");
 var savedGym = document.getElementById("saved-gym");
 var letsGoBtn = document.querySelector("#first-time-popup-submit");
 var input = document.querySelector(".form-control")
+var firstStarted =document.querySelector(".started .first");
 // save last trainer information 
-function saveTrainerInfo() {
 
-    var trainerInfo = {
-        trainerName: trainerName.value,
-        gymName: gymName.value,
-        type: type.value,
-    };
-    localStorage.setItem("trainerInfo", JSON.stringify(trainerInfo));
+// if (location.search === "" || parseInt(location.search.substring(2, location.search.indexOf("&purchases"))) === "") {
+//     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
+// } else if (parseInt(localStorage["poke-shop:coins"]) > parseInt(location.search.substring(2, location.search.indexOf("&purchases")))) {
+//     localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2, location.search.indexOf("&purchases"))))
+//     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2, location.search.indexOf("&purchases")))
+// } else if (localStorage["poke-shop:coins"]!==null) {
+//     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
+// }
+
+if (location.search === "" || parseInt(location.search.substring(2, location.search.indexOf("&purchases"))) === "") {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
+} else if (!location.search.includes("&purchases")) {
+    localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2)))
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2))
+} else {
+    localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2, location.search.indexOf("&purchases"))))
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2, location.search.indexOf("&purchases")))
 }
 
+function saveTrainerInfo(){
 
-function renderLastTrainer() {
-    var lastTrainer = JSON.parse(localStorage.getItem("trainerInfo"));
-
-    if (lastTrainer !== null) {
-        document.getElementById("saved-gym").innerHTML = lastTrainer.gymName + " " + lastTrainer.type;
-        document.getElementById("saved-name").innerHTML = lastTrainer.trainerName;
-    } else {
-        return;
-    }
+	var trainerInfo = {
+		trainerName: trainerName.value,
+		gymName: gymName.value,
+		type: type.value,
+	};
+	localStorage.setItem("trainerInfo", JSON.stringify(trainerInfo));
 }
 
+function renderLastTrainer(){
+	var lastTrainer = JSON.parse(localStorage.getItem("trainerInfo"));
 
-window.addEventListener("load", function () {
-    if (localStorage.getItem("pokeHome:visited") === "true") {
-        document.getElementById("trainer-form").style.display = "none";
-
-        this.document.getElementById("backgroundReset").style.display = "none";
-        renderLastTrainer();
-
+	if (lastTrainer !== null){
+      document.getElementById("saved-gym").innerHTML = lastTrainer.gymName +" "+lastTrainer.type;
+	  document.getElementById("saved-name").innerHTML = lastTrainer.trainerName;
+    //   saveStarterPokemon(type);
+	} else{
+		return;
+	}
+}
 
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
@@ -78,35 +90,287 @@ letsGoBtn.addEventListener("click", function(event){
     };
 })
 
-letsGoBtn.addEventListener("click", function (event) {
-    event.preventDefault();
+loadPokemon()
 
-    localStorage.setItem("pokeHome:visited", "true");
-
-    saveTrainerInfo();
-    renderLastTrainer();
-    // document.getElementById("trainer-form").reset();
-    document.getElementById("trainer-form").style.display = "none";
-    document.getElementById("backgroundReset").style.display = "none";
-
-
-    localStorage.setItem("pokeHome:visited", "true");
-
-
+letsGoBtn.addEventListener("click", function(event){
+	event.preventDefault();
+    
+	localStorage.setItem("pokeHome:visited", "true");
+	
+    saveStarterPokemon(document.getElementById("input-type").value);
+	saveTrainerInfo();
+	renderLastTrainer();
+	// document.getElementById("trainer-form").reset();
+	document.getElementById("trainer-form").style.display = "none";
+    location.assign("./index.html?=500")
 });
+    // type selected will auto populate the first pokemon.
+
+ function saveStarterPokemon(type){
+    let firstPokemon = {
+        "Grass":{
+            name: "Bulbasaur",
+            givenName: null,
+            type: ["Grass"],
+            rarity: "Standard",
+            id: 1,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
+        },
+        "Fire":{
+            name: "Charmander",
+            givenName: null,
+            type: ["Fire"],
+            rarity: "Standard",
+            id: 4,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png"
+    
+        },
+        "Water":{
+            name: "Squirtle",
+            givenName: null,
+            type: ["Water"],
+            rarity: "Standard",
+            id: 7,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
+    
+        },
+        "Bug":{
+            name: "Caterpie",
+            givenName: null,
+            type: ["Bug"],
+            rarity: "Standard",
+            id: 10,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png"
+        },
+        "Flying":{
+            name: "Pidgey",
+            givenName: null,
+            type: ["Flying"],
+            rarity: "Standard",
+            id: 10,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png"
+        },
+        "Electric":{
+            name: "Pikachu",
+            givenName: null,
+            type: ["Electric"],
+            rarity: "Standard",
+            id: 25,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png"
+        },
+        "Poison":{
+            name: "Grimer",
+            givenName: null,
+            type: ["Poison"],
+            rarity: "Standard",
+            id: 88,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png"
+        },
+        "Rock":{
+            name: "Geodude",
+            givenName: null,
+            type: ["Rock"],
+            rarity: "Standard",
+            id: 74,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png"
+        },
+        "Psychic":{
+            name: "Abra",
+            givenName: null,
+            type: ["Psychic"],
+            rarity: "Standard",
+            id: 63,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png"  
+        },  
+        "Dragon":{
+            name: "Dratini",
+            givenName: null,
+            type: ["Dragon"],
+            rarity: "Standard",
+            id: 147,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/147.png"  
+        },  
+        "Steel":{
+            name: "Aron",
+            givenName: null,
+            type: ["Steel"],
+            rarity: "Standard",
+            id: 304,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/304.png"  
+        },  
+        "Fairy":{
+            name: "Clefairy",
+            givenName: null,
+            type: ["Fairy"],
+            rarity: "Standard",
+            id: 35,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png"  
+        },  
+        "Ground":{
+            name: "Diglett",
+            givenName: null,
+            type: ["Ground"],
+            rarity: "Standard",
+            id: 50,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png"  
+        },  
+        "Fighting": {
+            name: "Machop",
+            givenName: null,
+            type: ["Fighting"],
+            rarity: "Standard",
+            id: 66,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/066.png"  
+        },  
+        "Ice":{
+            name: "Seel",
+            givenName: null,
+            type: ["Ice"],
+            rarity: "Standard",
+            id: 86,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png"  
+        },  
+        "Ghost":{
+            name: "Gastly",
+            givenName: null,
+            type: ["Ghost"],
+            rarity: "Standard",
+            id: 92,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/092.png"  
+        },  
+        "Dark": {
+            name: "Houndour",
+            givenName: null,
+            type: ["Dark"],
+            rarity: "Standard",
+            id: 228,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/228.png"  
+        },  
+        "Normal":{
+            name: "Slakoth",
+            givenName: null,
+            type: ["Normal"],
+            rarity: "Standard",
+            id: 287,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/287.png"  
+        }  
+    }
+    let newGivenName = prompt("What would you like ot name your first pokemon?");
+    console.log(newGivenName);
+    if (newGivenName === "" || newGivenName === null) {
+        newGivenName = firstPokemon[type].name
+        firstPokemon[type].givenName = newGivenName
+    } else {
+        firstPokemon[type].givenName = newGivenName
+    }
+    console.log(newGivenName)
+    localStorage.setItem("poke-shop:!"+firstPokemon[type].givenName, JSON.stringify(firstPokemon[type]));
+    console.log(firstPokemon)
+}
 
 function turnObjToArray(object) {
     let newArray = []
     for (let index = 0; index < Object.keys(object).length - 2; index++) {
-        console.log(newArray);
         newArray.push(object[index])
     }
     return newArray
 }
 
+function loadPokemon() {
+    let sessionSoldList = []
+    let objectList;
+    if (location.search.substring(location.search.indexOf("&purchases=")+11).replace(/(%22)/g, '"') !== "") {
+        objectList = JSON.parse(location.search.substring(location.search.indexOf("&purchases=")+11).replace(/(%22)/g, '"'))
+    }
+
+    for (item in localStorage) {
+        if (item.includes("poke-shop-sold")) {
+            sessionSoldList.push(localStorage[item])
+        }
+    }
+
+    for (item in objectList) {
+        if (!sessionSoldList.includes(objectList[item].givenName)) {
+            localStorage.setItem("poke-shop:!"+objectList[item].givenName, JSON.stringify(objectList[item]))
+        }
+    }
+
+    for (item in localStorage) {
+        if (item.includes("poke-shop:!")) {
+            checkDouble = () => {
+                if(JSON.parse(localStorage[item]).type.length === 2) {
+                    console.log(JSON.parse(localStorage[item]).type.length);
+                    return JSON.parse(localStorage[item]).type[1]
+                } else {
+                    return JSON.parse(localStorage[item]).type[0]
+                }
+            }
+            console.log(JSON.parse(localStorage[item]).imgURL);
+            $("#poke-cards-container").append($("<div>").addClass("card m-1 mb-3 d-inline-block").attr("id", "poke-info-card").attr("style", "width: 12rem; height: 24rem;")
+                .append($("<img>").addClass("card-img-top").attr("src", "https://"+JSON.parse(localStorage[item]).imgURL).attr("alt", JSON.parse(localStorage[item]).givenName+"-Pokemon Inventory Card Image"))
+                .append($("<div>").addClass("card-body")
+                    .append($("<h5>").addClass("card-title").text(JSON.parse(localStorage[item]).givenName))
+                    .append($("<p>").addClass("card-text").text(JSON.parse(localStorage[item]).name))
+                    .append($("<p>").addClass("card-text").text(JSON.parse(localStorage[item]).type[0]+","))
+                    .append($("<p>").addClass("card-text").text(checkDouble()))
+                    .append($("<p>").addClass("card-text").text(JSON.parse(localStorage[item]).rarity))
+                    .append($("<div>").addClass("text-center")
+                        .append($("<a>").addClass("sell-pkm-btn btn btn-primary").attr("href", "#").text("Sell"))
+                        .append($("<br>"))
+                        .append($("<div>").addClass("row-cols-3 mt-2 d-flex justify-content-around")
+                            .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-normal").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png")))
+                            .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-large").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png")))
+                            .append($("<a>").addClass("feed-pkm-btn").attr("id", "poke-feed-xlarge").attr("href", "#").attr("data-toggle","tooltip").attr("data-placement", "top").attr("title", "Feed Pokemon").append($("<img>").attr("src", "https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png")))
+                            )
+                        )
+                    )
+                )
+        }
+    }
+}
+
 
 $(".sell-pkm-btn").on("click", event => {
     event.preventDefault()
+    console.log("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText);
+    localStorage.removeItem("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText)
+    localStorage.setItem("poke-shop-sold:"+event.currentTarget.parentNode.parentNode.children[0].innerText, event.currentTarget.parentNode.parentNode.children[0].innerText)
     anime({
         targets: event.currentTarget.parentNode.parentNode.parentNode,
         keyframes: [
@@ -130,6 +394,20 @@ $(".sell-pkm-btn").on("click", event => {
         ],
         complete: function (anim) {
             $("#anime-pokecoin-sell").remove()
+            switch (event.currentTarget.parentNode.parentNode.children[4].innerText) {
+                case "Standard":
+                    increaseMoney(2)
+                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                    break;
+                case "Legendary":
+                    increaseMoney(125)
+                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                    break;
+                case "Mythic":
+                    increaseMoney(250)
+                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                    break;
+            }
             event.currentTarget.parentNode.parentNode.parentNode.remove()
             let totalPokecoins = 8;    // Set how many coins to create.
             $("body").append($("<div>").attr("id", "anime-pokecoin-sell").attr("style", "display: flex; justify-content: end; position: fixed; z-index: 100; top: 0px; right: 0px; width: 5%; height: 5%; opacity: 1;")
@@ -147,13 +425,6 @@ $(".sell-pkm-btn").on("click", event => {
                 opacity: 0,
                 duration: 1000,
                 easing: "easeInOutQuad",
-                complete: function (anim) {
-                    if ($("#anime-pokecoin-sell")) {
-                        return
-                    } else {
-                        $("#anime-pokecoin-sell").remove()
-                    }
-                }
             })
         }
     })
@@ -161,174 +432,95 @@ $(".sell-pkm-btn").on("click", event => {
 
 $(".feed-pkm-btn").on("click", event => {
     event.preventDefault()
-    console.log(event.currentTarget);
-    anime({
-        targets: [event.currentTarget.children[0]],
-        translateY: -200,
-        opacity: 0,
-        easing: "cubicBezier(1, 0, .75, 1)",
-        duration: 1000,
-        begin: function (anim) {
-            $(event.currentTarget).attr("style", "pointer-events: none;")
-        },
-        complete: function (anim) {
-            console.log(event.currentTarget.id)
-            if (event.currentTarget.id === "poke-feed-normal") {
-                decreaseNormalCandy2()
-            } else if (event.currentTarget.id === "poke-feed-large") {
-                decreaseLargeCandy4()
-            } else if (event.currentTarget.id === "poke-feed-xlarge") {
-                decreaseXlargeCandy6()
-            }
-            anime({
-                targets: event.currentTarget.children[0],
-                translateY: 0,
-                opacity: 1,
-                duration: 0,
-                complete: function (anim) {
-                    $(event.currentTarget).attr("style", "pointer-events: initial;")
-                }
-            })
-        },
+    let hasCandy;
+    if (event.currentTarget.id === "poke-feed-normal") {
+        hasCandy = decreaseNormalCandy() || alert("You are out of normal candies!")
+    } else if (event.currentTarget.id === "poke-feed-large") {
+        hasCandy = decreaseLargeCandy() || alert("You are out of large candies!")
+    } else if (event.currentTarget.id === "poke-feed-xlarge") {
+        hasCandy = decreaseXlargeCandy() || alert("You are out of large candies!")
+    }
 
-    })
+    if (hasCandy) {
+        anime({
+            targets: [event.currentTarget.children[0]],
+            translateY: -200,
+            opacity: 0,
+            easing: "cubicBezier(1, 0, .75, 1)",
+            duration: 1000,
+            begin: function () {
+                $(event.currentTarget).attr("style", "pointer-events: none;")
+            },
+            complete: function () {
+                anime({
+                    targets: event.currentTarget.children[0],
+                    translateY: 0,
+                    opacity: 1,
+                    duration: 0,
+                    complete: function () {
+                        console.log(event.currentTarget.parentNode.parentNode);
+                        $(event.currentTarget).attr("style", "pointer-events: initial;")
+                    }
+                })
+            },
+        })
+    }
 })
 
-// $("<img>").attr("src", "./assets/images/pokecoin.png")
+$("#poke-coin-inv").on("click", event => {
+    increaseMoney()
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+})
+
+$("#link-shop").on("click", event => {
+    event.preventDefault()
+    for (item in localStorage) {
+        if (item.includes("poke-shop-sold")) {
+            localStorage.removeItem(item)
+        }
+    }
+
+    location.assign("./shop.html?="+document.getElementById("poke-coin-inv").innerText)
+})
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //functional candies and money button counter
-var count = 0;
-var count2 = 0;
-var count3 = 0;
 
-var count4= 0;
-function increaseNormalCandy1() { 
-    document.getElementById("normal").innerHTML = count+=1;
-
-var count4 = 0;
-
-function increaseNormalCandy1() {
-    document.querySelector("#poke-candy-normal").innerHTML = count += 1;
-
-}
-
-
-
-
-
-function decreaseNormalCandy2() {
+function decreaseNormalCandy() {
 
     if (parseInt(document.getElementById("poke-candy-normal").innerHTML) > 0) {
         document.getElementById("poke-candy-normal").innerHTML = parseInt(document.getElementById("poke-candy-normal").innerHTML) - 1;
-        console.log("decrese normal");
-
-function decreaseNormalCandy2(){ 
-
-    if (document.getElementById("normal").innerHTML > 0) { document.getElementById("normal").innerHTML = count-=1;
-
-function decreaseNormalCandy2() {
-
-    if (parseInt(document.getElementById("poke-candy-normal").innerHTML) > 0) {
-        document.getElementById("poke-candy-normal").innerHTML = parseInt(document.getElementById("poke-candy-normal").innerHTML) - 1;
-        console.log("decrese normal");
-
+        localStorage.setItem("poke-shop:candy-normal", document.getElementById("poke-candy-normal").innerHTML)
+        return true
+    } else {
+        return false
     }
 }
 
-
-
-function increaseLargeCandy3() {
-    document.getElementById("poke-candy-large").innerHTML = count2 -= -2;
-
-function increaseLargeCandy3(){ 
-    document.getElementById("large").innerHTML = count2-=-2;
-
-function increaseLargeCandy3() {
-    document.getElementById("poke-candy-large").innerHTML = count2 -= -2;
-s
-}
-
-
-
-
-function decreaseLargCandy4(){ 
-   if (document.getElementById("large").innerHTML > 0) { document.getElementById("large").innerHTML = count2-=2;
-
-function decreaseLargeCandy4() {
+function decreaseLargeCandy() {
     if (parseInt(document.getElementById("poke-candy-large").innerHTML) > 0) {
-        document.getElementById("poke-candy-large").innerHTML = parseInt(document.getElementById("poke-candy-large").innerHTML) - 2;
-        console.log("decrese normal");
-
+        document.getElementById("poke-candy-large").innerHTML = parseInt(document.getElementById("poke-candy-large").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-large", document.getElementById("poke-candy-large").innerHTML)
+        return true
+    } else {
+        return false
     }
   
 }
 
-
-
-
-function increaseXlargeCandy5() {
-    document.getElementById("poke-candy-xlcandy").innerHTML = count3 += 3;
-}
-
-
-
-function decreaseXlargeCandy6() {
+function decreaseXlargeCandy() {
     if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
-        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 3;
-     
-    }
-  
-}
-
-
-
-
-function increaseXlargeCandy5() {
-    document.getElementById("poke-candy-xlcandy").innerHTML = count3 += 3;
-
-function increaseXlargeCandy5(){ document.getElementById("xlcandy").innerHTML = count3+=3;
-
-function increaseMoney7() {
-    document.getElementById("poke-money").innerHTML = count4 += 5;
-
-}
-
-
-
-function decreaseXlargeCandy6() {
-    if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
-        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 3;
-        console.log("decrese normal");
-
-function decreaseXlargeCandy6(){ 
-   if (document.getElementById("xlcandy").innerHTML > 0) { document.getElementById("xlcandy").innerHTML = count3-=3;
-
+        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-xlarge", document.getElementById("poke-candy-xlarge").innerHTML)
+        return true
+    } else {
+        return false
     }
 }
 
 
-
-function increaseMoney7() {
-    document.getElementById("poke-money").innerHTML = count4 += 5;
-}
-
-
-
-
-function decreaseMoney8() {
-    if (document.getElementById("poke-money").innerHTML > 0) {
-        document.getElementById("poke-money").innerHTML = count4 -= 5;
-
-        
-function decreaseMoney8(){ 
-   if (document.getElementById("poke-money").innerHTML > 0) { document.getElementById("poke-money").innerHTML = count4-=5;
-
-
-document.getElementById("poke-money").onclick = function() {decreaseMoney8()};
-
-function decreaseMoney8() {
-    if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
-        document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - 3;}
-        
+function increaseMoney(incAmount=5) {
+    let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + incAmount
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+newCount;
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 }
