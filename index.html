@@ -86,22 +86,23 @@
         <!-- filter buttons and dropdown -->
         <div class="dropdown">
           <!-- Filter Dropdown -->
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Filter</button>
-          <div class="dropdown-menu">
+          <button id="poke-search-filter-btn" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Filter</button>
+          <div id="poke-search-filter" class="dropdown-menu">
+            <a class="dropdown-item" href="#pokemon-none">None</a>
             <a class="dropdown-item" href="#pokemon-name">Name</a>
             <a class="dropdown-item" href="#pokemon-rarity">Rarity</a>
             <a class="dropdown-item" href="#pokemon-type">Type</a>
           </div>
 
           <!-- Name Search -->
-          <div class="btn-group">
-            <button id="pokemon-name" class="btn btn-primary" type="button">Name</button>
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-
+            <div id="poke-search-name" class="btn-group" style="display: none;">
+              <button id="poke-search-name-btn" class="btn btn-primary" type="button">Name</button>
+              <input id="poke-search-name-bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </div>
             <!-- Pokemon Rarity Dropdown -->
-            <div class="btn-group">
-              <button id="pokemon-rarity" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">Rarity</button>
-              <div class="dropdown-menu">
+            <div id="poke-search-rarity" class="btn-group" style="display: none;">
+              <button id="poke-search-rarity-btn" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">Rarity</button>
+              <div id="poke-search-rarity-items" class="dropdown-menu">
                 <a class="dropdown-item" href="#">Standard</a>
                 <a class="dropdown-item" href="#">Legendary</a>
                 <a class="dropdown-item" href="#">Mythic</a>
@@ -109,9 +110,10 @@
             </div>
 
             <!-- Pokemon Type Dropdown -->
-            <div class="btn-group">
-              <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" id="pokemon-type">Type</button>
-              <div class="dropdown-menu">
+            <div id="poke-search-type" class="btn-group" style="display: none;">
+              <button id="poke-search-type-btn" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" id="pokemon-type">Type</button>
+              <div id="poke-search-type-items" class="dropdown-menu">
+                <a class="dropdown-item " href="#">Normal</a>
                 <a class="dropdown-item " href="#">Fire</a>
                 <a class="dropdown-item" href="#">Water</a>
                 <a class="dropdown-item" href="#">Grass</a>
@@ -205,7 +207,11 @@
     </main>
 
     <footer>
-      <!-- additional info maybe -->
+      <nav class="navbar fixed-bottom navbar-light bg-warning text-left p-1">
+        <button id="poke-shop-reset-btn">Reset</button>
+        <p class="navbar-brand">Candies</p>
+        <p><img src="./assets/images/Candy-sprite.png">Small Candies:<span id="poke-candy-normal">0</span><img src="./assets/images/Candy_L_Sprite.png">Large Candies:<span id="poke-candy-large">0</span><img src="./assets/images/Candy_XL_Sprite.png">Extra Large Candies:<span id="poke-candy-xlarge">0</span></p>
+      </nav>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
