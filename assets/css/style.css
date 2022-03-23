@@ -1,0 +1,135 @@
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+* {
+    font-family: "Press Start 2P", serif;
+}
+
+body{
+    background-color: #0d6efd;
+    margin-bottom: 100px;
+}
+
+
+/*!Still need to code to disappear with modal */
+.overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(128,128,128,0.5);
+    z-index: 9;
+    display: none;
+}
+
+.popup{
+    background-color: #ffffff;
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center;
+    z-index: 9;
+}
+/* .popup {
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #ffffff;
+    background: #03549a;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer; */
+/* } */
+
+.popup h2{
+  margin-top: -20px;
+}
+.popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+}
+
+.a{
+    display: block;
+    width: 150px;
+    position: relative;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #0f72e5;
+    border-radius: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 0;
+}
+
+/* dropdown menu stuff */
+
+.card-container  {
+    display: flex;
+    justify-content: center;
+}
+
+#poke-info-card h5 {
+font-size: .80rem;
+text-align: center;
+}
+
+#poke-info-card {
+    text-align: center;
+    font-size: .50rem;
+    line-height: .30rem;
+}
+
+.text-center .btn {
+    font-size: .75rem; 
+    padding: .01rem 2rem;
+}
+
+/* #pokeball-card {
+    text-align: center;
+} */
+
+#pokeball-card h5 {
+font-size: 1.1rem;
+}
+
+#pokeball-card {
+    font-size: .61rem;
+    line-height: .75rem;
+}
+
+#pokeball-card .text-center .btn {
+    font-size: 1.2rem; 
+    padding: .2rem 2rem;
+}
+
+#candy-card h5 {
+    font-size: 1rem;
+}
+
+#candy-card p {
+    font-size: .6rem;
+}
+
+#candy-card a {
+    font-size: 1.2rem;
+    padding: .01rem 2rem;
+}

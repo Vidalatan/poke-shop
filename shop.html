@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P"/>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <title>PokeShop</title>
+  </head>
+
+  
+  <body>
+      <header class="container-fluid bg-primary">
+        <h1 class="bg-warning p-3"><img src="./assets/images/Poke-bag.png" alt="pokeshop logo" style="height: 55px;width: 55px;">Pokeshop</h1>
+          
+        <!-- nav links -->
+        <div class="bg-warning">
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a id="poke-coin-inv" class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >0</a>
+              <!--* Pokecoin image ⬇️⬇️ -->
+              <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
+            </li>
+            
+            <li class="nav-item">
+              <a id="link-home" class="nav-link active" href="./index.html">Home</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+
+
+    <!-- Shop -->
+    <main class="container-fluid bg-danger text-center">
+      
+      <h2 class="pt-3 pl-2 bg-primary">Shop</h2>
+        
+      <div id="poke-cards-container" class="card-container" style="position: relative;">
+        
+        <!-- Pokeballs -->
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
+          <img class="card-img-top" src="./assets/images/pokeball.png" alt="pokeball sprite"/>
+          <div class="card-body">
+            <h5 class="card-title">Poké Ball</h5>
+            <p class="card-text">The most basic Poké Ball there is. Gives a random standard Pokémon</p>
+            <div class="row d-flex justify-content-center">
+              <a id="poke-standard" href="#" class="btn btn-primary poke-buy-btn">Buy(5)</a>
+            </div>
+          </div>
+        </div>
+        
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
+          <img class="card-img-top" src="./assets/images/greatball.png" alt="greatball sprite"/>
+          <div class="card-body">
+            <h5 class="card-title">Great Ball</h5>
+
+            <p class="card-text">An improved variant of the regular Poké Ball. Gives random Legendary Pokémon.</p>  
+            <div class="row d-flex justify-content-center">
+              <a id="poke-legendary" href="#" class="btn btn-primary poke-buy-btn">Buy(250)</a>
+            </div>
+          </div>
+        </div>
+        
+        <div id="pokeball-card" class="card m-5 d-inline-block" style="width: 15rem; height: 25rem; position: relative;">
+
+          <img class="card-img-top" src="./assets/images/masterball.png" alt="masterball sprite"/>
+
+          <div class="card-body">
+            <h5 class="card-title">Master Ball</h5>
+            <p class="card-text">An improved variant of the Great Ball. Gives random Mythic Pokémon.</p>
+            <div class="row d-flex justify-content-center">
+              <a id="poke-mythic" href="#" class="btn btn-primary poke-buy-btn">Buy(500)</a>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </main>
+
+    <!-- Candy Shop -->
+    <div class="container-fluid bg-warning text-center"  id="candies">
+      <h3 class="bg-warning pt-3 pl-2;">Candies:</h3>
+
+    <div class="card-container bg-primary" style="position: relative;">
+  
+      <!-- Small candy -->
+      <div id="candy-card" class="card m-5 d-inline-block" style="width: 15rem; height: 17rem; position: relative;">
+        <img id="candy-normal" class="card-img-top" src="./assets/images/Candy-sprite.png" alt="small candy" style="width: 50px; height: 50px;"/>
+        <div class="card-body">
+          <h5 class="card-title">Small Candy</h5>
+          <p class="card-text">A candy that is packed with energy. When given to a Pokémon, it will increase that Pokémon's strength.</p>
+          <div class="text-center">
+            <a id="poke-candy-buy-normal" href="#" class="btn btn-primary">Buy(2)</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Large Candy -->
+      <div id="candy-card" class="card m-5 d-inline-block" style="width: 15rem; height: 17rem; position: relative;">
+        <img id="candy-large" class="card-img-top" src="./assets/images/Candy_L_Sprite.png" style="width: 50px; height: 50px;" alt="large candy"/>
+        <div class="card-body">
+          <h5 class="card-title">Large Candy</h5>
+          <p class="card-text">A larger candy that packed with energy. When eaten, it will increase that Pokémon's strength a bit more.</p>
+          <div class="text-center">
+            <a id="poke-candy-buy-large" href="#" class="btn btn-primary">Buy(10)</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Extra Large -->
+      <div id="candy-card" class="card m-5 d-inline-block" style="width: 15rem; height: 17rem; position: relative;">
+        <img id="candy-xlarge" class="card-img-top" src="./assets/images/Candy_XL_Sprite.png" alt="Extra Large candy" style="width: 50px; height: 50px;"/>
+        <div class="card-body">
+          <h5 class="card-title">Extra-Large Candy</h5>
+          <p class="card-text">The largest candy. It will increase that Pokémon's strength significantly.</p>
+          <div class="text-center">
+            <a id="poke-candy-buy-xlarge" href="#" class="btn btn-primary">Buy(50)</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+
+
+    <footer>
+        <!-- additional info maybe -->
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/shopscript.js"></script>
+  </body>
+</html>
