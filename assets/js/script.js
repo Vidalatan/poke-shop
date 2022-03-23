@@ -4,12 +4,8 @@ var type = document.getElementById("input-type");
 var savedGym = document.getElementById("saved-gym");
 var letsGoBtn = document.querySelector("#first-time-popup-submit");
 var input = document.querySelector(".form-control")
-<<<<<<< HEAD
-// save last trainer information 
-=======
 var firstStarted =document.querySelector(".started .first");
 
->>>>>>> 010a41e70ca3561a91d18852f6250ec21857cf55
 function saveTrainerInfo(){
 
 	var trainerInfo = {
@@ -20,44 +16,39 @@ function saveTrainerInfo(){
 	localStorage.setItem("trainerInfo", JSON.stringify(trainerInfo));
 }
 
-
 function renderLastTrainer(){
 	var lastTrainer = JSON.parse(localStorage.getItem("trainerInfo"));
 
 	if (lastTrainer !== null){
       document.getElementById("saved-gym").innerHTML = lastTrainer.gymName +" "+lastTrainer.type;
 	  document.getElementById("saved-name").innerHTML = lastTrainer.trainerName;
+    //   saveStarterPokemon(type);
 	} else{
 		return;
 	}
 }
 
-
-
-
 window.addEventListener("load", function(){
 	if (localStorage.getItem("pokeHome:visited")==="true"){
 		document.getElementById("trainer-form").style.display = "none";
+
         this.document.getElementById("backgroundReset").style.display = "none";
         renderLastTrainer();
 
-} else {
-		setTimeout(function open(event){
-				document.querySelector(".popup").style.display = "block";
-                this.document.getElementById("backgroundReset").style.display = "block";
-			},
-			0000 
-		)
-	};
+    } else {
+        setTimeout(function open(event) {
+            document.querySelector(".popup").style.display = "block";
+            this.document.getElementById("backgroundReset").style.display = "block";
+        },
+            0000
+        )
+    };
 })
 
 loadCoins()
 loadCandies()
 loadPokemon()
 
-<<<<<<< HEAD
-// API handling
-=======
 letsGoBtn.addEventListener("click", function(event){
 	event.preventDefault();
     
@@ -76,160 +67,208 @@ letsGoBtn.addEventListener("click", function(event){
     location.assign("./index.html")
 });
     // type selected will auto populate the first pokemon.
->>>>>>> 010a41e70ca3561a91d18852f6250ec21857cf55
 
-// Image URL Refrence: https://img.pokemondb.net/sprites/sword-shield/icon/{pokemon_name}.png
-
-function sendRef(results) {
-    results.forEach(pokemon => {
-        console.log(pokemon);
-        console.log("https://img.pokemondb.net/sprites/sword-shield/icon/"+ pokemon.name.toLowerCase() +".png");
-    });  // This is where we handle the results retrieved from our fetches
-}
-
-// Filter will include: "searchedName", "searchedType", or "searchedRarity" or "searchedAll"
-async function pokemonRequestBy(filter, input){
-    const fetchTypes = fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
-		"method": "GET",
-		"headers": {
-			"x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-			"x-rapidapi-key": "04a8eac5c0msh3aca5db7c42a8e3p196c9djsn168c1f1439af"
-		}
-	})
-    const fetchRarity = fetch("https://pokemon-go1.p.rapidapi.com/pokemon_rarity.json", {
-		"method": "GET",
-		"headers": {
-			"x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-			"x-rapidapi-key": "04a8eac5c0msh3aca5db7c42a8e3p196c9djsn168c1f1439af"
-		}
-	})
-
-    Promise.all([fetchTypes, fetchRarity]).then(responses => {
-        return Promise.all(responses.map(re => re.json()))
-    }).then(([typesData, rarityData]) => {
-        console.log(typesData);
-        console.log(rarityData);
-        if (filter === "searchedName") {
-            getPokemonByName(input, typesData, rarityData)
-        } else if (filter === "searchedType") {
-            getPokemonByType(input,null, typesData, rarityData)
-        } else if (filter === "searchedRarity") {
-            getPokemonByRarity(input,null, rarityData, typesData)
-        }
-    })
-}
-
-// Returns all pokemon matched by name
-function getPokemonByName(searchedName, typesData, rarityData){
-    let returnResults = []
-    let names_filter = []  // Include a name filter since the api has multiple itterations of a same pokemon
-    for(let index=0; index < Object.keys(typesData).length; index++){
-        let pokemon = {
-            name: null,
-            type: null,
-            rarity: null,
-            id: null
-        }
-        if (typesData[index]["pokemon_name"] === searchedName && !names_filter.includes(typesData[index]["pokemon_name"])) {
-            pokemon.name = typesData[index]["pokemon_name"]
-            names_filter.push(typesData[index]["pokemon_name"])
-            pokemon.type = typesData[index]["type"]
-            pokemon.id = typesData[index]["pokemon_id"]
-            pokemon.rarity = getPokemonByRarity(null, pokemon.id, rarityData, typesData)
-
-            returnResults.push(pokemon)
-        }
+ function saveStarterPokemon(type){
+    let firstPokemon = {
+        "Grass":{
+            name: "Bulbasaur",
+            givenName: null,
+            type: ["Grass"],
+            rarity: "Standard",
+            id: 1,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
+        },
+        "Fire":{
+            name: "Charmander",
+            givenName: null,
+            type: ["Fire"],
+            rarity: "Standard",
+            id: 4,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png"
+    
+        },
+        "Water":{
+            name: "Squirtle",
+            givenName: null,
+            type: ["Water"],
+            rarity: "Standard",
+            id: 7,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png"
+    
+        },
+        "Bug":{
+            name: "Caterpie",
+            givenName: null,
+            type: ["Bug"],
+            rarity: "Standard",
+            id: 10,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png"
+        },
+        "Flying":{
+            name: "Pidgey",
+            givenName: null,
+            type: ["Flying"],
+            rarity: "Standard",
+            id: 10,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png"
+        },
+        "Electric":{
+            name: "Pikachu",
+            givenName: null,
+            type: ["Electric"],
+            rarity: "Standard",
+            id: 25,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png"
+        },
+        "Poison":{
+            name: "Grimer",
+            givenName: null,
+            type: ["Poison"],
+            rarity: "Standard",
+            id: 88,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png"
+        },
+        "Rock":{
+            name: "Geodude",
+            givenName: null,
+            type: ["Rock"],
+            rarity: "Standard",
+            id: 74,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png"
+        },
+        "Psychic":{
+            name: "Abra",
+            givenName: null,
+            type: ["Psychic"],
+            rarity: "Standard",
+            id: 63,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png"  
+        },  
+        "Dragon":{
+            name: "Dratini",
+            givenName: null,
+            type: ["Dragon"],
+            rarity: "Standard",
+            id: 147,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/147.png"  
+        },  
+        "Steel":{
+            name: "Aron",
+            givenName: null,
+            type: ["Steel"],
+            rarity: "Standard",
+            id: 304,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/304.png"  
+        },  
+        "Fairy":{
+            name: "Clefairy",
+            givenName: null,
+            type: ["Fairy"],
+            rarity: "Standard",
+            id: 35,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png"  
+        },  
+        "Ground":{
+            name: "Diglett",
+            givenName: null,
+            type: ["Ground"],
+            rarity: "Standard",
+            id: 50,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png"  
+        },  
+        "Fighting": {
+            name: "Machop",
+            givenName: null,
+            type: ["Fighting"],
+            rarity: "Standard",
+            id: 66,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/066.png"  
+        },  
+        "Ice":{
+            name: "Seel",
+            givenName: null,
+            type: ["Ice"],
+            rarity: "Standard",
+            id: 86,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png"  
+        },  
+        "Ghost":{
+            name: "Gastly",
+            givenName: null,
+            type: ["Ghost"],
+            rarity: "Standard",
+            id: 92,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/092.png"  
+        },  
+        "Dark": {
+            name: "Houndour",
+            givenName: null,
+            type: ["Dark"],
+            rarity: "Standard",
+            id: 228,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/228.png"  
+        },  
+        "Normal":{
+            name: "Slakoth",
+            givenName: null,
+            type: ["Normal"],
+            rarity: "Standard",
+            id: 287,
+            storageId: 0,
+            pointsTillEvolved: null,    // Add when evolves are in
+            imgURL:"assets.pokemon.com/assets/cms2/img/pokedex/detail/287.png"  
+        }  
     }
-    if (returnResults.length > 0) {
-        sendRef(returnResults)
+    let newGivenName = prompt("What would you like ot name your first pokemon?");
+    console.log(newGivenName);
+    if (newGivenName === "" || newGivenName === null) {
+        newGivenName = firstPokemon[type].name
+        firstPokemon[type].givenName = newGivenName
+    } else {
+        firstPokemon[type].givenName = newGivenName
     }
+    console.log(newGivenName)
+    localStorage.setItem("poke-shop:!"+firstPokemon[type].givenName, JSON.stringify(firstPokemon[type]));
+    console.log(firstPokemon)
 }
-
-
-// Returns all pokemon matched by type
-function getPokemonByType(searchedType=null, id=null, typesData, rarityData){  // Add Id variant condition
-    let returnResults = []
-    let names_filter = []  // Include a name filter since the api has multiple itterations of a same pokemon
-    for(let index=0; index < typesData.length; index++){
-        if (searchedType !== null) {
-            let pokemon = {
-                name: null,
-                type: null,
-                rarity: null,
-                id: null
-            }
-            if (typesData[index]["type"].includes(searchedType) && !names_filter.includes(typesData[index]["pokemon_name"])) {
-                pokemon.name = typesData[index]["pokemon_name"]
-                names_filter.push(typesData[index]["pokemon_name"])
-                pokemon.type = typesData[index]["type"]
-                pokemon.id = typesData[index]["pokemon_id"]
-                pokemon.rarity = getPokemonByRarity(null, pokemon.id, rarityData, typesData)
-
-                returnResults.push(pokemon)
-            }
-        } else {
-            if (typesData[index]["pokemon_id"] === id) {
-                return typesData[index]["type"]
-            }
-        }
-    }
-
-    if (returnResults.length > 0) {
-        sendRef(returnResults)
-    }
-}
-
-// Returns all pokemon matched by Rarity. Because this requests from another api, and is refrenced in other functions,
-// first value can be passed in as null if searching rarity by id instead.
-// searchedRarity must be "Legendary", "Mythic", or "Standard" case sensitive
-function getPokemonByRarity(searchedRarity=null, id=null, rarityData, typesData){
-    let returnResults = []
-    let names_filter = []  // Include a name filter since the api has multiple itterations of a same pokemon
-    for(let index=0; index < Object.keys(rarityData).length; index++){
-        if (searchedRarity !== null) {
-            if (Object.keys(rarityData)[index]===searchedRarity) {
-                console.log("rarityData[searchedRarity] is a "+typeof rarityData[searchedRarity]) // To check if this is a list when debugging
-                for(let subindex = 0; subindex < rarityData[Object.keys(rarityData)[index]].length; subindex++) {
-                    if (!names_filter.includes(rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_name"])) {
-                        let pokemon = {
-                            name: null,
-                            type: null,
-                            rarity: null,
-                            id: null
-                        }
-                        pokemon.name = rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_name"]
-                        names_filter.push(rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_name"])
-                        pokemon.id = rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_id"]
-                        pokemon.type = getPokemonByType(null, pokemon.id, typesData, rarityData)
-                        pokemon.rarity = rarityData[Object.keys(rarityData)[index]][subindex]["rarity"]
-
-                        returnResults.push(pokemon)
-                    }
-                }
-            }
-        } else {
-            for (let subindex = 0; subindex < rarityData[Object.keys(rarityData)[index]].length; subindex++) {
-                if (rarityData[Object.keys(rarityData)[index]][subindex]["pokemon_id"]===id) {
-                    return rarityData[Object.keys(rarityData)[index]][subindex]["rarity"]
-                }
-            }
-        }
-    }
-
-    if (returnResults.length > 0) {
-        sendRef(returnResults)
-    }
-}
-
-function getAllPokemon() {
-    return null
-}
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function turnObjToArray(object) {
     let newArray = []
-    for (let index = 0; index < Object.keys(object).length-2; index++) {
-        console.log(newArray);
+    for (let index = 0; index < Object.keys(object).length - 2; index++) {
         newArray.push(object[index])
     }
     return newArray
@@ -541,68 +580,49 @@ $("#link-shop").on("click", event => {
         if (item.includes("poke-shop-sold")) {
             localStorage.removeItem(item)
         }
-    })
-})
+    }
 
-// $("<img>").attr("src", "./assets/images/pokecoin.png")
+    location.assign("./shop.html")
+})
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //functional candies and money button counter
-var count = 0;
-var count2 = 0;
-var count3 = 0;
-var count4= 0;
-function increaseNormalCandy1() { 
-    document.getElementById("normal").innerHTML = count+=1;
+
+function decreaseNormalCandy() {
+
+    if (parseInt(document.getElementById("poke-candy-normal").innerHTML) > 0) {
+        document.getElementById("poke-candy-normal").innerHTML = parseInt(document.getElementById("poke-candy-normal").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-normal", document.getElementById("poke-candy-normal").innerHTML)
+        return true
+    } else {
+        return false
+    }
 }
 
+function decreaseLargeCandy() {
+    if (parseInt(document.getElementById("poke-candy-large").innerHTML) > 0) {
+        document.getElementById("poke-candy-large").innerHTML = parseInt(document.getElementById("poke-candy-large").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-large", document.getElementById("poke-candy-large").innerHTML)
+        return true
+    } else {
+        return false
+    }
+  
+}
 
-
-
-function decreaseNormalCandy2(){ 
-
-    if (document.getElementById("normal").innerHTML > 0) { document.getElementById("normal").innerHTML = count-=1;
+function decreaseXlargeCandy() {
+    if (parseInt(document.getElementById("poke-candy-xlarge").innerHTML) > 0) {
+        document.getElementById("poke-candy-xlarge").innerHTML = parseInt(document.getElementById("poke-candy-xlarge").innerHTML) - 1;
+        localStorage.setItem("poke-shop:candy-xlarge", document.getElementById("poke-candy-xlarge").innerHTML)
+        return true
+    } else {
+        return false
     }
 }
 
 
-
-function increaseLargeCandy3(){ 
-    document.getElementById("large").innerHTML = count2-=-2;
+function increaseMoney(incAmount=5) {
+    let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + incAmount
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+newCount;
+    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 }
-
-
-
-function decreaseLargCandy4(){ 
-   if (document.getElementById("large").innerHTML > 0) { document.getElementById("large").innerHTML = count2-=2;
-    }
-}
-
-
-
-
-function increaseXlargeCandy5(){ document.getElementById("xlcandy").innerHTML = count3+=3;
-}
-
-
-
-function decreaseXlargeCandy6(){ 
-   if (document.getElementById("xlcandy").innerHTML > 0) { document.getElementById("xlcandy").innerHTML = count3-=3;
-    }
-}
-
-
-
-function increaseMoney7(){ document.getElementById("poke-money").innerHTML = count4+=5;
-}
-
-
-
-
-function decreaseMoney8(){ 
-   if (document.getElementById("poke-money").innerHTML > 0) { document.getElementById("poke-money").innerHTML = count4-=5;
-    }
-}
-
-
-
