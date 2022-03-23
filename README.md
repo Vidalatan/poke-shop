@@ -1,9 +1,12 @@
-# # Pokeshop 
+## Pokeshop 
 
-A website :)
+A game in  which the user can buy, sell, and name pokemon
+Trainers can name their own Pokemon Gym!g
+
 ## Screenshots
 
-![Pokeshop Screenshot]()
+![Pokeshop Screenshot](./assets/images/poke-home-screenshot.png)
+![Pokeshop Screenshot](./assets/images/poke-shop-screenshot.png)
 
 
 ## Features
@@ -20,7 +23,7 @@ A website :)
 
 ## Link
 
-[Link to finshed webpage](#)
+[Link to finshed webpage](https://vidalatan.github.io/poke-shop/index.html)
 
 
 ## Acknowledgements
