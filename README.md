@@ -1,7 +1,7 @@
 ## Pokeshop 
 
 A game in  which the user can buy, sell, and name pokemon
-Trainers can name their own Pokemon Gym!
+Trainers can name their own Pokemon Gym!g
 
 ## Screenshots
 
