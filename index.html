@@ -7,28 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P"/>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-    <link rel="icon" type="image/icon" href="./assets/images/Shopping_Bag_icon-icons.com_67506.ico" />
-    <!-- <div class="themes"> 
-      <link rel="stylesheet" href="./assets/css/themes/fire.css">
-      <link rel="stylesheet" href="./assets/css/themes/grass.css">
-      <link rel="stylesheet" href="./assets/css/themes/water.css">
-      <link rel="stylesheet" href="./assets/css/themes/electric.css">
-      <link rel="stylesheet" href="./assets/css/themes/ice.css">
-      <link rel="stylesheet" href="./assets/css/themes/fighting.css">
-      <link rel="stylesheet" href="./assets/css/themes/poison.css">
-      <link rel="stylesheet" href="./assets/css/themes/ground.css">
-      <link rel="stylesheet" href="./assets/css/themes/flying.css">
-      <link rel="stylesheet" href="./assets/css/themes/psychic.css">
-      <link rel="stylesheet" href="./assets/css/themes/bug.css">
-      <link rel="stylesheet" href="./assets/css/themes/rock.css">
-      <link rel="stylesheet" href="./assets/css/themes/ghost.css">
-      <link rel="stylesheet" href="./assets/css/themes/dark.css">
-      <link rel="stylesheet" href="./assets/css/themes/dragon.css">
-      <link rel="stylesheet" href="./assets/css/themes/steel.css">
-      <link rel="stylesheet" href="./assets/css/themes/fairy.css">
-    </div> -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Pokeshop</title>
+    <link rel="icon" type="image/icon" href="./assets/images/Shopping_Bag_icon-icons.com_67506.ico" />
   </head>
 
   <body>
@@ -38,13 +19,16 @@
       <div class="bg-warning">
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" > Show Money</a>
-            <!--* Pokecoin image ⬇️⬇️ -->
-            <!-- <img src="./assets/images/pokecoin.png" alt="pokecoin logo" class="" style="height: 55%;width: 23%;"> -->
+            <!-- Money Counter display here -->
+            <a id="poke-coin-inv" class="nav-link" href="#"><img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="">0</a>
           </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#candies"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" alt="candy">Candies</a>
+          </li> -->
           
           <li class="nav-item">
-            <a class="nav-link active" href="./shop.html">Shop</a>
+            <a id="link-shop" class="nav-link active" href="./shop.html">Shop</a>
           </li>
         </ul>
       </div>
@@ -60,6 +44,7 @@
             <label for="input-name">Trainer Name</label>
             <input type="text" class="form-control" id="input-name" placeholder="Trainer name" value="">
           </div>
+
 
         </div>
         <div class="form-group">
@@ -159,74 +144,77 @@
     </div>
 
     <!-- Inventory -->
-    <main class="container-fluid bg-danger d-center">
+    <main class="container-fluid bg-danger">
 
-      <h2 class="pt-3 pl-2 bg-warning">Inventory: <span id="saved-gym"></span> Gym</h2>
+      <h2 class="row pt-3 pl-2 bg-warning">Inventory: <span id="saved-gym"></span>-Gym</h2>
 
-      <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-        <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Pokemon name</h5>
-          <p class="card-text">gender</p>
-          <p class="card-text">type</p>
-          <p class="card-text">Rarity</p>
-
-          <div class="text-center">
-            <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
-            <br>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-            <!-- Change feed to 3 diff sized candies png with tooltip-->
-          </div>
-
-        </div>
-      </div>
-
-      <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-        <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Pokemon name</h5>
-          <p class="card-text">gender</p>
-          <p class="card-text">type</p>
-          <p class="card-text">Rarity</p>
-          
-          <div class="text-center">
-            <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
-            <br>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-            <!-- Change feed to 3 diff sized candies png with tooltip-->
-          </div>
-
-        </div>
-      </div>
-
-      <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 10rem; height: 20rem;">
-        <img class="card-img-top" src="https://via.placeholder.com/56x42" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Pokemon name</h5>
-          <p class="card-text">gender</p>
-          <p class="card-text">type</p>
-          <p class="card-text">Rarity</p>
-
-          <div class="text-center">
-            <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
-            <!-- <a href="#" class="btn btn-primary">Feed</a> -->
-            <br>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
-            <a href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
-            <!-- Change feed to 3 diff sized candies png with tooltip-->
+      <div id="poke-cards-container" class="row d-flex justify-content-center">
+        <!-- <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 12rem; height: 23rem;">
+          <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="row d-flex justify-content-center card-title">Pokemon name</h5>
+            <p class="row d-flex justify-content-center card-text">type</p>
+            <p class="row d-flex justify-content-center card-text">Rarity</p>
+  
+            <div class="text-center">
+              <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+  
+              <br>
+              <div class="row-cols-3 d-flex justify-content-around">
+                <a id="poke-feed-normal" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+                <a id="poke-feed-large" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+                <a id="poke-feed-xlarge" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+              </div>
+            </div>
           </div>
         </div>
+  
+        <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 12rem; height: 23rem;">
+          <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="row d-flex justify-content-center card-title">Pokemon name</h5>
+            <p class="row d-flex justify-content-center card-text">type</p>
+            <p class="row d-flex justify-content-center card-text">Rarity</p>
+            
+            <div class="text-center">
+              <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+  
+              <br>
+              <div class="row-cols-3 d-flex justify-content-around">
+                <a id="poke-feed-normal" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+                <a id="poke-feed-large" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+                <a id="poke-feed-xlarge" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+        <div id="poke-info-card" class="card m-1 mb-3 d-inline-block" style="width: 12rem; height: 23rem;">
+          <img class="card-img-top" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="row d-flex justify-content-center card-title">Pokemon name</h5>
+            <p class="row d-flex justify-content-center card-text">type</p>
+            <p class="row d-flex justify-content-center card-text">Rarity</p>
+  
+            <div class="text-center">
+              <a href="#" class="sell-pkm-btn btn btn-primary">Sell</a>
+  
+              <br>
+              <div class="row-cols-3 d-flex justify-content-around">
+                <a id="poke-feed-normal" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Health_Candy_Sprite.png" /></a>
+                <a id="poke-feed-large" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/8/86/Bag_Health_Candy_L_Sprite.png" /></a>
+                <a id="poke-feed-xlarge" href="#" class="feed-pkm-btn" data-toggle="tooltip" data-placement="top" title="Feed Pokemon"><img src="https://archives.bulbagarden.net/media/upload/6/64/Bag_Health_Candy_XL_Sprite.png" /></a>
+              </div>
+  
+            </div>
+          </div>
+        </div> -->
       </div>
-
     </main>
 
+
+
+    <!-- Candy Inventory -->
     <footer>
       <nav class="navbar fixed-bottom navbar-light bg-warning text-left p-1">
         <button id="poke-shop-reset-btn">Reset</button>
@@ -240,6 +228,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/js/script.js"></script>
-    <!-- <script src="./assets/js/themes.js"></script> -->
   </body>
 </html>
