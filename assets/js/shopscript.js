@@ -366,7 +366,7 @@ $("#link-home").on("click", event => {
 // Counter functions
 
 function decreaseMoney(amount) {
-    if (parseInt(document.getElementById("poke-coin-inv").innerText) > amount) {
+    if (parseInt(document.getElementById("poke-coin-inv").innerText) >= amount) {
         console.log(parseInt(document.getElementById("poke-coin-inv").innerText));
         document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+(parseInt(document.getElementById("poke-coin-inv").innerText) - amount)
         localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText))
