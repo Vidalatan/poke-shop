@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 // API handling
 // Image URL Refrence: https://img.pokemondb.net/sprites/sword-shield/icon/{pokemon_name}.png
 
@@ -85,7 +83,6 @@ function getPokemonByRarity(searchedRarity, rarityData, typesData){
 
     results = returnResults;
 }
->>>>>>> 010a41e70ca3561a91d18852f6250ec21857cf55
 
 
 
@@ -94,18 +91,20 @@ function getPokemonByRarity(searchedRarity, rarityData, typesData){
 
 // Animation area
 
+function parsePokeId(pokeId) {
+    num = pokeId.toString();
+    while (num.length < 3) {
+        num = "0" + num
+    }
+    return num
+}
+
 $(".poke-buy-btn").on("click", event => {
     event.preventDefault()
+    var contAnime = true
 
     anime({
         targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-<<<<<<< HEAD
-        begin: function(anim) {
-            // Reset all of this upon animation's full completion
-            $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
-            $(".poke-buy-btn").attr("style", "pointer-events: none;")
-            $("body").prepend($("<div>").attr("id", "masking-div").attr("style", "position: fixed; background-color: black; width: 100%; height: 100%; z-index: 10; opacity: 50%;"))
-=======
         begin: function() {
             try {
                 // Get the data we will be pulling from at random
@@ -155,39 +154,12 @@ $(".poke-buy-btn").on("click", event => {
                 anime.remove(event.currentTarget.parentNode.parentNode.previousElementSibling)
                 alert("You don't have enough money!\nTo make more money, simply click on your Poke-Coins")
             }
->>>>>>> 010a41e70ca3561a91d18852f6250ec21857cf55
         },
         translateX: (window.innerWidth/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-125,
         scale: 1.5,
         easing: 'cubicBezier(.5, 0, .5, 1)',
         duration: 1500,
         complete: function() {
-<<<<<<< HEAD
-            anime({
-                targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-                rotate: [
-                    {value: 25},
-                    {value: -25}
-                ],
-                duration: 250,
-                // direction: "alternate",
-                loop: 6,
-                complete: function() {
-                    $("#poke-cards-container").append($("<img>")
-                                .attr("id", "random-pokemon")
-                                .attr("src", "https://img.pokemondb.net/sprites/sword-shield/icon/pikachu.png")  // Currently only using pikachu to test
-                                .attr("style", "position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; z-index: 20; opacity: 0"))
-
-                    anime({
-                        targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-                        keyframes: [
-                            {
-                                rotate: 0
-                            },
-                            {
-                                translateY: 250,
-                                scale: .75
-=======
             if (contAnime) {
                 anime({
                     targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
@@ -265,49 +237,15 @@ $(".poke-buy-btn").on("click", event => {
                                         $(".poke-buy-btn").attr("style", "pointer-events: initial;")
                                     }
                                 })
->>>>>>> 010a41e70ca3561a91d18852f6250ec21857cf55
                             }
-
-                        ],
-                        easing: "linear",
-                        duration: 1000
-                    })
-                    anime({
-                        targets: event.currentTarget.parentNode.parentNode.parentNode.parentNode.lastElementChild,
-                        opacity: 1,
-                        duration: 1000,
-                        endDelay: 1500,
-                        complete: function() {
-                            anime({
-                                targets: event.currentTarget.parentNode.parentNode.previousElementSibling,
-                                translateX: 0,
-                                translateY: 0,
-                                scale: 1,
-                                easing: "linear"
-                            })
-                            anime({
-                                targets: event.currentTarget.parentNode.parentNode.parentNode.parentNode.lastElementChild,
-                                translateX: -250,
-                                opacity: 0,
-                                
-                                complete: function() {
-                                    $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
-                                    $("#masking-div").remove()
-                                    $("#random-pokemon").remove()
-                                    $(".poke-buy-btn").attr("style", "pointer-events: initial;")
-                                }
-                            })
-                        }
-                    })
-                }
-            })
+                        })
+                    }
+                })
+            }
         }
     })
 })
 
-<<<<<<< HEAD
-// $(".poke-buy-btn").attr("style", "pointer-events: initial;")
-=======
 $("#poke-candy-buy-normal").on("click", event => {
     event.preventDefault()
     let contAnime = true;
@@ -440,4 +378,3 @@ function increaseMoney(incAmount=5) {
     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+newCount;
     localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
 }
->>>>>>> 010a41e70ca3561a91d18852f6250ec21857cf55
