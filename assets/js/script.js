@@ -65,12 +65,16 @@ window.addEventListener("load", function(){
     };
 })
 
+loadCandies()
 loadPokemon()
 
 letsGoBtn.addEventListener("click", function(event){
 	event.preventDefault();
     
 	localStorage.setItem("pokeHome:visited", "true");
+    localStorage.setItem("poke-shop:c-normal", 0)
+    localStorage.setItem("poke-shop:c-large", 0)
+    localStorage.setItem("poke-shop:c-xlarge", 0)
 	
     saveStarterPokemon(document.getElementById("input-type").value);
 	saveTrainerInfo();
@@ -287,6 +291,28 @@ function turnObjToArray(object) {
     return newArray
 }
 
+function loadCandies() {
+    console.log(location.search);
+    if (location.search!=="" && location.search!=="?=500") {
+        let prevCandies = [parseInt(localStorage.getItem("poke-shop:c-normal")),parseInt(localStorage.getItem("poke-shop:c-large")),parseInt(localStorage.getItem("poke-shop:c-xlarge"))]
+        let updCandies = JSON.parse(location.search.substring(location.search.indexOf("&candies=")+9, location.search.indexOf("&purchases=")).replace(/%22/g, '"'))
+        for (item in updCandies) {
+            updCandies[item] = parseInt(updCandies[item])
+        }
+        for (item in updCandies) {
+            updCandies[item] += prevCandies[item]
+        }
+        console.log(updCandies);
+        localStorage.setItem("poke-shop:c-normal", updCandies[0])
+        localStorage.setItem("poke-shop:c-large", updCandies[1])
+        localStorage.setItem("poke-shop:c-xlarge", updCandies[2])
+    
+        $("#poke-candy-normal").text(localStorage.getItem("poke-shop:c-normal"))
+        $("#poke-candy-large").text(localStorage.getItem("poke-shop:c-large"))
+        $("#poke-candy-xlarge").text(localStorage.getItem("poke-shop:c-xlarge"))
+    }
+}
+
 function loadPokemon() {
     $("#poke-cards-container").children().remove()
 
@@ -380,7 +406,7 @@ function loadPokemon() {
                 )
             )
     }
-    loadButtons()
+    loadButtons();
 }
 
 $("#poke-search-filter").children().on("click", event => {
