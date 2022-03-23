@@ -2,7 +2,6 @@
 // Image URL Refrence: https://img.pokemondb.net/sprites/sword-shield/icon/{pokemon_name}.png
 
 var results;
-console.log(document.getElementById("poke-coin-inv").innerText);
 if (localStorage.getItem("poke-shop:coins") ===null) {
     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + location.search.substring(2)
 } else {
@@ -111,7 +110,7 @@ $(".poke-buy-btn").on("click", event => {
                 switch (event.currentTarget.id) {
                     case "poke-standard":
                         if (parseInt(document.getElementById("poke-coin-inv").innerText)>=5) {
-                            localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText)-5)
+                            decreaseMoney(5)
                             document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
                             pokemonRequestBy("Standard")
                             // Reset all of this upon animation's full completion
@@ -125,7 +124,7 @@ $(".poke-buy-btn").on("click", event => {
                 
                     case "poke-legendary":
                         if (parseInt(document.getElementById("poke-coin-inv").innerText)>=250) {
-                            localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText)-250)
+                            decreaseMoney(250)
                             document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
                             pokemonRequestBy("Legendary")
                             $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
@@ -138,7 +137,7 @@ $(".poke-buy-btn").on("click", event => {
                 
                     case "poke-mythic":
                         if (parseInt(document.getElementById("poke-coin-inv").innerText)>=500) {
-                            localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText)-500)
+                            decreaseMoney(500)
                             document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
                             pokemonRequestBy("Mythic")
                             $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; z-index: 10; position: relative;")
@@ -150,10 +149,10 @@ $(".poke-buy-btn").on("click", event => {
                         break;
                 }
             } catch (error) {
+                contAnime = false
                 anime.remove(event.currentTarget.parentNode.parentNode.previousElementSibling)
                 alert("You don't have enough money!\nTo make more money, simply click on your Poke-Coins")
             }
-
         },
         translateX: (window.innerWidth/2)-event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x-125,
         scale: 1.5,
@@ -246,6 +245,112 @@ $(".poke-buy-btn").on("click", event => {
     })
 })
 
+$("#poke-candy-buy-normal").on("click", event => {
+    event.preventDefault()
+    let contAnime = true;
+    anime({
+        targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
+        begin: function() {
+            try {
+                if (parseInt(document.getElementById("poke-coin-inv").innerText)>2) {
+                    decreaseMoney(2)
+                    if (localStorage.getItem("poke-shop:candy-normal")===null) {
+                        localStorage.setItem("poke-shop:candy-normal", 1)
+                    } else {
+                        localStorage.setItem("poke-shop:candy-normal", parseInt(localStorage.getItem("poke-shop:candy-normal"))+1)
+                    }
+                } else {
+                    throw new Error("not enough money")
+                }
+            } catch (error) {
+                contAnime = false
+                alert("You don't have enough money!\nTo make more money, simply click on your Poke-Coins")
+            }
+        },
+        scale: 3,
+        opacity: 0,
+        duration: 250,
+        complete: function() {
+            anime({
+                targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
+                scale: 1,
+                opacity: 1,
+                duration: 0
+            })
+        }
+    })
+})
+$("#poke-candy-buy-large").on("click", event => {
+    event.preventDefault()
+    let contAnime = true;
+    anime({
+        targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
+        begin: function() {
+            try {
+                if (parseInt(document.getElementById("poke-coin-inv").innerText)>10) {
+                    decreaseMoney(10)
+                    if (localStorage.getItem("poke-shop:candy-large")===null) {
+                        localStorage.setItem("poke-shop:candy-large", 1)
+                    } else {
+                        localStorage.setItem("poke-shop:candy-large", parseInt(localStorage.getItem("poke-shop:candy-large"))+1)
+                    }
+                } else {
+                    throw new Error("not enough money")
+                }
+            } catch (error) {
+                contAnime = false
+                alert("You don't have enough money!\nTo make more money, simply click on your Poke-Coins")
+            }
+        },
+        scale: 3,
+        opacity: 0,
+        duration: 250,
+        complete: function() {
+            anime({
+                targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
+                scale: 1,
+                opacity: 1,
+                duration: 0
+            })
+        }
+    })
+})
+$("#poke-candy-buy-xlarge").on("click", event => {
+    event.preventDefault()
+    let contAnime = true;
+    anime({
+        targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
+        begin: function() {
+            try {
+                if (parseInt(document.getElementById("poke-coin-inv").innerText)>50) {
+                    decreaseMoney(50)
+                    if (localStorage.getItem("poke-shop:candy-xlarge")===null) {
+                        localStorage.setItem("poke-shop:candy-xlarge", 1)
+                    } else {
+                        localStorage.setItem("poke-shop:candy-xlarge", parseInt(localStorage.getItem("poke-shop:candy-xlarge"))+1)
+                    }
+                } else {
+                    throw new Error("not enough money")
+                }
+            } catch (error) {
+                contAnime = false
+                alert("You don't have enough money!\nTo make more money, simply click on your Poke-Coins")
+            }
+        },
+        scale: 3,
+        opacity: 0,
+        duration: 250,
+        complete: function() {
+            anime({
+                targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
+                scale: 1,
+                opacity: 1,
+                duration: 0
+            })
+        }
+    })
+})
+
 $("#poke-coin-inv").on("click", event => {
     increaseMoney()
 })
@@ -253,6 +358,22 @@ $("#poke-coin-inv").on("click", event => {
 $("#link-home").on("click", event => {
     event.preventDefault()
     let purchases = []
+    let candies = []
+    if (localStorage.getItem("poke-shop:candy-normal")!==null) {
+        candies.push(localStorage.getItem("poke-shop:candy-normal"))
+    } else {
+        candies.push(0)
+    }
+    if (localStorage.getItem("poke-shop:candy-large")!==null) {
+        candies.push(localStorage.getItem("poke-shop:candy-large"))
+    } else {
+        candies.push(0)
+    }
+    if (localStorage.getItem("poke-shop:candy-xlarge")!==null) {
+        candies.push(localStorage.getItem("poke-shop:candy-xlarge"))
+    } else {
+        candies.push(0)
+    }
     for (item in localStorage) {
         console.log(item);
         if (item.includes("poke-shop:$!")) {
@@ -260,7 +381,7 @@ $("#link-home").on("click", event => {
         }
     }
     localStorage.clear()
-    location.assign("./index.html?="+document.getElementById("poke-coin-inv").innerText+"&purchases="+JSON.stringify(purchases))
+    location.assign("./index.html?="+document.getElementById("poke-coin-inv").innerText+"&candies="+JSON.stringify(candies)+"&purchases="+JSON.stringify(purchases))
 })
 
 
@@ -268,26 +389,13 @@ $("#link-home").on("click", event => {
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Counter functions
 
-// function increaseNormalCandy() {
-//     // document.getElementById("poke-candy-large").innerHTML = count + 1;
-
-// }
-
-// function increaseLargeCandy() {
-//     // document.getElementById("poke-candy-large").innerHTML = count + 1;
-
-// }
-
-// function increaseXlargeCandy() {
-//     document.getElementById("poke-candy-xlcandy").innerHTML = count + 1;
-// }
-
-// function decreaseMoney(amount) {
-//     if (parseInt(document.getElementById("poke-money").innerHTML) > 0) {
-//         // document.getElementById("poke-money").innerHTML = parseInt(document.getElementById("poke-money").innerHTML) - amount;
-        
-//     }
-// }
+function decreaseMoney(amount) {
+    if (parseInt(document.getElementById("poke-coin-inv").innerText) > amount) {
+        console.log(parseInt(document.getElementById("poke-coin-inv").innerText));
+        document.getElementById("poke-coin-inv").innerText = parseInt(document.getElementById("poke-coin-inv").innerText) - amount
+        localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText))
+    }
+}
 
 function increaseMoney(incAmount=5) {
     let newCount = parseInt(document.getElementById("poke-coin-inv").innerText) + incAmount

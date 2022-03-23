@@ -65,12 +65,16 @@ window.addEventListener("load", function(){
     };
 })
 
+loadCandies()
 loadPokemon()
 
 letsGoBtn.addEventListener("click", function(event){
 	event.preventDefault();
     
 	localStorage.setItem("pokeHome:visited", "true");
+    localStorage.setItem("poke-shop:c-normal", 0)
+    localStorage.setItem("poke-shop:c-large", 0)
+    localStorage.setItem("poke-shop:c-xlarge", 0)
 	
     saveStarterPokemon(document.getElementById("input-type").value);
 	saveTrainerInfo();
@@ -287,6 +291,28 @@ function turnObjToArray(object) {
     return newArray
 }
 
+function loadCandies() {
+    console.log(location.search);
+    if (location.search!=="" && location.search!=="?=500") {
+        let prevCandies = [parseInt(localStorage.getItem("poke-shop:c-normal")),parseInt(localStorage.getItem("poke-shop:c-large")),parseInt(localStorage.getItem("poke-shop:c-xlarge"))]
+        let updCandies = JSON.parse(location.search.substring(location.search.indexOf("&candies=")+9, location.search.indexOf("&purchases=")).replace(/%22/g, '"'))
+        for (item in updCandies) {
+            updCandies[item] = parseInt(updCandies[item])
+        }
+        for (item in updCandies) {
+            updCandies[item] += prevCandies[item]
+        }
+        console.log(updCandies);
+        localStorage.setItem("poke-shop:c-normal", updCandies[0])
+        localStorage.setItem("poke-shop:c-large", updCandies[1])
+        localStorage.setItem("poke-shop:c-xlarge", updCandies[2])
+    
+        $("#poke-candy-normal").text(localStorage.getItem("poke-shop:c-normal"))
+        $("#poke-candy-large").text(localStorage.getItem("poke-shop:c-large"))
+        $("#poke-candy-xlarge").text(localStorage.getItem("poke-shop:c-xlarge"))
+    }
+}
+
 function loadPokemon() {
     $("#poke-cards-container").children().remove()
 
@@ -380,6 +406,7 @@ function loadPokemon() {
                 )
             )
     }
+    loadButtons();
 }
 
 $("#poke-search-filter").children().on("click", event => {
@@ -445,107 +472,108 @@ $("#poke-search-type-items").children().on("click", event => {
     loadPokemon()
 })
 
-
-$(".sell-pkm-btn").on("click", event => {
-    event.preventDefault()
-    console.log("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText);
-    localStorage.removeItem("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText)
-    localStorage.setItem("poke-shop-sold:"+event.currentTarget.parentNode.parentNode.children[0].innerText, event.currentTarget.parentNode.parentNode.children[0].innerText)
-    anime({
-        targets: event.currentTarget.parentNode.parentNode.parentNode,
-        keyframes: [
-            {
-                zIndex: 100,
-                duration: 0
-            },
-            {
-                translateX: (window.innerWidth / 2) - event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x - 160,
-                translateY: (window.innerHeight / 2) - event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().y - 250,
-                scale: 1.5,
-                duration: 2000
-            },
-            {
-                translateX: window.innerWidth - event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x - 160,
-                translateY: -(window.innerHeight - 400),
-                opacity: 0,
-                easing: 'cubicBezier(1, 0, 1, 1)',
-                duration: 1000
+function loadButtons() {
+    $(".sell-pkm-btn").on("click", event => {
+        event.preventDefault()
+        console.log("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText);
+        localStorage.removeItem("poke-shop:!"+event.currentTarget.parentNode.parentNode.children[0].innerText)
+        localStorage.setItem("poke-shop-sold:"+event.currentTarget.parentNode.parentNode.children[0].innerText, event.currentTarget.parentNode.parentNode.children[0].innerText)
+        anime({
+            targets: event.currentTarget.parentNode.parentNode.parentNode,
+            keyframes: [
+                {
+                    zIndex: 100,
+                    duration: 0
+                },
+                {
+                    translateX: (window.innerWidth / 2) - event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x - 160,
+                    translateY: (window.innerHeight / 2) - event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().y - 250,
+                    scale: 1.5,
+                    duration: 2000
+                },
+                {
+                    translateX: window.innerWidth - event.currentTarget.parentNode.parentNode.parentNode.getBoundingClientRect().x - 160,
+                    translateY: -(window.innerHeight - 400),
+                    opacity: 0,
+                    easing: 'cubicBezier(1, 0, 1, 1)',
+                    duration: 1000
+                }
+            ],
+            complete: function (anim) {
+                $("#anime-pokecoin-sell").remove()
+                switch (event.currentTarget.parentNode.parentNode.children[4].innerText) {
+                    case "Standard":
+                        increaseMoney(2)
+                        localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                        break;
+                    case "Legendary":
+                        increaseMoney(125)
+                        localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                        break;
+                    case "Mythic":
+                        increaseMoney(250)
+                        localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
+                        break;
+                }
+                event.currentTarget.parentNode.parentNode.parentNode.remove()
+                let totalPokecoins = 8;    // Set how many coins to create.
+                $("body").append($("<div>").attr("id", "anime-pokecoin-sell").attr("style", "display: flex; justify-content: end; position: fixed; z-index: 100; top: 0px; right: 0px; width: 5%; height: 5%; opacity: 1;")
+                    .append(() => {
+                        let pokeCoinImageArray = []
+                        for (let index = 0; index < totalPokecoins; index++) {
+                            pokeCoinImageArray.push($("<img>").attr("src", "./assets/images/pokecoin.png").attr("style", "position: absolute; width: 32px; height: 32px;"))
+                        }
+                        return pokeCoinImageArray
+                    }))
+                anime({
+                    targets: turnObjToArray($("#anime-pokecoin-sell").children()),
+                    translateX: anime.stagger(-35, { grid: [Math.sqrt(totalPokecoins), Math.sqrt(totalPokecoins)], axis: "x" }),
+                    translateY: anime.stagger(35, { grid: [Math.sqrt(totalPokecoins), Math.sqrt(totalPokecoins)], axis: "y" }),
+                    opacity: 0,
+                    duration: 1000,
+                    easing: "easeInOutQuad",
+                })
             }
-        ],
-        complete: function (anim) {
-            $("#anime-pokecoin-sell").remove()
-            switch (event.currentTarget.parentNode.parentNode.children[4].innerText) {
-                case "Standard":
-                    increaseMoney(2)
-                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
-                    break;
-                case "Legendary":
-                    increaseMoney(125)
-                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
-                    break;
-                case "Mythic":
-                    increaseMoney(250)
-                    localStorage.setItem("poke-shop:coins", document.getElementById("poke-coin-inv").innerText)
-                    break;
-            }
-            event.currentTarget.parentNode.parentNode.parentNode.remove()
-            let totalPokecoins = 8;    // Set how many coins to create.
-            $("body").append($("<div>").attr("id", "anime-pokecoin-sell").attr("style", "display: flex; justify-content: end; position: fixed; z-index: 100; top: 0px; right: 0px; width: 5%; height: 5%; opacity: 1;")
-                .append(() => {
-                    let pokeCoinImageArray = []
-                    for (let index = 0; index < totalPokecoins; index++) {
-                        pokeCoinImageArray.push($("<img>").attr("src", "./assets/images/pokecoin.png").attr("style", "position: absolute; width: 32px; height: 32px;"))
-                    }
-                    return pokeCoinImageArray
-                }))
+        })
+    })
+    
+    $(".feed-pkm-btn").on("click", event => {
+        event.preventDefault()
+        let hasCandy;
+        if (event.currentTarget.id === "poke-feed-normal") {
+            hasCandy = decreaseNormalCandy() || alert("You are out of normal candies!")
+        } else if (event.currentTarget.id === "poke-feed-large") {
+            hasCandy = decreaseLargeCandy() || alert("You are out of large candies!")
+        } else if (event.currentTarget.id === "poke-feed-xlarge") {
+            hasCandy = decreaseXlargeCandy() || alert("You are out of large candies!")
+        }
+    
+        if (hasCandy) {
             anime({
-                targets: turnObjToArray($("#anime-pokecoin-sell").children()),
-                translateX: anime.stagger(-35, { grid: [Math.sqrt(totalPokecoins), Math.sqrt(totalPokecoins)], axis: "x" }),
-                translateY: anime.stagger(35, { grid: [Math.sqrt(totalPokecoins), Math.sqrt(totalPokecoins)], axis: "y" }),
+                targets: [event.currentTarget.children[0]],
+                translateY: -200,
                 opacity: 0,
+                easing: "cubicBezier(1, 0, .75, 1)",
                 duration: 1000,
-                easing: "easeInOutQuad",
+                begin: function () {
+                    $(event.currentTarget).attr("style", "pointer-events: none;")
+                },
+                complete: function () {
+                    anime({
+                        targets: event.currentTarget.children[0],
+                        translateY: 0,
+                        opacity: 1,
+                        duration: 0,
+                        complete: function () {
+                            console.log(event.currentTarget.parentNode.parentNode);
+                            $(event.currentTarget).attr("style", "pointer-events: initial;")
+                        }
+                    })
+                },
             })
         }
     })
-})
-
-$(".feed-pkm-btn").on("click", event => {
-    event.preventDefault()
-    let hasCandy;
-    if (event.currentTarget.id === "poke-feed-normal") {
-        hasCandy = decreaseNormalCandy() || alert("You are out of normal candies!")
-    } else if (event.currentTarget.id === "poke-feed-large") {
-        hasCandy = decreaseLargeCandy() || alert("You are out of large candies!")
-    } else if (event.currentTarget.id === "poke-feed-xlarge") {
-        hasCandy = decreaseXlargeCandy() || alert("You are out of large candies!")
-    }
-
-    if (hasCandy) {
-        anime({
-            targets: [event.currentTarget.children[0]],
-            translateY: -200,
-            opacity: 0,
-            easing: "cubicBezier(1, 0, .75, 1)",
-            duration: 1000,
-            begin: function () {
-                $(event.currentTarget).attr("style", "pointer-events: none;")
-            },
-            complete: function () {
-                anime({
-                    targets: event.currentTarget.children[0],
-                    translateY: 0,
-                    opacity: 1,
-                    duration: 0,
-                    complete: function () {
-                        console.log(event.currentTarget.parentNode.parentNode);
-                        $(event.currentTarget).attr("style", "pointer-events: initial;")
-                    }
-                })
-            },
-        })
-    }
-})
+}
 
 $("#poke-coin-inv").on("click", event => {
     increaseMoney()
