@@ -2,11 +2,12 @@
 // Image URL Refrence: https://img.pokemondb.net/sprites/sword-shield/icon/{pokemon_name}.png
 
 var results;
-if (localStorage.getItem("poke-shop:coins") ===null) {
-    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + location.search.substring(2)
-} else {
-    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage.getItem("poke-shop:coins")
+
+function loadCoins() {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="">'+localStorage.getItem("poke-shop:coins")
 }
+
+loadCoins()
 
 async function pokemonRequestBy( input){
     const fetchTypes = fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
@@ -227,7 +228,7 @@ $(".poke-buy-btn").on("click", event => {
                                     
                                     complete: function() {
                                         // Add pokemon to local storage
-                                        localStorage.setItem("poke-shop:$!"+randomPoke.givenName, JSON.stringify(randomPoke))  // Purchased pokemon will get the '$' prefixed to them to represent they were bought
+                                        localStorage.setItem("poke-shop:!"+randomPoke.givenName, JSON.stringify(randomPoke))  // Purchased pokemon will get the '$' prefixed to them to represent they were bought
     
     
                                         $(event.currentTarget.parentNode.parentNode.parentNode).prop("style", "width: 15rem; height: 25rem; position: relative;")
@@ -317,7 +318,6 @@ $("#poke-candy-buy-large").on("click", event => {
 })
 $("#poke-candy-buy-xlarge").on("click", event => {
     event.preventDefault()
-    let contAnime = true;
     anime({
         targets: event.currentTarget.parentNode.parentNode.parentNode.children[0],
         begin: function() {
@@ -357,31 +357,7 @@ $("#poke-coin-inv").on("click", event => {
 
 $("#link-home").on("click", event => {
     event.preventDefault()
-    let purchases = []
-    let candies = []
-    if (localStorage.getItem("poke-shop:candy-normal")!==null) {
-        candies.push(localStorage.getItem("poke-shop:candy-normal"))
-    } else {
-        candies.push(0)
-    }
-    if (localStorage.getItem("poke-shop:candy-large")!==null) {
-        candies.push(localStorage.getItem("poke-shop:candy-large"))
-    } else {
-        candies.push(0)
-    }
-    if (localStorage.getItem("poke-shop:candy-xlarge")!==null) {
-        candies.push(localStorage.getItem("poke-shop:candy-xlarge"))
-    } else {
-        candies.push(0)
-    }
-    for (item in localStorage) {
-        console.log(item);
-        if (item.includes("poke-shop:$!")) {
-            purchases.push(JSON.parse(localStorage.getItem(item)))
-        }
-    }
-    localStorage.clear()
-    location.assign("./index.html?="+document.getElementById("poke-coin-inv").innerText+"&candies="+JSON.stringify(candies)+"&purchases="+JSON.stringify(purchases))
+    location.assign("./index.html")
 })
 
 
@@ -392,7 +368,7 @@ $("#link-home").on("click", event => {
 function decreaseMoney(amount) {
     if (parseInt(document.getElementById("poke-coin-inv").innerText) > amount) {
         console.log(parseInt(document.getElementById("poke-coin-inv").innerText));
-        document.getElementById("poke-coin-inv").innerText = parseInt(document.getElementById("poke-coin-inv").innerText) - amount
+        document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" ></img>'+(parseInt(document.getElementById("poke-coin-inv").innerText) - amount)
         localStorage.setItem("poke-shop:coins", parseInt(document.getElementById("poke-coin-inv").innerText))
     }
 }

@@ -5,26 +5,6 @@ var savedGym = document.getElementById("saved-gym");
 var letsGoBtn = document.querySelector("#first-time-popup-submit");
 var input = document.querySelector(".form-control")
 var firstStarted =document.querySelector(".started .first");
-// save last trainer information 
-
-// if (location.search === "" || parseInt(location.search.substring(2, location.search.indexOf("&purchases"))) === "") {
-//     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
-// } else if (parseInt(localStorage["poke-shop:coins"]) > parseInt(location.search.substring(2, location.search.indexOf("&purchases")))) {
-//     localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2, location.search.indexOf("&purchases"))))
-//     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2, location.search.indexOf("&purchases")))
-// } else if (localStorage["poke-shop:coins"]!==null) {
-//     document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
-// }
-
-if (location.search === "" || parseInt(location.search.substring(2, location.search.indexOf("&purchases"))) === "") {
-    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + localStorage["poke-shop:coins"]
-} else if (!location.search.includes("&purchases")) {
-    localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2)))
-    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2))
-} else {
-    localStorage.setItem("poke-shop:coins", parseInt(location.search.substring(2, location.search.indexOf("&purchases"))))
-    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="" >' + parseInt(location.search.substring(2, location.search.indexOf("&purchases")))
-}
 
 function saveTrainerInfo(){
 
@@ -65,6 +45,7 @@ window.addEventListener("load", function(){
     };
 })
 
+loadCoins()
 loadCandies()
 loadPokemon()
 
@@ -81,7 +62,9 @@ letsGoBtn.addEventListener("click", function(event){
 	renderLastTrainer();
 	// document.getElementById("trainer-form").reset();
 	document.getElementById("trainer-form").style.display = "none";
-    location.assign("./index.html?=500")
+    document.getElementById("poke-coin-inv").innerText = 500
+    localStorage.setItem("poke-shop:coins", 500)
+    location.assign("./index.html")
 });
     // type selected will auto populate the first pokemon.
 
@@ -291,26 +274,30 @@ function turnObjToArray(object) {
     return newArray
 }
 
+function loadCoins() {
+    document.getElementById("poke-coin-inv").innerHTML = '<img src="./assets/images/pokecoin-logo.png" alt="pokecoin logo" class="">'+localStorage.getItem("poke-shop:coins")
+}
+
 function loadCandies() {
-    console.log(location.search);
-    if (location.search!=="" && location.search!=="?=500") {
-        let prevCandies = [parseInt(localStorage.getItem("poke-shop:c-normal")),parseInt(localStorage.getItem("poke-shop:c-large")),parseInt(localStorage.getItem("poke-shop:c-xlarge"))]
-        let updCandies = JSON.parse(location.search.substring(location.search.indexOf("&candies=")+9, location.search.indexOf("&purchases=")).replace(/%22/g, '"'))
-        for (item in updCandies) {
-            updCandies[item] = parseInt(updCandies[item])
-        }
-        for (item in updCandies) {
-            updCandies[item] += prevCandies[item]
-        }
-        console.log(updCandies);
-        localStorage.setItem("poke-shop:c-normal", updCandies[0])
-        localStorage.setItem("poke-shop:c-large", updCandies[1])
-        localStorage.setItem("poke-shop:c-xlarge", updCandies[2])
-    
-        $("#poke-candy-normal").text(localStorage.getItem("poke-shop:c-normal"))
-        $("#poke-candy-large").text(localStorage.getItem("poke-shop:c-large"))
-        $("#poke-candy-xlarge").text(localStorage.getItem("poke-shop:c-xlarge"))
+    if (localStorage.getItem("poke-shop:candy-normal")===null) {
+        localStorage.setItem("poke-shop:candy-normal", 0)
+        $("#poke-candy-normal").text(localStorage.getItem("poke-shop:candy-normal"))
+    } else {
+        $("#poke-candy-normal").text(localStorage.getItem("poke-shop:candy-normal"))
     }
+    if (localStorage.getItem("poke-shop:candy-large")===null) {
+        localStorage.setItem("poke-shop:candy-large", 0)
+        $("#poke-candy-large").text(localStorage.getItem("poke-shop:candy-large"))
+    } else {
+        $("#poke-candy-large").text(localStorage.getItem("poke-shop:candy-large"))
+    }
+    if (localStorage.getItem("poke-shop:candy-xlarge")===null) {
+        localStorage.setItem("poke-shop:candy-xlarge", 0)
+        $("#poke-candy-xlarge").text(localStorage.getItem("poke-shop:candy-xlarge"))
+    } else {
+        $("#poke-candy-xlarge").text(localStorage.getItem("poke-shop:candy-xlarge"))
+    }
+
 }
 
 function loadPokemon() {
